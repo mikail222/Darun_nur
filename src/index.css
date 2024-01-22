@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Oleo+Script&family=Rubik+Moonrocks&display=swap");
+
+@tailwind base;
+@tailwind components;
+
+:root {
+  font-size: 16px;
+  /* line-height: 50px; */
+  font-weight: 100;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: "General Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  scroll-behavior: smooth;
+  scroll-padding: 10rem;
+  /* background-color: #f5f5f5; */
+}
+.slick-slide > div {
+  margin: 0 10px;
+}
+
+button {
+  font-family: "darker grotesque";
+  @apply outline-0;
+}
+li {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "darker grotesque";
+}
+::placeholder {
+  font-family: "darker grotesque";
+}
+h1 {
+  @apply text-[1rem] md:text-[2rem] lg:text-[2.5rem] font-semibold;
+}
+h2 {
+  @apply text-[1.3rem] lg:text-[2.3rem] font-semibold;
+}
+h3 {
+  @apply text-[1rem]  md:text-[1.5rem] lg:text-[1.7rem] font-semibold;
+}
+h4 {
+  @apply text-[1.2rem] lg:text-[1.7rem] text-[gray] font-semibold;
+}
+h5 {
+  @apply text-[1.5rem] text-[#133063]  font-semibold;
+}
+h6 {
+  @apply text-[1rem] lg:text-[1.3rem] text-[#133063]  font-semibold;
+}
+p {
+  font-family: "Oleo Script", system-ui;
+  @apply text-[15px] leading-7  font-thin;
+}
+img:active {
+  @apply outline-none;
+}
+@tailwind utilities;

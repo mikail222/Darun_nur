@@ -1,0 +1,700 @@
+@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lobster+Two:ital@0;1&family=Old+Standard+TT&family=Oswald:wght@500&family=Philosopher:ital@1&family=Playfair+Display:ital@1&family=Rowdies&display=swap");
+
+* {
+  box-sizing: border-box;
+  @apply top-0 m-0;
+}
+.app.dark {
+  background-color: rgba(0, 0, 0, 0.541);
+}
+.media {
+  @apply flex flex-row justify-center items-center gap-[1rem] w-[40%] lg:ml-[30%] ml-[1rem] lg:mt-[10%];
+}
+
+.brand2 {
+  background-image: url("./assets/abhishek-choudhary-99BE7GNmavk-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  @apply h-[35vh] leading-[1.8rem] lg:leading-[4rem] md:leading-[2.3rem] md:h-[50vh] lg:h-[70vh] w-[100%] lg:flex;
+}
+.vacate img {
+  @apply lg:w-[40%] w-[46%]  lg:h-[50vh] object-cover;
+}
+
+.arrows {
+  @apply w-[50px] h-[50px];
+}
+.brand3 {
+  background-image: url("./assets/umbrella.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  transform: skewY(10deg);
+  @apply h-[80vh] w-[100%] lg:flex;
+}
+.annurPress {
+  transform: skewY(10deg);
+  @apply w-[50%] relative z-[1] top-[-150px] right-[70px];
+}
+.alignStars {
+  animation: starr 10s ease-in-out;
+  @apply flex  flex-col justify-center  items-center  text-[#f5f5f5] font-semibold;
+}
+@keyframes starr {
+  0% {
+    opacity: 0;
+    transform: scale(1.5) translateY(-0.75em);
+  }
+  20% {
+    opacity: 1;
+  }
+  89% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateZ(-1000em);
+  }
+}
+.Team {
+  background-image: url("./assets/pexels-scott-webb-1084510.jpg");
+  background-position: right;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  /* background-blend-mode: hard-light; */
+}
+.changeToGray:hover {
+  @apply text-[gray] cursor-pointer;
+}
+.Teamoverlay {
+  background-color: rgb(255, 255, 255, 0.1);
+  @apply w-[100%] h-[100%];
+}
+.vmContainer {
+  background-image: url("./assets/interior.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  @apply lg:h-[100vh] w-[100%];
+}
+.vmOverlay {
+  background-color: rgb(10, 130, 220, 0.7);
+}
+.vm div {
+  @apply bg-[white] text-[#010080] w-[90%] lg:w-[28%] h-[50%] lg:h-[80%] rounded-[10px] p-[15px];
+}
+.vm h4 {
+  @apply font-bold;
+}
+.value div {
+  @apply flex flex-row items-center gap-[10px] md:w-[70%] md:h-[100%] px-[10px] h-[47%] rounded-[15px] bg-[white] lg:text-center;
+}
+.value .icon {
+  @apply bg-[#133063] text-white rounded-[100px] w-[20px] h-[20px];
+}
+.overlayUs {
+  @apply bg-[#f5f5f5] w-[100%] h-[100%];
+}
+.info {
+  box-shadow: 1px 2px 6px lightgray;
+}
+
+.faq {
+  @apply flex flex-col lg:flex-row lg:justify-center;
+}
+.answer {
+  @apply w-[90%]  ml-[2%];
+}
+.faqform {
+  @apply w-[100%] lg:w-[60%];
+}
+.faqform div {
+  @apply lg:w-[95%] px-[15px] lg:px-[20px] py-[10px] rounded-[8px];
+}
+.toggleDetails {
+  @apply flex flex-col gap-[1rem];
+}
+.arrow {
+  @apply w-[30px] h-[30px]  fill-[#133063];
+}
+.arrow:hover {
+  box-shadow: 1px 1px 4px lightgray;
+  @apply rounded-[5px];
+}
+.btnRow {
+  @apply flex flex-row gap-[4%] items-center;
+}
+.toggleDetails .enquirybtn {
+  @apply text-[#133063] border-[2px] border-[#133063] rounded-[20px] lg:w-[12vw] p-[5px]  text-center my-[15px] bg-white text-[1rem] w-[50%];
+}
+.address {
+  @apply flex flex-row items-center gap-[15px];
+}
+.contactIcon {
+  @apply p-[2px] bg-[orange] fill-white w-[20px] h-[20px];
+}
+.cform input {
+  @apply border-[1px] w-[100%] font-semibold p-[5px] outline-none;
+}
+.cform div {
+  @apply w-[100%];
+}
+.contacticon {
+  @apply p-[5px] bg-[black] fill-white w-[22px] h-[22px]  rounded-[50px];
+}
+.toggleDetails div span {
+  @apply flex flex-row justify-between items-center py-[1px] text-[#133063] fill-[#133063];
+}
+.product1 {
+  @apply flex  flex-row gap-[6%];
+}
+.faqProduct2 {
+  @apply flex  flex-row justify-around z-[1] relative top-[-11rem];
+}
+.productDesign {
+  @apply hidden lg:flex flex-col h-[20%] w-[50%];
+}
+.port p {
+  @apply text-[#3f8ba7] text-[.9rem]  lg:text-[1.2rem]  md:text-[1.2rem];
+}
+.offer {
+  @apply flex flex-col gap-[0.5rem];
+}
+.offer p {
+  @apply text-white;
+}
+.offer div {
+  @apply flex flex-row items-center w-[80%] lg:w-[50%] md:w-[40%] md:py-[5px] gap-[1rem] font-bold bg-[#133063]  rounded-[100px] px-[0.3rem];
+}
+.offer div .icon {
+  @apply fill-[#133063] bg-[white] rounded-[100px];
+}
+.productImg {
+  @apply w-[75%] h-[10%]  bg-[#45a4de];
+}
+.toggleDetails .div {
+  box-shadow: 1px 1px 6px lightgray;
+  @apply w-[100%] bg-[white];
+}
+
+.toggleDetails button {
+  @apply bg-[#133063] rounded-[20px] lg:w-[10vw] p-[7px]  text-center my-[15px] text-white text-[1rem] w-[45%] font-semibold;
+}
+.BsStar,
+.BsStar2 {
+  @apply w-[50px] h-[50px]  fill-[#133063];
+}
+.cleanImg {
+  @apply w-[60%] h-[20rem] border-[10px] border-[lightgray];
+}
+.pictureUs img:hover {
+  transform: scale(1.1);
+  transition: 0.5s all;
+  background-blend-mode: overlay;
+  background-color: orange;
+}
+.brandoverlay {
+  background-color: rgb(0, 0, 0, 0.5);
+  @apply w-[100%] h-[100%];
+}
+.bgProfile {
+  background-image: url("assets/pexels-thirdman-7956574.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.adminBg {
+  background-image: url("assets/fading-blue-background.jpg");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+}
+.contactbg {
+  background-image: url("assets/painte.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.printBg {
+  background-image: url("./assets/publication.jpg");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  @apply w-[100%] lg:h-[90vh] h-[50vh];
+}
+.printBgs {
+  background-image: url("./assets/paint.jpg");
+  background-size: cover;
+  background-position: top;
+  background-repeat: no-repeat;
+  @apply w-[100%] lg:h-[90vh] h-[50vh];
+}
+.password input {
+  @apply outline-0 bg-[transparent] w-[90%];
+}
+.password form div {
+  @apply flex  flex-row justify-between items-center p-[10px] border-[1px];
+}
+.password form label {
+  @apply text-[red];
+}
+.overlay {
+  background-color: rgb(0, 0, 0, 0.5);
+  @apply w-[100%] h-[100%];
+}
+.center {
+  @apply w-[100%] h-[40%]  text-[gray];
+}
+.footbg {
+  background-image: url("./assets/arafa_mountain.jpg");
+  background-size: 100%;
+  background-position: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.footOverlay {
+  background-color: rgba(21, 15, 95, 0.6);
+}
+
+.team:hover {
+  transform: scale(1.1);
+  transition: 0.5s all;
+  content: attr(".name");
+}
+.team p {
+  @apply px-[1%];
+}
+.details {
+  @apply w-[26%] lg:h-[40%] bg-[white] rounded-[3px];
+}
+.deal {
+  background-image: url("./assets/pirata-studio-film-GlVr1QBPYv8-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  @apply w-[93%] lg:w-[90%] h-[45vh] lg:h-[78%] mt-[1rem] object-cover rounded-[3px];
+}
+.head {
+  border-bottom: 3px double #0f0326;
+}
+.mail {
+  border-top: 1px dotted #d1a9db;
+}
+.socio_handle {
+  @apply flex flex-row items-center gap-[1rem];
+}
+
+.socio_handle p {
+  @apply text-[1rem];
+}
+.slider {
+  top: 10rem;
+  @apply w-[100%] lg:h-[6vh] hidden  lg:flex lg:flex-col lg:justify-center lg:items-center absolute;
+}
+.slide-container {
+  @apply w-[100%] h-[auto]
+relative;
+
+  animation-name: slide_image;
+  animation-duration: 50s;
+  animation-direction: normal;
+  animation-play-state: running;
+  animation-iteration-count: infinite;
+}
+@keyframes slide_image {
+  0% {
+    right: 0%;
+  }
+
+  100% {
+    right: 100%;
+  }
+}
+
+.placeholder::placeholder {
+  @apply text-[black] text-[0.95rem] font-bold;
+}
+button:active {
+  @apply text-[white] outline-[white];
+}
+.hotel_dropdown {
+  @apply relative inline-block;
+}
+.hotel_container {
+  @apply lg:w-[17vw] w-[17rem] lg:h-[40vh] h-[48vh] ml-[] lg:ml-[0px] mt-[1.1rem] lg:mr-[8%] absolute z-[1] overflow-hidden bg-[white] rounded-[3px]  font-bold shadow-lg;
+}
+.flight_container {
+  @apply w-[17vw] h-[40vh] pt-[40px] mt-[1.1rem] ml-[18%] relative left-0 z-[1] bg-[white] rounded-[5px]  font-bold shadow-lg flex flex-col leading-6 text-[0.95rem] outline-none;
+}
+.flight_container button {
+  @apply focus:outline-none;
+}
+form .a {
+  @apply w-[13px] h-[15px] text-[white] flex flex-row justify-center items-center text-center font-bold text-[1rem] rounded-[50%] outline-none;
+}
+.detail {
+  @apply w-[90%] h-[12vh] lg:w-[25%] lg:h-[12vh] bg-[white] rounded-[3px];
+}
+.sign {
+  @apply text-white rounded-[100px] flex flex-row justify-center items-center h-[15px] w-[15px] focus:outline-none;
+}
+.trip {
+  @apply bg-white text-[#01004d] rounded-[6px] p-[0.75rem];
+}
+.accessibility input {
+  @apply outline-none  w-[80%] border-b-[1px] bg-[transparent] ml-[10%] py-[2%];
+}
+.travel input {
+  @apply outline-none w-[85%] border-b-[1px] lg:bg-[transparent] ml-[10%];
+}
+.accessibility .label {
+  @apply text-[0.70rem] text-[gray] ml-[10%] mt-[5%];
+}
+.accessibility {
+  @apply flex flex-col justify-center items-center;
+}
+.travel .label,
+.afilliate_label {
+  @apply text-[0.70rem] text-[red] ml-[10%] mt-[5%] text-left;
+}
+.travel input::placeholder {
+  @apply text-[1.2rem] text-[gray] ml-[10%] mt-[5%] text-left;
+}
+.socialMedia {
+  background-image: url("https://storage.googleapis.com/b2c-production/static/html/staticPages/img/contact_banner.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @apply w-[100%] h-[35vh] lg:w-[100%] lg:h-[66vh] border-[1px];
+}
+.scholarshipBg {
+  background-image: url("https://studyabroad.ucsd.edu/_images/Scholarships%20Banner.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  @apply w-[100%] h-[60vh] border-[1px];
+}
+.i {
+  @apply w-[80%] lg:w-[25vw] shadow-slate-300 rounded-[15px] bg-white  pb-[1rem];
+}
+.i div {
+  @apply w-[100%] flex flex-col justify-center items-center;
+}
+.offer1 {
+  @apply w-[100%] lg:h-[70%] rounded-[15px]   bg-[#ffecd7];
+}
+.offer2 {
+  @apply w-[100%] lg:h-[70%] rounded-[15px]  bg-[red];
+}
+.offer3 {
+  @apply w-[100%] lg:h-[70%] rounded-[15px]  bg-[lightgreen];
+}
+.i p {
+  @apply text-left mx-[1rem];
+}
+.affilateInput input {
+  @apply outline-0;
+}
+.projectDemo {
+  @apply grid grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] gap-2 lg:grid-cols-2;
+}
+
+.WrapperContainer {
+  @apply w-[98%] md:w-[100%]  md:gap-[1rem] md:grid md:grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] lg:gap-2  flex flex-col lg:flex  lg:flex-row lg:w-[100%];
+}
+.WrapperContainer div {
+  /* box-shadow: 1px 5px 6px 1px lightgrey; */
+  @apply w-[100%] md:h-[7.5rem] h-[6rem] my-[.5rem] md:my-[1rem] lg:my-[1rem] lg:w-[90%] lg:h-[6.5rem] lg:ml-[0px] rounded-[5px] bg-[white] flex  lg:flex-row justify-around items-center text-[gray]  font-bold;
+}
+.progressbar {
+  @apply w-[150px] h-[150px] flex flex-col  justify-center items-center px-[2%] my-[5%];
+}
+.WrapperContainer div span {
+  @apply rounded-[100%] p-[10px];
+}
+.colarrange {
+  @apply flex flex-col;
+}
+.colarrange nav {
+  @apply flex flex-col text-[0.80rem] font-bold;
+}
+.changeColor {
+  @apply pl-[25px] lg:pl-[35px] lg:text-[.9rem] text-[red] text-[0.60rem] font-thin;
+}
+.colarrange nav p {
+  @apply flex flex-row items-start text-[0.80rem] font-bold;
+}
+.statuName {
+  background-color: rgb(255, 255, 255, 0.1);
+  /* @apply flex flex-col; */
+}
+.menu_list button {
+  @apply w-[100%] hover:text-[black] text-[white] lg:py-[6%] py-[5%] md:py-[4%] flex flex-row  items-center gap-10 px-[10%] cursor-pointer font-bold hover:bg-[lightgray];
+}
+.menu_list .icon {
+  @apply hover:fill-[white] fill-[white]  w-[20px] h-[20px];
+}
+.icon {
+  @apply w-[20px] h-[20px] outline-0  fill-[white];
+}
+.nav_list p {
+  font-family: "", sans-serif;
+  @apply hover:cursor-pointer;
+}
+.btnDisable:disabled {
+  @apply bg-[transparent] border-[1px];
+}
+.modal {
+  @apply w-[100%] h-[100vh] flex  flex-row  justify-center  items-center;
+}
+.modalBg {
+  background-image: url("./assets/hujjaj.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  @apply w-[95%] lg:w-[50%] h-[65%] lg:h-[80%] rounded-[25px]  text-white object-contain;
+}
+.modalContainer {
+  background-color: rgb(0, 0, 0, 0.5);
+  @apply w-[100%] h-[100%] flex flex-col justify-center
+    items-center rounded-[25px] font-bold gap-[1rem];
+}
+.user {
+  @apply text-[0.90rem] lg:w-[100%] lg:leading-[2rem] rounded-[10px] bg-[white];
+}
+.searchField {
+  @apply flex  flex-row lg:justify-end  items-center md:w-[60%] lg:w-[60%];
+}
+.userBTN button {
+  @apply lg:w-[10vw] h-[6vh] lg:text-[1.5rem] rounded-[50px] text-[white] font-semibold border-[2px] text-center  px-[3%] lg:px-[0px];
+}
+.buttonbg {
+  background-image: linear-gradient(to right, #133063, #fc9824, #ac0654);
+  @apply border-[2px] py-[5px]  w-[35vw] lg:w-[10vw] rounded-[5px] my-[2%] text-center font-bold text-white;
+}
+.shade {
+  box-shadow: 1px 1px 6px lightgray;
+}
+.projBtn button {
+  @apply border-[2px] text-[black] px-[2%] lg:px-[5%] font-semibold  py-[1%];
+}
+.filter-user {
+  box-shadow: 1px 1px 2px black;
+  right: 0;
+  @apply w-[100%] lg:w-[90%] outline-0 border-b-[1px] bg-[transparent] rounded-[10px] h-[40px] m-[1rem];
+}
+
+.filter-user::placeholder {
+  @apply text-[gray]  text-[1rem]  px-[1rem];
+}
+.productWrapper {
+  @apply flex  flex-col justify-center items-center w-[96%] ml-[1%] lg:w-[96%] bg-[white] mt-[2%] lg:ml-[1rem] rounded-[15px]  shadow-lg;
+}
+
+.Author {
+  @apply w-[95%] my-[5%];
+}
+.Author tr:hover {
+  @apply bg-[#f5f5f5] px-[1%];
+}
+.tableHeader {
+  @apply hidden lg:flex w-[100%] text-[#5e72e4]  text-[1rem] lg:text-[1.2rem] m-[0];
+}
+.userTableHeader {
+  @apply flex flex-col lg:flex-row  justify-between   lg:gap-[5px] lg:items-center text-[#344767] py-[5%] lg:py-[5px]  border-b-[1px] lg:w-[73vw];
+}
+.userTableHeader button,
+.delete,
+.close {
+  box-shadow: 1px 1px 2px lightgray;
+  @apply text-[1rem] rounded-[10px] w-[56px] font-bold px-[35px] flex flex-col items-center;
+}
+.delete {
+  @apply hover:text-white  hover:bg-[red];
+}
+.userTableHeader td {
+  @apply items-start mx-2 lg:text-[1rem];
+}
+.Authoronline {
+  @apply w-[40px] h-[40px] lg:w-[60px] lg:h-[60px] object-cover rounded-[100px]  border-[2px] border-[lightgreen];
+}
+.Authoricon {
+  @apply hidden lg:flex lg:w-[60px] lg:h-[60px] object-contain rounded-[55px];
+}
+.AuthoriOffline {
+  @apply w-[40px] h-[40px] lg:w-[50px] lg:h-[50px] object-cover rounded-[100px];
+}
+.AuthorAlign {
+  @apply flex flex-row items-center gap-[1rem] text-[1.2rem];
+}
+.offline {
+  @apply rounded-[5px] text-center text-[lightgray];
+}
+.online {
+  @apply rounded-[5px] text-[green];
+}
+.tableDiv {
+  @apply w-[100%] flex  flex-row lg:px-[4rem] mt-[2%] text-[lightgray]  lg:text-[1.5rem]  lg:justify-between;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  @apply w-[96%] lg:w-[66%];
+}
+.graphField {
+  @apply w-[100%] lg:ml-[0px] lg:pl-[2%] overflow-x-auto lg:w-[100%] h-auto bg-[white] rounded-[5px] shadow-xl;
+}
+.graphField::-webkit-scrollbar {
+  @apply flex-none;
+}
+.gridLine {
+  @apply stroke-slate-200;
+}
+.revenue {
+  width: 20vw;
+  height: auto;
+  margin-top: 0.5rem;
+  @apply hidden shadow-lg lg:flex flex-col items-center rounded-[5px];
+}
+.proImg {
+  @apply w-[50px] h-[50px] rounded-[100px] border-[3px] border-white ml-[-20px] object-cover bg-[orange];
+}
+.proImg:hover {
+  transition-duration: 1s;
+  @apply scale-150;
+}
+.proIcon {
+  @apply w-[50px] h-[50px] rounded-[100px] fill-[white] border-[3px]  p-[5px];
+}
+.avartaIcon {
+  @apply w-[100px] object-cover h-[90px] rounded-[20%];
+}
+.avartaIcons {
+  @apply w-[60px] object-cover h-[60px] rounded-[10px];
+}
+.buttonContainer {
+  @apply flex flex-row gap-[0.5rem];
+}
+.buttonContainer button {
+  @apply outline-transparent rounded-[5px] lg:px-[1.5rem] p-[5px] lg:py-[0.35rem] border-[2px]  border-[#95bbdf] hover:bg-[#95bbdf] hover:text-[black] mt-[20px] text-[0.90rem] font-serif;
+}
+.profile {
+  @apply flex flex-col-reverse  justify-center items-center lg:flex-row lg:justify-start lg:items-start w-[93vw] lg:w-[97%]  h-auto lg:gap-[0.5rem] mt-[8%] relative top-[-35px] lg:top-[-55px]  lg:mt-[0%];
+}
+.profileForm {
+  @apply flex flex-col lg:flex-row justify-center items-center lg:w-[75%] h-auto  lg:ml-[2%] bg-[white] rounded-[5px];
+}
+.profileForm form {
+  @apply lg:w-[90%] mx-[2%] my-[5%] bg-[white];
+}
+.profileForm form input {
+  @apply px-[5%];
+}
+.profileForm form label,
+.cform label,
+.mslabel {
+  @apply text-[red] font-thin text-[.8rem];
+}
+.profileForm form input::placeholder {
+  @apply text-[1rem] font-semibold;
+}
+.profileForm h6 {
+  @apply my-[1rem];
+}
+.formDiv label,
+.contactInfo label,
+.contactContainer label {
+  @apply text-[0.85rem] text-[gray];
+}
+.formDiv input {
+  @apply w-[100%] lg:w-[17.8rem] py-[0.35rem] my-[0.56rem] outline-0 border-[1px] rounded-[10px];
+}
+.contactContainer {
+  @apply flex  flex-col gap-[0.5rem];
+}
+.formDiv {
+  @apply w-[100%] flex  flex-row gap-[1rem];
+}
+.formDiv div,
+.contactInfo div {
+  @apply flex flex-col;
+}
+.contactContainer input {
+  @apply w-[100%] outline-0 border-[1px] rounded-[10px] py-[0.45rem] my-[0.5rem];
+}
+.contactContainer label {
+  @apply text-[0.85rem] text-[gray];
+}
+
+.contactInfo div {
+  @apply flex flex-col;
+}
+.contactContainer {
+  @apply flex  flex-col gap-[0.5rem];
+}
+.uploadBtn {
+  @apply flex flex-row justify-between items-center  gap-[3rem];
+}
+.profileImage {
+  @apply w-[98%] lg:w-[32%] h-[80vh] bg-[white] rounded-[5px] lg:ml-[2%];
+}
+.contactInfo {
+  @apply w-[100%] gap-[0.5rem] inline-flex;
+}
+.myPics {
+  background-image: url("https://kwarastate.gov.ng/wp-content/uploads/Screen-Shot-2021-12-17-at-11.52.18-PM.jpeg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px 15px 0px 0px;
+  @apply flex  flex-col  justify-center items-center w-[100%] h-[30vh];
+}
+.myPics img {
+  @apply lg:mt-[12rem]  w-[150px]  h-[150px]  lg:w-[90px] lg:h-[90px] rounded-[100%] border-[white] object-cover border-[3px] mt-[6rem]  lg:hover:scale-150;
+}
+.myPics img {
+  transition-duration: 2s;
+}
+.location {
+  @apply animate-bounce mt-[1rem] w-[25px] h-[25px] fill-[#3c4e6d];
+}
+.scan {
+  @apply w-[75px] h-[10px] animate-ping bg-[orange] rounded-[100%] mb-[2%];
+}
+.btn {
+  @apply border-[1px] text-[#3c4e6d] hover:bg-[#5e72e4] hover:text-[white] p-[0.20rem] rounded-[5px] px-[0.5rem];
+}
+.accessibleUpdate {
+  @apply flex flex-col justify-center items-center  lg:w-[25vw] h-[70vh] leading-[1.3rem] border-[2px] font-serif rounded-[2%] bg-white;
+}
+.inputField {
+  @apply w-[70%] flex flex-col justify-center gap-[0.5rem]  my-[5%];
+}
+.inputField input {
+  @apply outline-transparent p-[0.5rem] bg-[transparent] border-b-[1px];
+}
+.updateButtonContainer {
+  @apply flex flex-row gap-[0.5rem] justify-center items-center w-[90%];
+}
+.update_Modal {
+  background-image: url("./assets/umbrella.jpg");
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  @apply w-[100%] h-[100vh] flex  flex-row  justify-center  items-center;
+}
+.updateContainer {
+  background-color: rgb(0, 0, 0, 0.6);
+  @apply w-[100vw] h-[100%] flex flex-col justify-center items-center;
+}
+.updateButtonContainer button {
+  @apply outline-transparent rounded-[2px] border-[1px]  border-[#95bbdf] hover:bg-[transtarent] hover:py-[2px] text-[0.90rem] font-serif px-[6px] lg:px-[1rem]  py-[0.35rem] mt-[5px];
+}
+.affilatePicture {
+  box-shadow: 1px 1px 5px 1px gray;
+}
