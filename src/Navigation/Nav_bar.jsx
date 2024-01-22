@@ -107,7 +107,7 @@ const Nav_bar = ({ setHotelDetails, setFlightDetails }) => {
       <div className="w-[100%] flex flex-col items-center lg:hidden  bg-white ">
         {show ? (
           <div className=" md:flex flex-col w-[100%] h-[100vh] bg-[white] border-b-[1px] border-r-[1px] overflow-hidden z-[2] fixed">
-            <div className="head h-[4rem] flex flex-row  justify-between items-center px-[5%]">
+            <div className="head h-[4rem] flex flex-row  justify-around items-center px-[5%]">
               <button onClick={() => navigate("/")} className="outline-0">
                 <img
                   src={darunnur}
@@ -139,9 +139,9 @@ const Nav_bar = ({ setHotelDetails, setFlightDetails }) => {
                 ) => (
                   <div
                     key={i}
-                    className="flex flex-row justify-between my-[0.2rem] "
+                    className="flex flex-row justify-between my-[0.2rem] px-[5%]"
                   >
-                    <div className="nav_list  flex flex-col gap-[0.25rem] justify-center  z-[1] ">
+                    <div className="nav_list  flex flex-col gap-[0.25rem] justify-start  z-[1] ">
                       <p
                         onClick={() =>
                           (navigate("/") && setHotelDetails(true)) ||
