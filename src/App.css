@@ -189,7 +189,7 @@
   @apply w-[50px] h-[50px]  fill-[#133063];
 }
 .cleanImg {
-  @apply w-[60%] h-[20rem] border-[10px] border-[lightgray];
+  @apply w-[60%] h-[20rem] border-[10px] border-[lightgray] object-cover;
 }
 .pictureUs img:hover {
   transform: scale(1.1);

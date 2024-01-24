@@ -106,7 +106,7 @@ const Nav_bar = ({ setHotelDetails, setFlightDetails }) => {
 
       <div className="w-[100%] flex flex-col items-center lg:hidden  bg-white ">
         {show ? (
-          <div className=" md:flex flex-col w-[100%] h-[100vh] bg-[white] border-b-[1px] border-r-[1px] overflow-hidden z-[2] fixed">
+          <div className=" md:flex flex-col w-[100%] h-[100%] bg-[white] border-b-[1px] border-r-[1px] overflow-hidden z-[2] fixed">
             <div className="head h-[4rem] flex flex-row  justify-around items-center px-[5%]">
               <button onClick={() => navigate("/")} className="outline-0">
                 <img

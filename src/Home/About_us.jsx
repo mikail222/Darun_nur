@@ -8,10 +8,8 @@ import kaaba from "../assets/kaahaba.jpg";
 import darul_nur from "../assets/darun-nur-low-resolution-logo-color-on-transparent-background.png";
 import Mail from "../Service/Mail";
 import { BsInstagram, BsStars, BsTwitter, BsWhatsapp } from "react-icons/bs";
-import { SiLinkedin } from "react-icons/si";
-import { FaFacebook } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import kaaba2 from "../assets/pexels-scott-webb-1084510.jpg";
+
+import kaaba2 from "../assets/hujjaj.jpg";
 import sample from "../assets/fabian-joy-YZrgAkpbXJQ-unsplash.jpg";
 import satisfy from "../assets/satisfaction.svg";
 import { BiCheck, BiPhoneIncoming } from "react-icons/bi";

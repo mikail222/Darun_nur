@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Nav_bar from "../Navigation/Nav_bar";
 import publication from "../assets/publication.jpg";
+import cbn from "../assets/Central-Bank-of-Nigeria-CBN.svg";
+
 import { MdCall, MdCheckBox, MdEmail, MdHome } from "react-icons/md";
 import print from "../assets/printing.jpg";
 import printe from "../assets/paints.jpg";
@@ -15,13 +17,13 @@ const Scholarship = () => {
   const excursion = [
     {
       imge: print,
-      name: "Company  Journal Publication",
+      name: "Company  Journal",
       content:
         "ratione ipsam ipsum utmolestiae laboriosam fugiat. Ab laborum explicabo neque vitae reconsectetur.",
     },
     {
       imge: printe,
-      name: "Company  Journal Publication",
+      name: "Company  Journal",
       content:
         "ratione ipsam ipsum utmolestiae laboriosam fugiat. Ab laborum explicabo neque vitae reconsectetur.",
     },
@@ -41,7 +43,7 @@ const Scholarship = () => {
   ];
   const client = [
     {
-      imge: print,
+      imge: cbn,
       name: "Central Bank of Nigeria ",
       content:
         "ratione ipsam ipsum utmolestiae laboriosam fugiat. Ab laborum explicabo neque vitae reconsectetur.",
@@ -235,7 +237,7 @@ const Scholarship = () => {
               <div className="w-[99%] lg:w-[85%] bg-white">
                 <Slider {...settings}>
                   {client.map(({ imge, content, name, bus_type }) => (
-                    <div className=" w-[100%] lg:h-[55vh] shade flex flex-col justify-center items-center my-[5%] pt-[5%] px-[5%]">
+                    <div className=" w-[100%] lg:h-[58vh] shade flex flex-col justify-center items-center my-[5%] pt-[5%] px-[5%]">
                       <img
                         src={imge}
                         alt=""

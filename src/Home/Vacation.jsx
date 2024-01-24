@@ -24,7 +24,7 @@ const Vacation = () => {
     {
       imge: vacateImg,
       name: "",
-      content: "Enjoy beauty of maldives",
+      content: "",
     },
     {
       imge: vacateImag,
@@ -56,7 +56,7 @@ const Vacation = () => {
     {
       imge: excursionImg,
       name: "",
-      content: "Enjoy beauty of maldives",
+      content: "",
     },
     {
       imge: excursionImag,
@@ -148,9 +148,9 @@ const Vacation = () => {
             autoPlay
             loop
             muted
-            className="object-cover top-[-50px]  lg:top-[-0px]"
+            className="object-cover w-[100%]  lg:h-[100%] h-[60vh] lg:top-[-0px]"
           ></video>
-          <div className=" text-white lg:w-[50%] relative md:top-[400px] top-[150px] lg:top-[660px] p-[5%]">
+          <div className=" text-white lg:w-[50%] relative md:top-[400px] top-[260px] lg:top-[560px] p-[5%]">
             <p className="lg:tracking-[5px] text-[.8rem] lg:text-[1.2rem] md:text-[1.2rem]">
               ABOUT YOUR FAVOURITE PLACE FOR TOUR
             </p>
@@ -222,7 +222,7 @@ const Vacation = () => {
                       className="w-[100%] h-[65vh] bg-[orange] object-cover"
                     />
                     <h2 className="lg:text-[2.5rem]  leading-10">
-                      Enjoy the beauty of Academic Excursion
+                      Enjoy the beauty of Nature
                     </h2>
                     <h4 className="text-[gray]  text-[1.5rem]">{content} </h4>
                   </div>
@@ -245,7 +245,7 @@ const Vacation = () => {
                 environment
               </p>
               <p>
-                where carrer development prevail and asimilation descend far
+                where carrier development prevail and asimilation descend far
                 from the achievement rate of the four wall of the class
               </p>
             </div>
@@ -268,7 +268,7 @@ const Vacation = () => {
                       className="w-[100%] h-[65vh] bg-[orange] object-cover"
                     />
                     <h2 className="lg:text-[2.5rem]  leading-10">
-                      Enjoy the beauty of Academic Excursion
+                      Enjoy the beauty of Excursion
                     </h2>
                     <h4 className="text-[gray]  text-[1.5rem]">{content} </h4>
                   </div>
