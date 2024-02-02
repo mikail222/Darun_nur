@@ -15,7 +15,7 @@ import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { MdOutlineDriveFolderUpload } from "react-icons/md";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 
-const Affilate_Registration = () => {
+const Affilate_Registration = ({ affilate }) => {
   const intialValue = {
     first_name: "",
     last_name: "",
@@ -36,7 +36,6 @@ const Affilate_Registration = () => {
   const [passwordType, setPasswordType] = useState("password");
   const [fileUpload, setFileUpload] = useState(null);
   const [progressTrack, setProgressTrack] = useState(null);
-
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -44,7 +43,8 @@ const Affilate_Registration = () => {
     }
     setPasswordType("password");
   };
-
+  const existingUser = affilate.map((p) => p.email === afillateData.email);
+  console.log(existingUser);
   const afillateCollRef = collection(db, "Afillate");
 
   const handleChange = (e) => {
@@ -122,6 +122,8 @@ const Affilate_Registration = () => {
     }
     if (!values.email) {
       error.email = "email is required";
+    } else if (values.email === existingUser) {
+      error.email = "the email you input has already been use please login";
     } else if (!regex.test(values.email)) {
       error.email = "This is not a valid email format";
     }

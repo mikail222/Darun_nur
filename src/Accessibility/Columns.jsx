@@ -16,7 +16,6 @@ const Columns = ({ msg, inbox }) => {
   const [monthlyVisa, setMonthlyVisa] = useState(null);
   const [monthlyDiffAff, setMonthlyDiffAff] = useState([]);
   const [monthlyDiffVisa, setMonthlyDiffVisa] = useState([]);
-  console.log(inbox);
   const columnData = [
     {
       title: "MESSAGE",
@@ -24,7 +23,7 @@ const Columns = ({ msg, inbox }) => {
       query: "Contact",
       button: "overall",
       imgs: mgs,
-      icon: inbox.length,
+      icon: inbox.length > 0 ? inbox.length : "",
     },
     {
       title: "AFFILATE",

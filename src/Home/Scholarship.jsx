@@ -14,31 +14,31 @@ import { BsFacebook, BsLinkedin, BsTwitter, BsWhatsapp } from "react-icons/bs";
 import Form from "../Button/Forms/Form";
 
 const Scholarship = () => {
-  const excursion = [
+  const advert = [
     {
       imge: print,
       name: "Company  Journal",
       content:
-        "ratione ipsam ipsum utmolestiae laboriosam fugiat. Ab laborum explicabo neque vitae reconsectetur.",
+        "we print all text  material needed for official assignment with quality textures,color  blending and  fascinating font",
     },
     {
       imge: printe,
       name: "Company  Journal",
       content:
-        "ratione ipsam ipsum utmolestiae laboriosam fugiat. Ab laborum explicabo neque vitae reconsectetur.",
+        "we print all text  material needed for official assignment with quality textures,color  blending and  fascinating font",
     },
 
     {
       imge: prints,
-      name: "Megal Bill board Printing",
+      name: "Megal Bill board ",
       content:
-        "ratione ipsam ipsum utmolestiae laboriosam fugiat. Ab laborum explicabo neque vitae reconsectetur.",
+        "For bill board advert portraits with quality  materials and durability  please reffer to  An-nur ",
     },
     {
       imge: publication,
-      name: "Banners  and Advert portrait",
+      name: "Banners and  portrait",
       content:
-        "ratione ipsam ipsum utmolestiae laboriosam fugiat. Ab laborum explicabo neque vitae reconsectetur.",
+        "We also quality assurance  touch to  your  advert portraits and  banners for events  and Business.",
     },
   ];
   const client = [
@@ -109,10 +109,9 @@ const Scholarship = () => {
         <div className=" lg:w-[50%] ">
           <h1 className="lg:text-[2.6rem] ">An Nur Publication Service </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-            modi est impedit praesentium assumenda harum, ab expedita at sequi
-            voluptatibus vel nostrum enim? Accusamus doloremque, necessitatibus
-            nulla corporis ipsum nemo!
+            for all sort of publication related business do reffer to us as we
+            are well known with high level of integrity and professionalism in
+            dealing with our client
           </p>
           <button type="button " className="buttonbg">
             About us
@@ -127,8 +126,8 @@ const Scholarship = () => {
           </h2>
 
           <p className="border-l-[2px] my-[5%] border-[orange] px-[25px]">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio
-            sunt, nisi ex expedita ipsa voluptates atque ratione
+            The company that best suite your expection and anticipation in term
+            of quality assurance in service delivery
           </p>
           <div>
             <div className="flex flex-row items-center  gap-[5px]">
@@ -173,9 +172,9 @@ const Scholarship = () => {
           <p className="text-[orange]">SERVICE</p>
           <h2 className="text-[#133063]">OUR LATEST SERVICE</h2>
           <div className="w-[100%] my-[10%] flex flex-col justify-center items-center">
-            <div className="w-[96%] lg:w-[85%] bg-white">
+            <div className="w-[96%] lg:w-[85%]  bg-white">
               <Slider {...settings}>
-                {excursion.map(({ imge, content, name }) => (
+                {advert.map(({ imge, content, name }) => (
                   <div className="flex flex-col">
                     <img
                       src={imge}
@@ -213,7 +212,7 @@ const Scholarship = () => {
               </div>
             </div>
             <div className="projectDemo w-[100%]">
-              {excursion.map(({ imge }) => (
+              {advert.map(({ imge }) => (
                 <div>
                   <img
                     src={imge}

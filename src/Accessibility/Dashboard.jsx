@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebaseConfig";
-import { Route, Router, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Dashboard_nav from "./Dashboard_nav";
 import Admin from "./Admin";
-import { FaHamburger } from "react-icons/fa";
 import Mobile_nav from "./Mobile_nav";
-import { BiCaretDownCircle, BiMenu } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import Users from "./Users";
 import Profile from "./Profile";
 import ChangePassword from "./ChangePassword";
@@ -48,7 +46,6 @@ const Dashboard = ({ user }) => {
         ) : (
           <Dashboard_nav />
         )}
-        {/* bg-[#f5f5f5] */}
         <aside className="w-[100%] lg:w-[80%] h-[100%]  flex flex-col bg-[black]">
           <Routes>
             <Route

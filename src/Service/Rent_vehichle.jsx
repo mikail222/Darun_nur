@@ -5,7 +5,7 @@ import "aos/dist/aos.css";
 
 const Rent_vehichle = () => {
   useEffect(() => {
-    AOS.init({ duration: 3000 });
+    AOS.init({ duration: 1000 });
   }, []);
   return (
     <div

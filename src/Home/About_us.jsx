@@ -5,7 +5,7 @@ import An_nur from "../assets/12801228_1014040375351303_8463380366859156510_n.jp
 import welfare from "../assets/186118689_290787399131058_2896759269810965752_n.jpg";
 import mikail from "../assets/mikail.png";
 import kaaba from "../assets/kaahaba.jpg";
-import darul_nur from "../assets/darun-nur-low-resolution-logo-color-on-transparent-background.png";
+
 import Mail from "../Service/Mail";
 import { BsInstagram, BsStars, BsTwitter, BsWhatsapp } from "react-icons/bs";
 
@@ -127,34 +127,31 @@ const About_us = () => {
             <div>
               <h4>VISION</h4>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere
-                architecto magnam ea rerum deleniti tempore, dolore sint cum
-              </p>
-              <p>
-                distinctio recusandae ipsam unde maxime, blanditiis, mollitia,
-                nobis omnis possimus minus debitis.
+                We stand to facilitate the connection of Hujjaj with Hajj and
+                ensure the diligent observation of Hajj principle with our
+                pilgrims to direct every effort toward acheiving Hajj rites
+                acceptance by Allah
               </p>
             </div>
             <div>
               <h4>MISSION</h4>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere
-                architecto magnam ea rerum deleniti tempore, dolore sint cum
-              </p>
-              <p>
-                distinctio recusandae ipsam unde maxime, blanditiis, mollitia,
-                nobis omnis possimus minus debitis.
+                To direct all organizational effort towards outstanding
+                hospitality and simplicity for our pilgrims client motivation
+                and steadfastness to achieve fantastic inner energy directed
+                towards the spiritual task accommplishment
               </p>
             </div>
             <div>
               <h4>PLEDGE</h4>
               <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere
-                architecto magnam ea rerum deleniti tempore, dolore sint cum
+                We shall always stand to maintain the standard principle with
+                our client
               </p>
               <p>
-                distinctio recusandae ipsam unde maxime, blanditiis, mollitia,
-                nobis omnis possimus minus debitis.
+                never shall we give priority to anything not greater than the
+                wish of Allah, which may tourment or jeopardise the trust of our
+                reputable client
               </p>
             </div>
           </div>

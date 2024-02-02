@@ -119,17 +119,6 @@ const Vacation = () => {
     ],
   };
 
-  // useEffect(() => {
-  //   const next = () => {
-  //     const isLastSlide = slide == 0;
-  //     const newSlide = !isLastSlide ? slide + 1 : places.length - 1;
-  //     setSlide(newSlide);
-  //   };
-  //   setInterval(() => {
-  //     next();
-  //   }, 5000);
-  // }, []);
-
   const slides = {
     backgroundImage: `url(${places[slide].imge})`,
     backgroundsize: "50%",

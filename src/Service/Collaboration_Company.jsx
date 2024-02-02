@@ -5,7 +5,7 @@ import iata from "../assets/kisspng-international-air-transport-association-airl
 
 const Collaboration_Company = () => {
   useEffect(() => {
-    AOS.init({ duration: 3000 });
+    AOS.init({ duration: 1000 });
   }, []);
   return (
     <div data-aos="zoom-in" className="w-[100%] h-[30vh] hidden lg:flex">

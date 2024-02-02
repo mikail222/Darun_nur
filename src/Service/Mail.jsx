@@ -5,7 +5,7 @@ import speaker from "../assets/—Pngtree—vector speaker icon_3779063.png";
 
 const Mail = () => {
   useEffect(() => {
-    AOS.init({ duration: 3000 });
+    AOS.init({ duration: 1000 });
   }, []);
   const [city, setCity] = useState(" ");
 

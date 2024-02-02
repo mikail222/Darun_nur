@@ -15,6 +15,9 @@ import "aos/dist/aos.css";
 import { auth, db } from "../firebaseConfig";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { Slide, ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
   AreaChart,
   Area,
@@ -89,21 +92,27 @@ const Admin = ({ user, visa, affilates }) => {
       Total: 2390,
     },
   ];
+  useEffect(() => {
+    const notify = () => {
+      toast(`you have ${inbox?.length} new message`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Slide,
+      });
+    };
 
+    notify();
+  }, [inbox]);
   return (
     <div className="w-[100%] h-[100%]">
       <div className="w-[100%] lg:pt-[50%] lg:mt-[0px] md:mt-[50%]  adminBg lg:h-[50vh] md:h-[50vh] flex flex-col justify-center">
-        {inbox.length > 0 && (
-          <div
-            data-aos="slide-right"
-            className="lg:w-[26%] w-[94%] md:w-[42%] mt-[5%] ml-[2.6%]  lg:ml-[3.5%] lg:h-[4rem] h-[2rem] md:h-[5%] text-center  text-[gray] lg:py-[2%]  md:py-[4%] bg-white relative rounded-[5px] flex flex-col justify-center items-center px-[5px]"
-          >
-            <p data-aos="zoom-in" className="font-bold">
-              your have {inbox.length} new message Boss
-            </p>
-          </div>
-        )}
-        <div></div>
+        <ToastContainer />
         <Columns
           inbox={inbox}
           user={user}

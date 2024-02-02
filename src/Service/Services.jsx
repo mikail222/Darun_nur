@@ -10,7 +10,7 @@ import protocol from "../assets/protocol.jpg";
 import visa from "../assets/visa.jpg";
 const Services = ({ navigate }) => {
   useEffect(() => {
-    AOS.init({ duration: 3000 });
+    AOS.init({ duration: 1000 });
   }, []);
 
   const data = [

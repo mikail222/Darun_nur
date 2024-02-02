@@ -10,7 +10,7 @@ import Contact from "./Service/Contact";
 import Visa_assistance from "./Service/Visa_assistance";
 import darunnur from "./assets/darun-nur-low-resolution-logo-color-on-transparent-background.png";
 import Affilate_Registration from "./Home/Affilate_Registration";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, onSnapshot } from "firebase/firestore";
 import { db } from "./firebaseConfig";
 import Scholarship from "./Home/Scholarship";
 import User_modal from "./Accessibility/User_modal";
@@ -24,6 +24,7 @@ import Dashboard from "./Accessibility/Dashboard";
 function App() {
   const navigate = useNavigate();
   const [user, setUser] = useState([]);
+  const [affilate, setAffilate] = useState([]);
   const collectionOfUser = collection(db, "users");
 
   useEffect(() => {
@@ -35,7 +36,24 @@ function App() {
     getUser();
     // console.log(doc);
   }, []);
-
+  useEffect(() => {
+    const unsubs = onSnapshot(
+      collection(db, "Afillate"),
+      (snapShot) => {
+        const Affiliates = [];
+        snapShot.forEach((doc) => {
+          Affiliates.push({ id: doc.id, ...doc.data() });
+        });
+        setAffilate(affilate);
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    return () => {
+      unsubs();
+    };
+  }, []);
   return (
     <div className="App">
       <Routes>
@@ -69,7 +87,7 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route
           path="/Affilate_Registration"
-          element={<Affilate_Registration />}
+          element={<Affilate_Registration affilate={affilate} />}
         />
 
         <Route
