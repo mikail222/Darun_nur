@@ -159,7 +159,7 @@ const About_us = () => {
             PROFESSIONALISM
           </h4>
 
-          <div className="value flex  flex-col md:grid  md:grid-cols-2  md:place-items-center lg:flex lg:flex-row lg:gap-[1%] justify-center gap-[1rem] my-[1rem] lg:my-[0px] md:w-[100%] w-[85%] lg:w-[80%] pt-[3%] ">
+          <div className="value flex  flex-col md:grid  md:grid-cols-2  md:place-items-center lg:flex lg:flex-row lg:gap-[1%] justify-center gap-[1rem] my-[1rem] lg:my-[0px] md:w-[100%] w-[85%] lg:w-[90%] pt-[3%] ">
             <div>
               <BiCheck className="icon" />
               <h5>Task Accomplishment</h5>

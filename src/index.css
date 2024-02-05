@@ -59,8 +59,8 @@ h6 {
   @apply text-[1rem] lg:text-[1.3rem] text-[#133063]  font-semibold;
 }
 p {
-  font-family: "Oleo Script", system-ui;
-  @apply text-[15px] leading-7  font-thin;
+  font-family: "system-ui";
+  @apply text-[15px] font-light;
 }
 img:active {
   @apply outline-none;

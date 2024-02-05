@@ -91,7 +91,7 @@
   @apply font-bold;
 }
 .value div {
-  @apply flex flex-row items-center gap-[10px] md:w-[70%] md:h-[100%] px-[10px] h-[47%] rounded-[15px] bg-[white] lg:text-center;
+  @apply flex flex-row items-center gap-[10px] md:w-[70%] md:h-[100%] px-[10px] lg:px-[5px] h-[47%] rounded-[15px] bg-[white] lg:text-center;
 }
 .value .icon {
   @apply bg-[#133063] text-white rounded-[100px] w-[20px] h-[20px];

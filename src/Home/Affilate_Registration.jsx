@@ -43,8 +43,7 @@ const Affilate_Registration = ({ affilate }) => {
     }
     setPasswordType("password");
   };
-  const existingUser = affilate.map((p) => p.email === afillateData.email);
-  console.log(existingUser);
+  const existingUser = affilate?.find((p) => p.email === afillateData.email);
   const afillateCollRef = collection(db, "Afillate");
 
   const handleChange = (e) => {
@@ -122,7 +121,7 @@ const Affilate_Registration = ({ affilate }) => {
     }
     if (!values.email) {
       error.email = "email is required";
-    } else if (values.email === existingUser) {
+    } else if (values.email === existingUser.email) {
       error.email = "the email you input has already been use please login";
     } else if (!regex.test(values.email)) {
       error.email = "This is not a valid email format";
@@ -209,7 +208,7 @@ const Affilate_Registration = ({ affilate }) => {
               />
             </div>
             <form
-              onChange={(e) => handleChange(e)}
+              onSubmit={addAfillate}
               className="travel flex flex-col justify-center "
             >
               <label htmlFor="" className="label">
@@ -220,6 +219,7 @@ const Affilate_Registration = ({ affilate }) => {
                 name="first_name"
                 placeholder="First name"
                 value={afillateData.first_name}
+                onChange={(e) => handleChange(e)}
               />
               <label htmlFor="" className="label">
                 {formError.last_name}
@@ -229,6 +229,7 @@ const Affilate_Registration = ({ affilate }) => {
                 name="last_name"
                 placeholder="Last name"
                 value={afillateData.last_name}
+                onChange={(e) => handleChange(e)}
               />{" "}
               <label htmlFor="" className="label">
                 {formError.email}
@@ -238,6 +239,7 @@ const Affilate_Registration = ({ affilate }) => {
                 name="email"
                 placeholder="Email"
                 value={afillateData.email}
+                onChange={(e) => handleChange(e)}
               />
               <label htmlFor="" className="label">
                 {formError.password}
@@ -249,6 +251,7 @@ const Affilate_Registration = ({ affilate }) => {
                   className="border-0
                   "
                   value={afillateData.password}
+                  onChange={(e) => handleChange(e)}
                   name="password"
                   placeholder="Password"
                 />
@@ -275,6 +278,7 @@ const Affilate_Registration = ({ affilate }) => {
                   type="text"
                   name="company_name"
                   value={afillateData.company_name}
+                  onChange={(e) => handleChange(e)}
                   placeholder="Company name"
                 />
               </div>
@@ -286,6 +290,7 @@ const Affilate_Registration = ({ affilate }) => {
                     name="phone"
                     placeholder="Contact"
                     value={afillateData.phone}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="afilliate_label">{formError.address}</label>
                   <input
@@ -293,6 +298,7 @@ const Affilate_Registration = ({ affilate }) => {
                     name="address"
                     placeholder="Address"
                     value={afillateData.address}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="afilliate_label">{formError.city}</label>
                   <input
@@ -300,6 +306,7 @@ const Affilate_Registration = ({ affilate }) => {
                     name="city"
                     placeholder="City"
                     value={afillateData.city}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="afilliate_label">{formError.state}</label>
                   <input
@@ -307,6 +314,7 @@ const Affilate_Registration = ({ affilate }) => {
                     name="state"
                     placeholder="State"
                     value={afillateData.state}
+                    onChange={(e) => handleChange(e)}
                   />
                   <label className="afilliate_label">{formError.country}</label>
                   <input
@@ -314,6 +322,7 @@ const Affilate_Registration = ({ affilate }) => {
                     name="country"
                     placeholder="Country"
                     value={afillateData.country}
+                    onChange={(e) => handleChange(e)}
                   />
                 </div>
               </div>
@@ -340,7 +349,6 @@ const Affilate_Registration = ({ affilate }) => {
                 </div>
               </div>
               <button
-                onClick={addAfillate}
                 disabled={progressTrack !== null && progressTrack < 100}
                 type="submit"
                 className="w-[80%] p-[15px] rounded-[5px] bg-[#ffb712]  text-white font-extrabold outline-0 flex flex-row justify-center items-center gap-[0.5rem] ml-[10%]"

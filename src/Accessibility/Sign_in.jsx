@@ -92,16 +92,24 @@ const Sign_in = ({ navigate, darunnur, user }) => {
     e.preventDefault();
     setFormError(validate(data));
     setIsSubmit(true);
-    try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      await setDoc(doc(db, "users", res.user.uid), { ...data });
-      setLoggedInUser(res.user);
-    } catch (err) {
-      setError(err.message);
+    if (Object.keys(formError).length === 0 && isSubmit) {
+      if (
+        window.confirm(
+          "Please verify your details and the content of your Document for any error or omission"
+        )
+      ) {
+        try {
+          const res = await createUserWithEmailAndPassword(
+            auth,
+            data.email,
+            data.password
+          );
+          await setDoc(doc(db, "users", res.user.uid), { ...data });
+          setLoggedInUser(res.user);
+        } catch (err) {
+          setError(err.message);
+        }
+      }
     }
   };
   useEffect(() => {
@@ -128,6 +136,8 @@ const Sign_in = ({ navigate, darunnur, user }) => {
     if (Object.keys(formError).length === 0 && isSubmit) {
     }
   }, [formError || handleSubmit]);
+  const existingUser = user?.find((p) => p.email === data.email);
+  console.log(existingUser);
   const validate = (values) => {
     const error = {};
     const regex = /^[^\$@]+@[^\$@]+\.[^\$@]{2,}$/i;
@@ -140,6 +150,8 @@ const Sign_in = ({ navigate, darunnur, user }) => {
     }
     if (!values.email) {
       error.email = "email is required";
+    } else if (values.email === existingUser.email) {
+      error.email = "the email you input has already been use please login";
     } else if (!regex.test(values.email)) {
       error.email = "This is not a valid email format";
     }

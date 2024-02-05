@@ -26,33 +26,17 @@ function App() {
   const [user, setUser] = useState([]);
   const [affilate, setAffilate] = useState([]);
   const collectionOfUser = collection(db, "users");
+  const collectionOfAffilate = collection(db, "Afillate");
 
   useEffect(() => {
     const getUser = async () => {
       const data = await getDocs(collectionOfUser);
-      // console.log(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      const affilate = await getDocs(collectionOfAffilate);
+
       setUser(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setAffilate(affilate.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getUser();
-    // console.log(doc);
-  }, []);
-  useEffect(() => {
-    const unsubs = onSnapshot(
-      collection(db, "Afillate"),
-      (snapShot) => {
-        const Affiliates = [];
-        snapShot.forEach((doc) => {
-          Affiliates.push({ id: doc.id, ...doc.data() });
-        });
-        setAffilate(affilate);
-      },
-      (error) => {
-        alert(error);
-      }
-    );
-    return () => {
-      unsubs();
-    };
   }, []);
   return (
     <div className="App">

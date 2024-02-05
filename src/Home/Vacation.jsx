@@ -69,17 +69,7 @@ const Vacation = () => {
       content: "",
     },
   ];
-  const [slide, setSlide] = useState(0);
-  const pre = () => {
-    const isSlide = slide === 0;
-    const newSlide = isSlide ? places.length - 1 : slide - 1;
-    setSlide(newSlide);
-  };
-  const next = () => {
-    const isLastSlide = slide === places.length - 1;
-    const newSlide = isLastSlide ? 0 : slide + 1;
-    setSlide(newSlide);
-  };
+
   const settings = {
     dots: false,
     infinite: true,
