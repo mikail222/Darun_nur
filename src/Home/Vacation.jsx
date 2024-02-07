@@ -69,16 +69,24 @@ const Vacation = () => {
       content: "",
     },
   ];
-
+  const [slide, setSlide] = useState(0);
+  const pre = () => {
+    const isSlide = slide === 0;
+    const newSlide = isSlide ? places.length - 1 : slide - 1;
+    setSlide(newSlide);
+  };
+  const next = () => {
+    const isLastSlide = slide === places.length - 1;
+    const newSlide = isLastSlide ? 0 : slide + 1;
+    setSlide(newSlide);
+  };
   const settings = {
     dots: false,
     infinite: true,
     slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
-    // speed: 3000,
     autoplaySpeed: 2000,
-    // cssEase: "linear",
     className: "center",
     centerPadding: "610px",
     responsive: [
@@ -193,17 +201,19 @@ const Vacation = () => {
           <div className="w-[100%] my-[10%] flex flex-col justify-center items-center">
             <div className="w-[95%] bg-white">
               <Slider {...settings}>
-                {places.map(({ imge, content }) => (
-                  <div className=" flex flex-col">
+                {places.map(({ imge, content }, i) => (
+                  <div className=" flex flex-col" key={i}>
                     <img
                       src={imge}
                       alt=""
                       className="w-[100%] h-[65vh] bg-[orange] object-cover"
                     />
-                    <h2 className="lg:text-[2.5rem]  leading-10">
+                    <h4 className="lg:text-[2rem]  leading-10">
                       Enjoy the beauty of Nature
-                    </h2>
-                    <h4 className="text-[gray]  text-[1.5rem]">{content} </h4>
+                    </h4>
+                    <h4 className="text-[gray]  lg:text-[1.5rem]">
+                      {content}{" "}
+                    </h4>
                   </div>
                 ))}
               </Slider>
@@ -239,17 +249,19 @@ const Vacation = () => {
           <div className="w-[100%] my-[10%] flex flex-col justify-center items-center">
             <div className="w-[95%] bg-white">
               <Slider {...settings}>
-                {excursion.map(({ imge, content }) => (
-                  <div className="flex flex-col">
+                {excursion.map(({ imge, content }, i) => (
+                  <div className="flex flex-col" key={i}>
                     <img
                       src={imge}
                       alt=""
                       className="w-[100%] h-[65vh] bg-[orange] object-cover"
                     />
-                    <h2 className="lg:text-[2.5rem]  leading-10">
+                    <h2 className="lg:text-[2rem]  leading-10">
                       Enjoy the beauty of Excursion
                     </h2>
-                    <h4 className="text-[gray]  text-[1.5rem]">{content} </h4>
+                    <h4 className="text-[gray]  lg:text-[1.5rem]">
+                      {content}{" "}
+                    </h4>
                   </div>
                 ))}
               </Slider>
