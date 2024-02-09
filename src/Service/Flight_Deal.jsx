@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { MdPhoneInTalk } from "react-icons/md";
-import { RiArrowDropRightLine } from "react-icons/ri";
 import AOS from "aos";
 import "aos/dist/aos.css";
 

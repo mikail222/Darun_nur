@@ -18,7 +18,6 @@ import Update from "./Accessibility/Update";
 import Reset_Password from "./Accessibility/Reset_Password";
 import About_us from "./Home/About_us";
 import Vacation from "./Home/Vacation";
-import Dashboard_nav from "./Accessibility/Dashboard_nav";
 import Dashboard from "./Accessibility/Dashboard";
 
 function App() {
