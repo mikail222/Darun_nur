@@ -195,7 +195,7 @@ const Users = (props) => {
   }, []);
 
   return (
-    <div className="user  bg-[#f5f5f5]">
+    <div className="user">
       <div className=" w-[100%] adminBg h-[35vh] lg:h-[70vh] ">
         <div className="flex flex-col md:flex-row lg:flex-row pt-[5%]">
           <div className="userBTN flex gap-[5%] flex-row lg:justify-evenly items-center justify-center md:w-[50%] lg:w-[50%]">

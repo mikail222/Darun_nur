@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../Footer/Footer";
-import Nav_bar from "../Navigation/Nav_bar";
-import Mail from "../Service/Mail";
 import { BsPersonFill } from "react-icons/bs";
 import { FaHome, FaLuggageCart } from "react-icons/fa";
 import { MdDashboard, MdRoomPreferences } from "react-icons/md";
@@ -12,7 +9,7 @@ import { BiLogOut, BiUserCheck } from "react-icons/bi";
 import { FcDocument } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 
-const Dashboard_nav = ({ user }) => {
+const Dashboard_nav = ({ user, mode }) => {
   const navigate = useNavigate();
   const currentUser = auth.currentUser;
   const [mobile, setMobile] = useState(false);
@@ -34,10 +31,16 @@ const Dashboard_nav = ({ user }) => {
   return (
     <div>
       <div className="w-[100%] h-[auto] hidden lg:flex flex-row justify-between">
-        <div className="w-[20%] h-[100vh] fixed flex  flex-col-reverse items-center z-[1] bg-[black] pt-[2%]">
-          <div className="statuName flex flex-row justify-around items-center w-[90%] rounded-[10px] h-[20%] mb-[10px]">
-            <p className="text-[white] text-[1.2rem] my-[3%]  ml-[5%]">
-              Welcome: <br /> {currentUser?.displayName}
+        <div
+          className={
+            mode
+              ? "w-[20%] h-[100vh] fixed flex  flex-col-reverse items-center z-[1] bg-[#f1f2f6] pt-[2%] navBorder"
+              : "w-[20%] h-[100vh] fixed flex  flex-col-reverse items-center z-[1] bg-[#031525] pt-[2%] navBorder"
+          }
+        >
+          <div className={mode ? "statuName" : "statuNameDark"}>
+            <p className="text-[white] text-[1.2rem] my-[3%]  mx-[2%]">
+              {currentUser?.displayName}
             </p>
             {currentUser ? (
               <img src={currentUser?.photoURL} alt="" className="avartaIcons" />

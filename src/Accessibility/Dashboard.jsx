@@ -8,12 +8,13 @@ import { BiMenu } from "react-icons/bi";
 import Users from "./Users";
 import Profile from "./Profile";
 import ChangePassword from "./ChangePassword";
-import { MdCancel } from "react-icons/md";
+import { MdCancel, MdDarkMode, MdLightMode } from "react-icons/md";
 
 const Dashboard = ({ user }) => {
   const [mobile, setMobile] = useState(false);
   const [visa, setVisa] = useState([]);
   const [affilates, setAffilates] = useState([]);
+  const [mode, setMode] = useState(false);
   const currentUser = auth.currentUser;
   const navigate = useNavigate();
 
@@ -26,7 +27,13 @@ const Dashboard = ({ user }) => {
 
   return (
     // &&
-    <div>
+    <div
+      className={
+        mode
+          ? "bg-[#f1f2f6] w-[100%] h-[100vh]"
+          : "bg-[#031525] w-[100%] h-[100vh]"
+      }
+    >
       <div className="lg:hidden flex  flex-col  justify-end items-end px-[25px] py-[2%]">
         {mobile === false ? (
           <BiMenu
@@ -44,17 +51,31 @@ const Dashboard = ({ user }) => {
         {mobile === true ? (
           <Mobile_nav user={user} setMobile={setMobile} />
         ) : (
-          <Dashboard_nav />
+          <Dashboard_nav mode={mode} setMode={setMode} />
         )}
-        <aside className="w-[100%] lg:w-[80%] h-[100%]  flex flex-col bg-[black]">
+        <aside
+          className={
+            mode
+              ? "w-[100%] lg:w-[80%] h-[100%]  flex flex-col bg-[#f1f2f6]"
+              : "w-[100%] lg:w-[80%] h-[100%]  flex flex-col bg-[#031525]"
+          }
+        >
           <Routes>
             <Route
               path="/Admin"
-              element={<Admin user={user} visa={visa} affilates={affilates} />}
+              element={
+                <Admin
+                  user={user}
+                  visa={visa}
+                  affilates={affilates}
+                  mode={mode}
+                  setMode={setMode}
+                />
+              }
             />
             <Route
               path="/Profile"
-              element={<Profile navigate={navigate} user={user} />}
+              element={<Profile navigate={navigate} user={user} mode={mode} />}
             />
             <Route
               path="/users"

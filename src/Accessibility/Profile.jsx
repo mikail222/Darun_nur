@@ -180,7 +180,7 @@ const Profile = () => {
     return error;
   };
   return (
-    <div className="flex flex-col items-center  bg-[lightgray]">
+    <div className="flex flex-col items-center">
       <div className="w-[100%] h-[65vh] bgProfile">
         <div className="overlay text-white flex flex-col justify-center px-[5%] lg:gap-[.6rem]">
           <p className="lg:text-[2.5rem]">Hello {me?.displayName}</p>

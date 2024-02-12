@@ -3,13 +3,7 @@ import Columns from "./Columns";
 import { BiDotsVerticalRounded, BiUser } from "react-icons/bi";
 import { TbAffiliate } from "react-icons/tb";
 import { SiVisa } from "react-icons/si";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, onSnapshot } from "firebase/firestore";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { auth, db } from "../firebaseConfig";
@@ -34,13 +28,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
 
-const Admin = ({ user, visa, affilates }) => {
+const Admin = ({ user, visa, affilates, mode, setMode }) => {
   const [message, setMessage] = useState([]);
-  const [monthlyUser, setMonthlyUser] = useState(null);
-  const [monthlyAff, setMonthlyAff] = useState([]);
-  const [monthlyVisa, setMonthlyVisa] = useState([]);
-  const [monthlyDiff, setMonthlyDiff] = useState([]);
 
   useEffect(() => {
     const unsubsDoc = onSnapshot(
@@ -65,7 +56,7 @@ const Admin = ({ user, visa, affilates }) => {
   }, []);
   const today = new Date().toDateString();
   const inbox = message?.filter(({ day }) => day === today);
-
+  const fireTostify = inbox >= 1;
   const data = [
     {
       name: "January",
@@ -94,7 +85,7 @@ const Admin = ({ user, visa, affilates }) => {
   ];
   useEffect(() => {
     const notify = () => {
-      toast(`you have ${inbox?.length} new message`, {
+      toast(`you have ${inbox} new message`, {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: true,
@@ -108,25 +99,29 @@ const Admin = ({ user, visa, affilates }) => {
     };
 
     notify();
-  }, [inbox]);
+  }, [fireTostify]);
   return (
     <div className="w-[100%] h-[100%]">
-      <div className="w-[100%] lg:pt-[50%] lg:mt-[0px] md:mt-[50%]  adminBg lg:h-[50vh] md:h-[50vh] flex flex-col justify-center">
+      <div className="w-[100%] lg:pt-[5%] lg:mt-[0px] md:mt-[50%]  adminBg flex flex-col justify-center ">
         <ToastContainer />
+        <div className="w-[95%] flex flex-col justify-end items-end lg:ml-[15px] mt-[5%]">
+          {mode ? (
+            <MdLightMode onClick={() => setMode(false)} className="modeIcon" />
+          ) : (
+            <MdDarkMode onClick={() => setMode(true)} className="modeIcon" />
+          )}
+        </div>
         <Columns
           inbox={inbox}
           user={user}
           visa={visa}
           affilates={affilates}
           msg={message}
-          monthlyUser={monthlyUser}
-          monthlyAff={monthlyAff}
-          monthlyVisa={monthlyVisa}
-          monthlyDiff={monthlyDiff}
+          mode={mode}
         />
         <div className=" flex flex-row  lg:gap-[1rem] justify-center">
           <div className="field">
-            <aside className="graphField">
+            <aside className={mode ? "graphField" : "graphFielddark"}>
               {" "}
               <h5 className="my-[3%] px-[3%]">Last 6 month Registration</h5>
               <ResponsiveContainer width="100%" aspect={2 / 1}>
@@ -157,7 +152,7 @@ const Admin = ({ user, visa, affilates }) => {
               </ResponsiveContainer>
             </aside>
           </div>
-          <aside className="revenue bg-white ">
+          <aside className={mode ? "revenue" : "revenueDark"}>
             <div className="flex flex-row justify-between items-center w-[100%] p-[3%]">
               <p>Total Registration</p>
               <BiDotsVerticalRounded />
@@ -171,9 +166,13 @@ const Admin = ({ user, visa, affilates }) => {
             </div>
           </aside>
         </div>
-        <div className="productWrapper">
+        <div className={mode ? "productWrapper" : "productWrapperDark"}>
           <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table
+              sx={{ minWidth: 650 }}
+              aria-label="simple table"
+              className={mode ? "bg-white" : "tableDark"}
+            >
               <TableHead>
                 <TableRow>
                   <TableCell>Icon</TableCell>
@@ -221,7 +220,7 @@ const Admin = ({ user, visa, affilates }) => {
                   <TableCell component="th" scope="row">
                     <TbAffiliate className="  bg-[teal] proIcon shadow-xl" />
                   </TableCell>
-                  <TableCell align="left">Registered Affilates</TableCell>
+                  <TableCell align="left">Afillate Document</TableCell>
                   <TableCell align="left"> {affilates?.length}</TableCell>
                   <TableCell align="left">
                     <div className=" flex flex-row  justify-end items-end">

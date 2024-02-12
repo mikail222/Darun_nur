@@ -9,7 +9,7 @@ import usericon from "../assets/team_12202122.png";
 import visaicon from "../assets/visa_5968334.png";
 import { MdMessage } from "react-icons/md";
 
-const Columns = ({ msg, inbox }) => {
+const Columns = ({ msg, inbox, mode }) => {
   const [monthlyUser, setMonthlyUser] = useState(null);
   const [monthlyDiff, setMonthlyDiff] = useState([]);
   const [monthlyAff, setMonthlyAff] = useState(null);
@@ -23,7 +23,7 @@ const Columns = ({ msg, inbox }) => {
       query: "Contact",
       button: "overall",
       imgs: mgs,
-      icon: inbox.length > 0 ? inbox.length : "",
+      icon: inbox?.length > 0 ? inbox?.length : "",
     },
     {
       title: "AFFILATE",
@@ -123,7 +123,7 @@ const Columns = ({ msg, inbox }) => {
     <div className=" w-[96%]  lg:w-[93%] flex flex-col ml-[3%] md:ml-[2%] lg:ml-[3.5%]">
       <div className="WrapperContainer">
         {columnData?.map(({ title, imgs, info, perct, button, icon }, i) => (
-          <div key={i}>
+          <div className={mode ? "columDiv" : "columDivDark"} key={i}>
             <article className="colarrange">
               <p>{title}</p>
               <nav>

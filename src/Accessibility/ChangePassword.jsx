@@ -78,7 +78,7 @@ const ChangePassword = ({ user }) => {
     return error;
   };
   return (
-    <div className="password  w-[100%] h-[100vh]  flex flex-col lg:flex-row justify-around items-center px-[2%] bg-white">
+    <div className="password  w-[100%] h-[100vh]  flex flex-col lg:flex-row justify-around items-center px-[2%]">
       <img
         src={passwordReset}
         alt=""
