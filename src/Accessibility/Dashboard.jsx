@@ -83,7 +83,10 @@ const Dashboard = ({ user }) => {
                 <Users user={user} {...{ callback }} {...{ callVisa }} />
               }
             />
-            <Route path="/pass_word" element={<ChangePassword user={user} />} />
+            <Route
+              path="/pass_word"
+              element={<ChangePassword user={user} mode={mode} />}
+            />
           </Routes>{" "}
         </aside>
       </div>

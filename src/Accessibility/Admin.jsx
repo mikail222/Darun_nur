@@ -3,7 +3,7 @@ import Columns from "./Columns";
 import { BiDotsVerticalRounded, BiUser } from "react-icons/bi";
 import { TbAffiliate } from "react-icons/tb";
 import { SiVisa } from "react-icons/si";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { auth, db } from "../firebaseConfig";
@@ -32,7 +32,8 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const Admin = ({ user, visa, affilates, mode, setMode }) => {
   const [message, setMessage] = useState([]);
-
+  const [msg, setMsg] = useState([]);
+  const [view, setView] = useState(false);
   useEffect(() => {
     const unsubsDoc = onSnapshot(
       collection(db, "Contact"),
@@ -83,6 +84,29 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
       Total: 2390,
     },
   ];
+  const handleView = async (id) => {
+    const checkMsg = message.find((p) => p.id === id);
+    setMsg(checkMsg);
+    setView(true);
+  };
+  const handleDelete = async (id) => {
+    const checkMsg = message.find(({ id }) => id === id);
+    try {
+      if (
+        window.confirm(
+          `are  you sure you want  to  delete  ${checkMsg.first}  message ?`
+        )
+      ) {
+        await deleteDoc(doc(db, "Contact", id));
+        setMessage(message.filter((p) => p.id !== id));
+      }
+    } catch (err) {
+      setErr(err.message);
+      setTimeout(() => {
+        setErr(null);
+      }, 5000);
+    }
+  };
   useEffect(() => {
     const notify = () => {
       toast(`you have ${inbox} new message`, {
@@ -102,7 +126,7 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
   }, [fireTostify]);
   return (
     <div className="w-[100%] h-[100%]">
-      <div className="w-[100%] lg:pt-[5%] lg:mt-[0px] md:mt-[50%]  adminBg flex flex-col justify-center ">
+      <div className="w-[100%]  lg:mt-[0px] md:mt-[50%]  adminBg flex flex-col justify-center ">
         <ToastContainer />
         <div className="w-[95%] flex flex-col justify-end items-end lg:ml-[15px] mt-[5%]">
           {mode ? (
@@ -119,7 +143,7 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
           msg={message}
           mode={mode}
         />
-        <div className=" flex flex-row  lg:gap-[1rem] justify-center">
+        <div className="w-[100%] flex flex-row  lg:gap-[1rem] px-[2%]">
           <div className="field">
             <aside className={mode ? "graphField" : "graphFielddark"}>
               {" "}
@@ -139,7 +163,7 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                   </defs>
                   <XAxis dataKey="name" />
                   {/* <YAxis /> */}
-                  <CartesianGrid strokeDasharray="3 3" className="gridLine" />
+                  <CartesianGrid strokeDasharray="0 3" className="gridLine" />
                   <Tooltip />
                   <Area
                     type="monotone"
@@ -176,7 +200,9 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
               <TableHead>
                 <TableRow>
                   <TableCell>Icon</TableCell>
-                  <TableCell align="left">Categories</TableCell>
+                  <TableCell align="left" className="text-white">
+                    Categories
+                  </TableCell>
                   <TableCell align="left">Total</TableCell>
                   <TableCell align="right">profile pictures</TableCell>
                 </TableRow>
@@ -233,7 +259,105 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
               </TableBody>
             </Table>
           </TableContainer>
-        </div>{" "}
+        </div>
+        <div className={mode ? "productWrapper" : "productWrapperDark"}>
+          <p className="text-[gray] text-[2rem] m-[2%]">Message Details</p>
+          {message && view === false ? (
+            <TableContainer component={Paper}>
+              <Table
+                sx={{ minWidth: 650 }}
+                aria-label="simple table"
+                className={mode ? "bg-white" : "tableDark"}
+              >
+                <TableHead>
+                  <TableRow className="bg-[purple]">
+                    <TableCell align="left">Name</TableCell>
+                    <TableCell align="left">Email</TableCell>
+                    <TableCell align="left">Contact</TableCell>{" "}
+                    <TableCell align="left">Subject</TableCell>
+                    <TableCell align="left">Date Recieved</TableCell>{" "}
+                    <TableCell align="left">Details</TableCell>{" "}
+                    <TableCell align="left">Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {message?.map(
+                    ({ day, first, email, phone, subject, id }, i) => (
+                      <TableRow
+                        key={i}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell align="left">{first}</TableCell>
+                        <TableCell align="left">{email}</TableCell>
+                        <TableCell align="center">{phone}</TableCell>
+                        <TableCell align="center">{subject}</TableCell>
+                        <TableCell align="left">{day}</TableCell>{" "}
+                        <TableCell align="left">
+                          {view === false && (
+                            <button
+                              onClick={() => handleView(id)}
+                              className="text-[lightgreen]  text-[1rem] font-bold"
+                            >
+                              View
+                            </button>
+                          )}
+                        </TableCell>
+                        <TableCell align="left">
+                          <button
+                            onClick={() => handleDelete(id)}
+                            className="delete"
+                          >
+                            delete
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    )
+                  )}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          ) : (
+            message &&
+            view === true && (
+              <div className="flex flex-col justify-center mx-[2%] w-[100%]">
+                <div className="flex flex-row gap-[5%] leading-[50px] my-[5%]">
+                  <div>
+                    <h3>Name:</h3>
+                    <h6>Email:</h6>
+                    <h5>Contact:</h5>
+                    <h5> Date:</h5>
+                    <h5>subject:</h5>
+                    <h5>Message:</h5>
+                    <h5>Id:</h5>
+                  </div>
+
+                  <div>
+                    <h3>{msg.first}</h3>
+                    <h6>{msg.email}</h6>
+                    <h5> {msg.phone}</h5>
+                    <h5>{msg.day}</h5>
+                    <h5>{msg.subject}</h5>
+                    <h5>{msg.message}</h5>
+                    <h5>{msg.id}</h5>
+                  </div>
+                </div>
+                <div className="w-[50%] flex flex-row justify-around">
+                  {view === true && (
+                    <button onClick={() => setView(false)} className="close">
+                      close
+                    </button>
+                  )}
+
+                  <button onClick={() => handleDelete(id)} className="delete">
+                    delete
+                  </button>
+                </div>
+              </div>
+            )
+          )}
+        </div>
       </div>
     </div>
   );

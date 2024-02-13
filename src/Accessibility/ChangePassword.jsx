@@ -6,7 +6,7 @@ import { auth } from "../firebaseConfig";
 import { BiShow } from "react-icons/bi";
 import passwordReset from "../assets/reset_password.jpg";
 
-const ChangePassword = ({ user }) => {
+const ChangePassword = ({ user, mode }) => {
   const [passwordType, setPasswordType] = useState("password");
   const [formError, setFormError] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
@@ -84,8 +84,10 @@ const ChangePassword = ({ user }) => {
         alt=""
         className="object-contain w-[30%] hidden  lg:flex  bg-[transparent]"
       />
-      <div className=" lg:w-[50%] px-[5%]">
-        <h3>Change Password</h3>
+      <div className=" lg:w-[50%] px-[5%] ">
+        <p className={mode ? "text-[2rem]" : "text-[2rem] text-white"}>
+          Change Password
+        </p>
         <div>
           <ul className="bg-[yellow] p-[1rem] my-[5%]">
             <div className="flex flex-row items-center gap-[2%] ">
