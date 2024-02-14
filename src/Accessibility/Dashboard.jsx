@@ -40,11 +40,13 @@ const Dashboard = ({ user }) => {
           <BiMenu
             className="lg:hidden flex flex-col w-[25px] h-[25px]"
             onClick={() => setMobile(true)}
+            style={mode ? { fill: "black" } : { fill: "white" }}
           />
         ) : (
           <MdCancel
             className="lg:hidden flex flex-col w-[25px] h-[25px] justify-end items-end"
             onClick={() => setMobile(false)}
+            style={mode ? { fill: "black" } : { fill: "white" }}
           />
         )}
       </div>

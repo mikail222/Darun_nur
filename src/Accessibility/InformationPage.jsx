@@ -126,7 +126,7 @@ const InformationPage = ({ mode, user }) => {
   }, [photoFileUpload]);
   return (
     <div className={mode ? "postForm" : "postFormDark"}>
-      <div className="w-[50%] m-[1rem] ">
+      <div className="lg:w-[50%] w-[90%] m-[1rem] ">
         <p className={mode ? "headDesc" : "headDescDark"}>Information center</p>
         <p className={mode ? "text-[black]" : "text-white"}>
           You can contribute to our company development by raising your comment
