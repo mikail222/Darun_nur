@@ -196,15 +196,15 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
           </aside>
         </div>
         <div className={mode ? "productWrapper" : "productWrapperDark"}>
+          <p className="text-[gray] text-[2rem] m-[2%]">Clients</p>
           <TableContainer component={Paper}>
-            <p className="text-[gray] text-[2rem] m-[2%]">Clients</p>
             <Table
               sx={{ minWidth: 650 }}
               className={mode ? "bg-white" : "tableDark"}
               aria-label="simple table"
             >
               <TableHead>
-                <TableRow className="head">
+                <TableRow>
                   <TableCell>
                     <p>Icon</p>
                   </TableCell>
