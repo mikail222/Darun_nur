@@ -49,7 +49,7 @@ const Dashboard = ({ user }) => {
       </div>
       <div className="w-[100%] h-[auto] lg:flex flex-row justify-between">
         {mobile === true ? (
-          <Mobile_nav user={user} setMobile={setMobile} />
+          <Mobile_nav user={user} setMobile={setMobile} mode={mode} />
         ) : (
           <Dashboard_nav mode={mode} setMode={setMode} />
         )}

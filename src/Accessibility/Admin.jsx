@@ -11,7 +11,6 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { Slide, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import {
   AreaChart,
   Area,
@@ -34,6 +33,12 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
   const [message, setMessage] = useState([]);
   const [msg, setMsg] = useState([]);
   const [view, setView] = useState(false);
+
+  const darkModeClasses = {
+    backgroundColor: "#121212",
+    color: "white",
+  };
+
   useEffect(() => {
     const unsubsDoc = onSnapshot(
       collection(db, "Contact"),
@@ -192,30 +197,45 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
         </div>
         <div className={mode ? "productWrapper" : "productWrapperDark"}>
           <TableContainer component={Paper}>
+            <p className="text-[gray] text-[2rem] m-[2%]">Clients</p>
             <Table
               sx={{ minWidth: 650 }}
-              aria-label="simple table"
               className={mode ? "bg-white" : "tableDark"}
+              aria-label="simple table"
             >
               <TableHead>
-                <TableRow>
-                  <TableCell>Icon</TableCell>
-                  <TableCell align="left" className="text-white">
-                    Categories
+                <TableRow className="head">
+                  <TableCell>
+                    <p>Icon</p>
                   </TableCell>
-                  <TableCell align="left">Total</TableCell>
-                  <TableCell align="right">profile pictures</TableCell>
+                  <TableCell align="left">
+                    <p>Categories</p>
+                  </TableCell>
+                  <TableCell align="left">
+                    <p>Total</p>
+                  </TableCell>
+                  <TableCell align="right">
+                    <p>profile pictures</p>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  sx={{
+                    "&:last-child td, &:last-child th": {
+                      border: 0,
+                    },
+                  }}
                 >
                   <TableCell component="th" scope="row">
                     <BiUser className="bg-[purple]  proIcon" />
                   </TableCell>
-                  <TableCell align="left">Registered Users</TableCell>
-                  <TableCell align="left"> {user?.length}</TableCell>
+                  <TableCell align="left">
+                    <p>Registered Users</p>
+                  </TableCell>
+                  <TableCell align="left">
+                    <p>{user?.length}</p>
+                  </TableCell>
                   <TableCell align="left">
                     <div className=" flex flex-row  justify-end items-end">
                       {user?.slice(0, 5).map(({ img }, i) => (
@@ -230,8 +250,12 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                   <TableCell component="th" scope="row">
                     <SiVisa className="bg-[black]  proIcon" />
                   </TableCell>
-                  <TableCell align="left">Visa Document</TableCell>
-                  <TableCell align="left"> {visa?.length}</TableCell>
+                  <TableCell align="left">
+                    <p>Visa Document</p>
+                  </TableCell>
+                  <TableCell align="left">
+                    <p> {visa?.length}</p>
+                  </TableCell>
                   <TableCell align="left">
                     <div className=" flex flex-row  justify-end items-end">
                       {visa?.slice(0, 5).map(({ img }, i) => (
@@ -246,8 +270,12 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                   <TableCell component="th" scope="row">
                     <TbAffiliate className="  bg-[teal] proIcon shadow-xl" />
                   </TableCell>
-                  <TableCell align="left">Afillate Document</TableCell>
-                  <TableCell align="left"> {affilates?.length}</TableCell>
+                  <TableCell align="left">
+                    <p>Afillate Document</p>
+                  </TableCell>
+                  <TableCell align="left">
+                    <p>{affilates?.length}</p>{" "}
+                  </TableCell>
                   <TableCell align="left">
                     <div className=" flex flex-row  justify-end items-end">
                       {affilates?.slice(0, 5).map(({ img }, i) => (
@@ -270,14 +298,28 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                 className={mode ? "bg-white" : "tableDark"}
               >
                 <TableHead>
-                  <TableRow className="bg-[purple]">
-                    <TableCell align="left">Name</TableCell>
-                    <TableCell align="left">Email</TableCell>
-                    <TableCell align="left">Contact</TableCell>{" "}
-                    <TableCell align="left">Subject</TableCell>
-                    <TableCell align="left">Date Recieved</TableCell>{" "}
-                    <TableCell align="left">Details</TableCell>{" "}
-                    <TableCell align="left">Action</TableCell>
+                  <TableRow className="head">
+                    <TableCell align="left">
+                      <p>Name</p>
+                    </TableCell>
+                    <TableCell align="left">
+                      <p>Email</p>
+                    </TableCell>
+                    <TableCell align="left">
+                      <p>Contact</p>
+                    </TableCell>{" "}
+                    <TableCell align="left">
+                      <p>Subject</p>
+                    </TableCell>
+                    <TableCell align="left">
+                      <p>Received</p>
+                    </TableCell>{" "}
+                    <TableCell align="left">
+                      <p>Details</p>
+                    </TableCell>{" "}
+                    <TableCell align="left">
+                      <p>Action</p>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -289,11 +331,21 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
                       >
-                        <TableCell align="left">{first}</TableCell>
-                        <TableCell align="left">{email}</TableCell>
-                        <TableCell align="center">{phone}</TableCell>
-                        <TableCell align="center">{subject}</TableCell>
-                        <TableCell align="left">{day}</TableCell>{" "}
+                        <TableCell align="left">
+                          <p>{first}</p>
+                        </TableCell>
+                        <TableCell align="left">
+                          <p>{email}</p>
+                        </TableCell>
+                        <TableCell align="center">
+                          <p>{phone}</p>
+                        </TableCell>
+                        <TableCell align="center">
+                          <p>{subject}</p>
+                        </TableCell>
+                        <TableCell align="left">
+                          <p>{day}</p>
+                        </TableCell>{" "}
                         <TableCell align="left">
                           {view === false && (
                             <button
@@ -309,7 +361,7 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                             onClick={() => handleDelete(id)}
                             className="delete"
                           >
-                            delete
+                            Delete
                           </button>
                         </TableCell>
                       </TableRow>

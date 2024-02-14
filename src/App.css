@@ -509,13 +509,18 @@ form .a {
   @apply text-[gray]  text-[1rem]  px-[1rem];
 }
 .productWrapper {
-  @apply flex  flex-col justify-center w-[96%] ml-[1%] lg:w-[96%] bg-[white] mt-[2%] lg:ml-[1rem] rounded-[15px]  shadow-lg;
+  @apply flex  flex-col justify-center w-[96%] ml-[1%] lg:w-[96%] bg-[white] mt-[2%] lg:ml-[1rem] rounded-[5px]  shadow-lg;
 }
 .productWrapperDark {
   background-color: rgb(255, 255, 255, 0.1);
-  @apply flex  flex-col justify-center w-[96%] ml-[1%] lg:w-[96%] mt-[2%] lg:ml-[1rem] rounded-[15px]  shadow-lg;
+  @apply flex  flex-col justify-center w-[96%] ml-[1%] lg:w-[96%] mt-[2%] lg:ml-[1rem] rounded-[5px]  shadow-lg;
 }
-
+.productWrapperDark p {
+  @apply text-[lightgray];
+}
+.head p {
+  @apply lg:text-[1.2rem] font-bold border-x-sky-900;
+}
 .Author {
   @apply w-[95%] my-[5%];
 }
@@ -527,13 +532,13 @@ form .a {
 }
 .tableDark {
   box-shadow: 1px 2px 2px 1px black;
-  @apply bg-[#1b2c3a] text-[gray];
+  @apply bg-[#1b2c3a] text-white;
 }
 .userTableHeader button,
 .delete,
 .close {
-  box-shadow: 1px 1px 2px lightgray;
-  @apply text-[1rem] rounded-[10px] w-[56px] font-bold px-[35px] flex flex-col items-center;
+  box-shadow: 1px 1px 2px 1px lightgray;
+  @apply text-[1.3rem] rounded-[5px] w-[56px] font-light px-[35px] flex flex-col items-center;
 }
 .delete {
   @apply hover:text-white  hover:bg-[red];

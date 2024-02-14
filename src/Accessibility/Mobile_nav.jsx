@@ -18,7 +18,7 @@ import { BiLogOut, BiUserCheck } from "react-icons/bi";
 import { FcDocument } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 
-const Mobile_nav = ({ user, setMobile }) => {
+const Mobile_nav = ({ user, setMobile, mode }) => {
   const navigate = useNavigate();
   const currentUser = auth.currentUser;
 
@@ -38,8 +38,15 @@ const Mobile_nav = ({ user, setMobile }) => {
   return (
     <div>
       <div className="w-[100%] h-[auto] flex flex-row justify-between relative z-[2]">
-        <div className="w-[75vw] h-[100vh] fixed flex  flex-col-reverse items-center bg-[black] pt-[2%]  lg:hidden">
-          <div className="statuName flex flex-col-reverse justify-around w-[95%] rounded-[10px] h-[30vh]  pl-[5%]">
+        <div
+          className="w-[75vw] h-[100vh] fixed flex  flex-col-reverse items-center pt-[2%]  lg:hidden"
+          style={
+            mode
+              ? { background: "black", color: "white" }
+              : { background: "#031525" }
+          }
+        >
+          <div className={mode ? "statuName" : "statuNameDark"}>
             <p className="text-[white] text-[1.2rem] ">
               {currentUser?.displayName}
             </p>
