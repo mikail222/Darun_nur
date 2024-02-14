@@ -9,9 +9,6 @@ import { auth } from "../firebaseConfig";
 const Reset_Password = ({ user }) => {
   const [resetEmail, setResetEmail] = useState(" ");
   const navigate = useNavigate();
-  // const getProfileImg = user.filter((email) => email.email === resetEmail);
-
-  // console.log(user);
   const email = resetEmail;
   const handleResetPassword = (e) => {
     sendPasswordResetEmail(auth, email)

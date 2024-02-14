@@ -77,8 +77,8 @@ const Mobile_nav = ({ user, setMobile, mode }) => {
               <button>
                 <FcDocument className="icon" /> Travel Document
               </button>
-              <button onClick={(e) => changeColorClick(e)}>
-                <MdRoomPreferences className="icon" /> My Preferences
+              <button onClick={(e) => navigate("chart")}>
+                <MdRoomPreferences className="icon" /> Update
               </button>
               <button onClick={(e) => navigate("pass_word")}>
                 <RiSettings5Line className="icon" />

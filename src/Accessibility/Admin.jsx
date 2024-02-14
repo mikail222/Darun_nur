@@ -359,7 +359,7 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                         <TableCell align="left">
                           <button
                             onClick={() => handleDelete(id)}
-                            className="delete"
+                            className={mode ? "delete" : "delete text-white"}
                           >
                             Delete
                           </button>

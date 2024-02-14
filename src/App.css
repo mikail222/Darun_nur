@@ -734,3 +734,70 @@ form .a {
 .affilatePicture {
   box-shadow: 1px 1px 5px 1px gray;
 }
+.postForm {
+  @apply flex flex-col justify-center mt-[5%] bg-[white] rounded-[10px]  w-[98%] lg:ml-[5px];
+}
+.postFormDark {
+  background-color: rgb(255, 255, 255, 0.1);
+  @apply flex flex-col justify-start mt-[5%] rounded-[10px]  w-[98%]  lg:ml-[10px];
+}
+.post_info {
+  @apply w-[98%] flex flex-col  justify-start items-start lg:w-[80%] p-[2%] rounded-[16px];
+}
+.comment_info {
+  @apply w-[98%] flex flex-col justify-end  items-end lg:w-[95%] lg:p-[2%];
+}
+.headDesc {
+  @apply text-[black] text-[2rem] font-bold;
+}
+.headDescDark {
+  @apply text-white text-[2.5rem] font-bold;
+}
+.date {
+  @apply text-[0.9rem] bg-[green] w-auto rounded-[10px] font-semibold text-white px-[3%] p-[3px];
+}
+.postPhotos {
+  @apply lg:w-[30%] lg:h-[30vh] rounded-[10px];
+}
+.info_text {
+  background-color: rgb(0, 0, 0, 0.3);
+  @apply w-[85%] lg:w-[50%] rounded-[10px]  flex flex-col cursor-pointer my-[1%] p-[1%] text-white;
+}
+.postForm form,
+.postFormDark form {
+  @apply flex flex-col p-[0.5rem];
+}
+.postForm form div,
+.postFormDark form div {
+  @apply flex flex-row  justify-end p-[1rem] gap-[1rem];
+}
+.borderDesign {
+  border-bottom: 1px dotted lightgrey;
+}
+.borderDesignDark {
+  border-bottom: 1px dotted lightgreen;
+}
+.postForm form textarea,
+.postFormDark form textarea {
+  @apply rounded-[5px] outline-0 border-[1px] border-[lightgray] pl-[1rem] pt-[1rem];
+}
+.textarea::placeholder,
+.textareaDark::placeholder {
+  @apply text-[lightgray];
+}
+.textareaDark {
+  @apply bg-[transparent] text-white;
+}
+.postBtn {
+  @apply flex flex-col justify-center items-center  bg-[white] w-[8rem] rounded-[15px] px-[0.25rem] hover:bg-[lightgray] hover:text-[black] border-[1px] text-[lightgray];
+}
+.postBtnDark {
+  @apply flex flex-col justify-center items-center  bg-[transparent] w-[8rem] rounded-[15px] px-[0.25rem] hover:text-[white] border-[1px] text-[lightgray] font-semibold;
+}
+.send {
+  @apply fill-[gray] w-[30px] h-[30px] cursor-pointer hover:fill-[green];
+}
+.info {
+  background-color: rgb(0, 0, 0, 0.3);
+  @apply w-[98%] flex flex-col  justify-start items-start lg:w-[95%] p-[2%] font-bold rounded-[10px] my-[2%];
+}

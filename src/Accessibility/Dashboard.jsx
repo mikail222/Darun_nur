@@ -9,6 +9,7 @@ import Users from "./Users";
 import Profile from "./Profile";
 import ChangePassword from "./ChangePassword";
 import { MdCancel, MdDarkMode, MdLightMode } from "react-icons/md";
+import InformationPage from "./InformationPage";
 
 const Dashboard = ({ user }) => {
   const [mobile, setMobile] = useState(false);
@@ -51,7 +52,7 @@ const Dashboard = ({ user }) => {
         {mobile === true ? (
           <Mobile_nav user={user} setMobile={setMobile} mode={mode} />
         ) : (
-          <Dashboard_nav mode={mode} setMode={setMode} />
+          <Dashboard_nav mode={mode} user={user} setMode={setMode} />
         )}
         <aside
           className={
@@ -86,6 +87,10 @@ const Dashboard = ({ user }) => {
             <Route
               path="/pass_word"
               element={<ChangePassword user={user} mode={mode} />}
+            />
+            <Route
+              path="/chart"
+              element={<InformationPage user={user} mode={mode} />}
             />
           </Routes>{" "}
         </aside>

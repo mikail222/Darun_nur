@@ -27,7 +27,9 @@ const Dashboard_nav = ({ user, mode }) => {
         console.log(error);
       });
   };
-
+  const Admin = user?.filter((r) => r.role === "Admin");
+  console.log(Admin);
+  console.log(user);
   return (
     <div>
       <div className="w-[100%] h-[auto] hidden lg:flex flex-row justify-between">
@@ -72,8 +74,8 @@ const Dashboard_nav = ({ user, mode }) => {
               <button onClick={(e) => changeColorClick(e)}>
                 <FcDocument className="icon" /> Travel Document
               </button>
-              <button onClick={(e) => changeColorClick(e)}>
-                <MdRoomPreferences className="icon" /> My Preferences
+              <button onClick={(e) => navigate("chart")}>
+                <MdRoomPreferences className="icon" /> Update
               </button>
               <button onClick={(e) => navigate("pass_word")}>
                 <RiSettings5Line className="icon" />
