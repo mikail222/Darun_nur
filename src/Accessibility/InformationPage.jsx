@@ -16,6 +16,15 @@ const InformationPage = ({ mode, user }) => {
   const postRef = collection(db, "Post");
   const currentUser = auth.currentUser;
   const AdminPost = user?.filter((r) => r.role === "Admin");
+  const Admin = user?.map((r) => (
+    <p
+      className="info_textAdmin"
+      style={mode ? { color: "gray" } : { color: "white" }}
+    >
+      {r.role}
+    </p>
+  ));
+  console.log(Admin);
   const directPost = AdminPost.map((r) => r.email === currentUser.email);
 
   const handleChange = (e) => {
@@ -32,6 +41,7 @@ const InformationPage = ({ mode, user }) => {
       setComments({ ...comments, ...newPost });
     }
   };
+  console.log(comments === null || adminPost === null);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (comment !== null || adminPost !== null) {
@@ -39,16 +49,16 @@ const InformationPage = ({ mode, user }) => {
         await addDoc(postRef, {
           ...adminPost,
         });
-      } else {
+      }
+      if (!directPost) {
         await addDoc(CommentRef, {
           ...comments,
         });
       }
     } else {
-      alert("please type your comment and procced");
+      alert("please type your comment and procceed");
     }
   };
-  console.log(directPost);
   useEffect(() => {
     const unsubsDoc = onSnapshot(
       collection(db, "Post"),
@@ -130,16 +140,17 @@ const InformationPage = ({ mode, user }) => {
         <p className={mode ? "headDesc" : "headDescDark"}>Information center</p>
         <p className={mode ? "text-[black]" : "text-white"}>
           You can contribute to our company development by raising your comment
-          and contribution here,as every single pieces of information render is
-          highly valuable to us.
+          and contributions here,as every single pieces of information you
+          render is highly valuable to us.
         </p>
       </div>
       <p className={mode ? "borderDesign" : "borderDesignDark"}></p>
-      {post?.map(({ text, photo, day }, i) => (
+      {post?.map(({ text, photo, day, role }, i) => (
         <div key={i} className="post_info">
           {photo && <img src={photo} alt="" className="postPhotos" />}
           <p className="info_text">{text}</p>
           <p className="date">{day}</p>
+          <p>{Admin}</p>
         </div>
       ))}
 
@@ -183,7 +194,7 @@ const InformationPage = ({ mode, user }) => {
           </label>
           <button
             type="button"
-            disabled={trackupload !== null && trackupload < 100}
+            disabled={comment === null || adminPost === null}
             onClick={(e) => handleSubmit(e)}
           >
             <BiSend className="send" title="send" />

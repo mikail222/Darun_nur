@@ -21,7 +21,7 @@ body {
   width: 100%;
   scroll-behavior: smooth;
   scroll-padding: 10rem;
-  /* background-color: #f5f5f5; */
+  background-color: white;
 }
 .slick-slide > div {
   margin: 0 10px;

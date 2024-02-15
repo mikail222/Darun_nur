@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BiArrowToBottom, BiArrowToTop, BiNotification } from "react-icons/bi";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
-import { useNavigate } from "react-router-dom";
 import mgs from "../assets/chat_1041916.png";
 import affilateIcon from "../assets/affiliate-marketing_10846492.png";
 import usericon from "../assets/team_12202122.png";
@@ -120,7 +119,7 @@ const Columns = ({ msg, inbox, mode }) => {
 
   const currentUser = auth.currentUser;
   return (
-    <div className=" w-[96%]  lg:w-[93%] flex flex-col ml-[3%] md:ml-[2%] lg:ml-[3.5%]">
+    <div className="w-[100%] flex flex-col  justify-center items-center">
       <div className="WrapperContainer">
         {columnData?.map(({ title, imgs, info, perct, button, icon }, i) => (
           <div className={mode ? "columDiv" : "columDivDark"} key={i}>

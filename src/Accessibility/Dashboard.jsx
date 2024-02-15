@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { auth } from "../firebaseConfig";
+import { auth, db } from "../firebaseConfig";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Dashboard_nav from "./Dashboard_nav";
 import Admin from "./Admin";
@@ -10,24 +10,73 @@ import Profile from "./Profile";
 import ChangePassword from "./ChangePassword";
 import { MdCancel, MdDarkMode, MdLightMode } from "react-icons/md";
 import InformationPage from "./InformationPage";
+import { collection, onSnapshot } from "firebase/firestore";
 
-const Dashboard = ({ user }) => {
+const Dashboard = () => {
   const [mobile, setMobile] = useState(false);
   const [visa, setVisa] = useState([]);
+  const [user, setUser] = useState([]);
   const [affilates, setAffilates] = useState([]);
   const [mode, setMode] = useState(false);
   const currentUser = auth.currentUser;
   const navigate = useNavigate();
 
-  const callVisa = (child) => {
-    setVisa(child);
-  };
-  const callback = (child) => {
-    setAffilates(child);
-  };
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "users"),
+      (snapShot) => {
+        const list = [];
+        snapShot.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setUser(list);
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    return () => {
+      unsub();
+    };
+  }, []);
+  useEffect(() => {
+    const unsubs = onSnapshot(
+      collection(db, "Afillate"),
+      (snapShot) => {
+        const Affiliates = [];
+        snapShot.forEach((doc) => {
+          Affiliates.push({ id: doc.id, ...doc.data() });
+        });
+        setAffilates(Affiliates);
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    return () => {
+      unsubs();
+    };
+  }, []);
+  useEffect(() => {
+    const unsubsDoc = onSnapshot(
+      collection(db, "Visa_assistance"),
+      (snapShot) => {
+        const Visa = [];
+        snapShot.forEach((doc) => {
+          Visa.push({ id: doc.id, ...doc.data() });
+        });
+        setVisa(Visa);
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    return () => {
+      unsubsDoc();
+    };
+  }, []);
 
   return (
-    // &&
     <div
       className={
         mode
@@ -83,7 +132,7 @@ const Dashboard = ({ user }) => {
             <Route
               path="/users"
               element={
-                <Users user={user} {...{ callback }} {...{ callVisa }} />
+                <Users users={user} visas={visa} affilates={affilates} />
               }
             />
             <Route

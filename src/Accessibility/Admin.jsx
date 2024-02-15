@@ -148,17 +148,22 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
           msg={message}
           mode={mode}
         />
-        <div className="w-[100%] flex flex-row  lg:gap-[1rem] px-[2%]">
+        <div className="w-[100%] flex flex-row  lg:gap-[1rem] px-[1%] lg:px-[2%]">
           <div className="field">
             <aside className={mode ? "graphField" : "graphFielddark"}>
               {" "}
-              <h5 className="my-[3%] px-[3%]">Last 6 month Registration</h5>
+              <p
+                className="my-[3%] px-[3%] font-semibold text-[2rem]"
+                style={mode ? { color: "gray" } : { color: "lightgrey" }}
+              >
+                Last 6 month Registration
+              </p>
               <ResponsiveContainer width="100%" aspect={2 / 1}>
                 <AreaChart
                   width={730}
                   height={250}
                   data={data}
-                  margin={{ top: 10, right: 0, left: 7, bottom: 0 }}
+                  margin={{ top: 10, right: 5, left: 5, bottom: 0 }}
                 >
                   <defs>
                     <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
@@ -190,225 +195,228 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
               <CircularProgressbar
                 value={user?.length}
                 text={`${user?.length}%`}
-                strokeWidth={6}
+                strokeWidth={10}
               />
             </div>
           </aside>
         </div>
-        <div className={mode ? "productWrapper" : "productWrapperDark"}>
-          <p className="text-[gray] text-[2rem] m-[2%]">Clients</p>
-          <TableContainer component={Paper}>
-            <Table
-              sx={{ minWidth: 650 }}
-              className={mode ? "bg-white" : "tableDark"}
-              aria-label="simple table"
-            >
-              <TableHead>
-                <TableRow>
-                  <TableCell>
-                    <p>Icon</p>
-                  </TableCell>
-                  <TableCell align="left">
-                    <p>Categories</p>
-                  </TableCell>
-                  <TableCell align="left">
-                    <p>Total</p>
-                  </TableCell>
-                  <TableCell align="right">
-                    <p>profile pictures</p>
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow
-                  sx={{
-                    "&:last-child td, &:last-child th": {
-                      border: 0,
-                    },
-                  }}
-                >
-                  <TableCell component="th" scope="row">
-                    <BiUser className="bg-[purple]  proIcon" />
-                  </TableCell>
-                  <TableCell align="left">
-                    <p>Registered Users</p>
-                  </TableCell>
-                  <TableCell align="left">
-                    <p>{user?.length}</p>
-                  </TableCell>
-                  <TableCell align="left">
-                    <div className=" flex flex-row  justify-end items-end">
-                      {user?.slice(0, 5).map(({ img }, i) => (
-                        <img src={img} alt="" className="proImg" />
-                      ))}
-                    </div>
-                  </TableCell>
-                </TableRow>{" "}
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    <SiVisa className="bg-[black]  proIcon" />
-                  </TableCell>
-                  <TableCell align="left">
-                    <p>Visa Document</p>
-                  </TableCell>
-                  <TableCell align="left">
-                    <p> {visa?.length}</p>
-                  </TableCell>
-                  <TableCell align="left">
-                    <div className=" flex flex-row  justify-end items-end">
-                      {visa?.slice(0, 5).map(({ img }, i) => (
-                        <img src={img} alt="" className="proImg" />
-                      ))}
-                    </div>
-                  </TableCell>
-                </TableRow>{" "}
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
-                    <TbAffiliate className="  bg-[teal] proIcon shadow-xl" />
-                  </TableCell>
-                  <TableCell align="left">
-                    <p>Afillate Document</p>
-                  </TableCell>
-                  <TableCell align="left">
-                    <p>{affilates?.length}</p>{" "}
-                  </TableCell>
-                  <TableCell align="left">
-                    <div className=" flex flex-row  justify-end items-end">
-                      {affilates?.slice(0, 5).map(({ img }, i) => (
-                        <img src={img} alt="" className="proImg" />
-                      ))}
-                    </div>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
-        <div className={mode ? "productWrapper" : "productWrapperDark"}>
-          <p className="text-[gray] text-[2rem] m-[2%]">Message Details</p>
-          {message && view === false ? (
+        <div className="flex flex-col justify-center items-center">
+          <div className={mode ? "productWrapper" : "productWrapperDark"}>
+            <p className="text-[gray] text-[2rem] m-[2%]">Clients</p>
             <TableContainer component={Paper}>
               <Table
                 sx={{ minWidth: 650 }}
-                aria-label="simple table"
                 className={mode ? "bg-white" : "tableDark"}
+                aria-label="simple table"
               >
                 <TableHead>
-                  <TableRow className="head">
-                    <TableCell align="left">
-                      <p>Name</p>
+                  <TableRow>
+                    <TableCell>
+                      <p>Icon</p>
                     </TableCell>
                     <TableCell align="left">
-                      <p>Email</p>
+                      <p>Categories</p>
                     </TableCell>
                     <TableCell align="left">
-                      <p>Contact</p>
-                    </TableCell>{" "}
-                    <TableCell align="left">
-                      <p>Subject</p>
+                      <p>Total</p>
                     </TableCell>
-                    <TableCell align="left">
-                      <p>Received</p>
-                    </TableCell>{" "}
-                    <TableCell align="left">
-                      <p>Details</p>
-                    </TableCell>{" "}
-                    <TableCell align="left">
-                      <p>Action</p>
+                    <TableCell align="right">
+                      <p>profile pictures</p>
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {message?.map(
-                    ({ day, first, email, phone, subject, id }, i) => (
-                      <TableRow
-                        key={i}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell align="left">
-                          <p>{first}</p>
-                        </TableCell>
-                        <TableCell align="left">
-                          <p>{email}</p>
-                        </TableCell>
-                        <TableCell align="center">
-                          <p>{phone}</p>
-                        </TableCell>
-                        <TableCell align="center">
-                          <p>{subject}</p>
-                        </TableCell>
-                        <TableCell align="left">
-                          <p>{day}</p>
-                        </TableCell>{" "}
-                        <TableCell align="left">
-                          {view === false && (
-                            <button
-                              onClick={() => handleView(id)}
-                              className="text-[lightgreen]  text-[1rem] font-bold"
-                            >
-                              View
-                            </button>
-                          )}
-                        </TableCell>
-                        <TableCell align="left">
-                          <button
-                            onClick={() => handleDelete(id)}
-                            className={mode ? "delete" : "delete text-white"}
-                          >
-                            Delete
-                          </button>
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
+                  <TableRow
+                    sx={{
+                      "&:last-child td, &:last-child th": {
+                        border: 0,
+                      },
+                    }}
+                  >
+                    <TableCell component="th" scope="row">
+                      <BiUser className="bg-[purple]  proIcon" />
+                    </TableCell>
+                    <TableCell align="left">
+                      <p>Registered Users</p>
+                    </TableCell>
+                    <TableCell align="left">
+                      <p>{user?.length}</p>
+                    </TableCell>
+                    <TableCell align="left">
+                      <div className=" flex flex-row  justify-end items-end">
+                        {user?.slice(0, 5).map(({ img }, i) => (
+                          <img src={img} alt="" className="proImg" />
+                        ))}
+                      </div>
+                    </TableCell>
+                  </TableRow>{" "}
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      <SiVisa className="bg-[black]  proIcon" />
+                    </TableCell>
+                    <TableCell align="left">
+                      <p>Visa Document</p>
+                    </TableCell>
+                    <TableCell align="left">
+                      <p> {visa?.length}</p>
+                    </TableCell>
+                    <TableCell align="left">
+                      <div className=" flex flex-row  justify-end items-end">
+                        {visa?.slice(0, 5).map(({ img }, i) => (
+                          <img src={img} alt="" className="proImg" />
+                        ))}
+                      </div>
+                    </TableCell>
+                  </TableRow>{" "}
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component="th" scope="row">
+                      <TbAffiliate className="  bg-[teal] proIcon shadow-xl" />
+                    </TableCell>
+                    <TableCell align="left">
+                      <p>Afillate Document</p>
+                    </TableCell>
+                    <TableCell align="left">
+                      <p>{affilates?.length}</p>{" "}
+                    </TableCell>
+                    <TableCell align="left">
+                      <div className=" flex flex-row  justify-end items-end">
+                        {affilates?.slice(0, 5).map(({ img }, i) => (
+                          <img src={img} alt="" className="proImg" />
+                        ))}
+                      </div>
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>
-          ) : (
-            message &&
-            view === true && (
-              <div className="flex flex-col justify-center mx-[2%] w-[100%]">
-                <div className="flex flex-row gap-[5%] leading-[50px] my-[5%]">
-                  <div>
-                    <h3>Name:</h3>
-                    <h6>Email:</h6>
-                    <h5>Contact:</h5>
-                    <h5> Date:</h5>
-                    <h5>subject:</h5>
-                    <h5>Message:</h5>
-                    <h5>Id:</h5>
-                  </div>
+          </div>
 
-                  <div>
-                    <h3>{msg.first}</h3>
-                    <h6>{msg.email}</h6>
-                    <h5> {msg.phone}</h5>
-                    <h5>{msg.day}</h5>
-                    <h5>{msg.subject}</h5>
-                    <h5>{msg.message}</h5>
-                    <h5>{msg.id}</h5>
+          <div className={mode ? "productWrapper" : "productWrapperDark"}>
+            <p className="text-[gray] text-[2rem] m-[2%]">Message Details</p>
+            {message && view === false ? (
+              <TableContainer component={Paper}>
+                <Table
+                  sx={{ minWidth: 650 }}
+                  aria-label="simple table"
+                  className={mode ? "bg-white" : "tableDark"}
+                >
+                  <TableHead>
+                    <TableRow className="head">
+                      <TableCell align="left">
+                        <p>Name</p>
+                      </TableCell>
+                      <TableCell align="left">
+                        <p>Email</p>
+                      </TableCell>
+                      <TableCell align="left">
+                        <p>Contact</p>
+                      </TableCell>{" "}
+                      <TableCell align="left">
+                        <p>Subject</p>
+                      </TableCell>
+                      <TableCell align="left">
+                        <p>Received</p>
+                      </TableCell>{" "}
+                      <TableCell align="left">
+                        <p>Details</p>
+                      </TableCell>{" "}
+                      <TableCell align="left">
+                        <p>Action</p>
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {message?.map(
+                      ({ day, first, email, phone, subject, id }, i) => (
+                        <TableRow
+                          key={i}
+                          sx={{
+                            "&:last-child td, &:last-child th": { border: 0 },
+                          }}
+                        >
+                          <TableCell align="left">
+                            <p>{first}</p>
+                          </TableCell>
+                          <TableCell align="left">
+                            <p>{email}</p>
+                          </TableCell>
+                          <TableCell align="center">
+                            <p>{phone}</p>
+                          </TableCell>
+                          <TableCell align="center">
+                            <p>{subject}</p>
+                          </TableCell>
+                          <TableCell align="left">
+                            <p>{day}</p>
+                          </TableCell>{" "}
+                          <TableCell align="left">
+                            {view === false && (
+                              <button
+                                onClick={() => handleView(id)}
+                                className="text-[lightgreen]  text-[1rem] font-bold"
+                              >
+                                View
+                              </button>
+                            )}
+                          </TableCell>
+                          <TableCell align="left">
+                            <button
+                              onClick={() => handleDelete(id)}
+                              className={mode ? "delete" : "delete text-white"}
+                            >
+                              Delete
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    )}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            ) : (
+              message &&
+              view === true && (
+                <div className="flex flex-col justify-center mx-[2%] w-[100%]">
+                  <div className="flex flex-row gap-[5%] leading-[50px] my-[5%]">
+                    <div>
+                      <h3>Name:</h3>
+                      <h6>Email:</h6>
+                      <h5>Contact:</h5>
+                      <h5> Date:</h5>
+                      <h5>subject:</h5>
+                      <h5>Message:</h5>
+                      <h5>Id:</h5>
+                    </div>
+
+                    <div>
+                      <h3>{msg.first}</h3>
+                      <h6>{msg.email}</h6>
+                      <h5> {msg.phone}</h5>
+                      <h5>{msg.day}</h5>
+                      <h5>{msg.subject}</h5>
+                      <h5>{msg.message}</h5>
+                      <h5>{msg.id}</h5>
+                    </div>
                   </div>
-                </div>
-                <div className="w-[50%] flex flex-row justify-around">
-                  {view === true && (
-                    <button onClick={() => setView(false)} className="close">
-                      close
+                  <div className="w-[50%] flex flex-row justify-around">
+                    {view === true && (
+                      <button onClick={() => setView(false)} className="close">
+                        close
+                      </button>
+                    )}
+
+                    <button onClick={() => handleDelete(id)} className="delete">
+                      delete
                     </button>
-                  )}
-
-                  <button onClick={() => handleDelete(id)} className="delete">
-                    delete
-                  </button>
+                  </div>
                 </div>
-              </div>
-            )
-          )}
+              )
+            )}
+          </div>
         </div>
       </div>
     </div>

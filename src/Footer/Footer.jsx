@@ -95,8 +95,10 @@ const Footer = () => {
             />
             <SiIata className="fill-white w-[4vw]  h-[6vh] " />
           </div>
-          <div className="text-left lg:text-center lg:text-[1rem] px- text-[0.95rem] flex flex-row items-center">
-            <BiCopyright className=" fill-white " />
+          <div className="text-left lg:text-[1rem] px- text-[0.95rem] flex flex-row">
+            <div className="flex flex-col justify-center">
+              <BiCopyright className=" fill-white mb-[1.7rem]" />
+            </div>
             <p className="text-[white] font-semibold lg:text-[1.3rem] text-[0.9rem]">
               2023 Darun-Nur.All Right Reserved | BN:3466674
             </p>

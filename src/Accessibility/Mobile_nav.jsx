@@ -60,7 +60,7 @@ const Mobile_nav = ({ user, setMobile, mode }) => {
               />
             )}
           </div>
-          <aside className="w-[75vw] h-[80vh]">
+          <aside className="w-[75vw] lg:h-[80vh]  h-[80%]">
             <div className="menu_list">
               <button onClick={(e) => navigate("Admin")}>
                 <MdDashboard className="icon" /> Dashboard

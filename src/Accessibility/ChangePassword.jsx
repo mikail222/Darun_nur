@@ -4,7 +4,7 @@ import { AiFillWarning, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../firebaseConfig";
 import { BiShow } from "react-icons/bi";
-import passwordReset from "../assets/reset_password.jpg";
+import passwordReset from "../assets/reset_password-transparent.png";
 
 const ChangePassword = ({ user, mode }) => {
   const [passwordType, setPasswordType] = useState("password");

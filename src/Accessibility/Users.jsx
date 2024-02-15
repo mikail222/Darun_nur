@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { deleteUser } from "firebase/auth";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  onSnapshot,
-} from "firebase/firestore";
+import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebaseConfig";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -16,14 +10,11 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const Users = (props) => {
+const Users = ({ users, visas, affilates }) => {
   const [search_user, setSearch_user] = useState(" ");
-  const [users, setUsers] = useState([]);
-  const [visaDoc, setVisaDoc] = useState([]);
   const [view, setView] = useState(false);
   const [viewVisa, setViewVisa] = useState(false);
   const [viewUser, setViewUser] = useState(false);
-  const [affiliate, setAffiliate] = useState([]);
   const [delete_User, setDelete_User] = useState([]);
   const [visaId, setVisaId] = useState([]);
   const [affiliateId, setAffiliateId] = useState([]);
@@ -34,62 +25,6 @@ const Users = (props) => {
 
   const [err, setErr] = useState(" ");
   const client = auth.currentUser;
-  useEffect(() => {
-    const unsub = onSnapshot(
-      collection(db, "users"),
-      (snapShot) => {
-        const list = [];
-        snapShot.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
-        });
-        setUsers(list);
-      },
-      (error) => {
-        alert(error);
-      }
-    );
-    return () => {
-      unsub();
-    };
-  }, []);
-  useEffect(() => {
-    const unsubs = onSnapshot(
-      collection(db, "Afillate"),
-      (snapShot) => {
-        const Affiliates = [];
-        snapShot.forEach((doc) => {
-          Affiliates.push({ id: doc.id, ...doc.data() });
-        });
-        setAffiliate(Affiliates);
-        props?.callback(Affiliates);
-      },
-      (error) => {
-        alert(error);
-      }
-    );
-    return () => {
-      unsubs();
-    };
-  }, []);
-  useEffect(() => {
-    const unsubsDoc = onSnapshot(
-      collection(db, "Visa_assistance"),
-      (snapShot) => {
-        const Visa = [];
-        snapShot.forEach((doc) => {
-          Visa.push({ id: doc.id, ...doc.data() });
-        });
-        setVisaDoc(Visa);
-        props?.callVisa(Visa);
-      },
-      (error) => {
-        alert(error);
-      }
-    );
-    return () => {
-      unsubsDoc();
-    };
-  }, []);
 
   const Search_user = users?.filter(
     (m) =>
@@ -119,7 +54,7 @@ const Users = (props) => {
     }
   };
   const handleDeleteAffiliate = async (id) => {
-    const checkPersonsName = affiliate.find((person) => person.id === id);
+    const checkPersonsName = affilates.find((person) => person.id === id);
     try {
       if (
         window.confirm(
@@ -140,7 +75,7 @@ const Users = (props) => {
     }
   };
   const handleDeleteVisa = async (id) => {
-    const checkPersonsName = visaDoc.find((person) => person.id === id);
+    const checkPersonsName = visas.find((person) => person.id === id);
     try {
       if (
         window.confirm(
@@ -164,13 +99,12 @@ const Users = (props) => {
   const currentUser = auth.currentUser?.email;
   const filterImg = users.filter(({ img }) => img === img);
   const handleView = (id) => {
-    const getAffiliate = affiliate.find((person) => person.id === id);
+    const getAffiliate = affilates.find((person) => person.id === id);
     setAffiliateId(getAffiliate);
     setView(true);
-    console.log(getAffiliate);
   };
   const handleVisaView = (id) => {
-    const getVisaId = visaDoc.find((person) => person.id === id);
+    const getVisaId = visas.find((person) => person.id === id);
     setVisaId(getVisaId);
     setViewVisa(true);
   };
@@ -181,12 +115,12 @@ const Users = (props) => {
   };
   useEffect(() => {
     const interChange = () => {
-      if (user) {
+      if (users) {
       }
-      if (affilate) {
+      if (affilates) {
         setUser(false) || setVisa(false);
       }
-      if (visa) {
+      if (visas) {
         setUser(false) || setAffilate(false);
       }
     };
@@ -411,7 +345,7 @@ const Users = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {affiliate?.map(
+                  {affilates?.map(
                     (
                       {
                         img,
@@ -479,7 +413,7 @@ const Users = (props) => {
                 </TableBody>
               </Table>
             </TableContainer>
-            {affiliate && view === true && (
+            {affilates && view === true && (
               <div className="flex flex-col justify-center  items-center">
                 <img
                   src={filterImg ? affiliateId.img : "no image"}
@@ -563,7 +497,7 @@ const Users = (props) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {visaDoc?.map(
+                  {visas?.map(
                     ({ img, firstname, lastname, email, phone, id }, i) => (
                       <TableRow
                         key={i}
@@ -619,7 +553,7 @@ const Users = (props) => {
                 </TableBody>
               </Table>
             </TableContainer>
-            {visaDoc && viewVisa === true && (
+            {visas && viewVisa === true && (
               <div className="flex flex-col justify-center w-[100%]">
                 <img
                   src={filterImg ? visaId.img : "no image"}

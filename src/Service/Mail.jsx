@@ -21,7 +21,7 @@ const Mail = () => {
   return (
     <div
       // data-aos="fade-up"
-      className="bg-[#d7e7ff] mail border-[#d1a9db] w-[100%] lg:h-[40vh] lg:flex lg:flex-row py-[3%] z-[-1]"
+      className="bg-[#f5f5f5] mail border-[#d1a9db] w-[100%] lg:h-[40vh] lg:flex lg:flex-row py-[3%] z-[-1]"
     >
       <div className=" flex-col justify-center  items-center  lg:flex lg:flex-row lg:w-[40%] lg:ml-[13%]">
         <div className="hidden lg:flex flex-col justify-center items-center lg:w-[20%]">

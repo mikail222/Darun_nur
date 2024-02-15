@@ -261,7 +261,7 @@
 }
 
 .footOverlay {
-  background-color: rgba(21, 15, 95, 0.6);
+  background-color: rgba(21, 15, 95, 0.8);
 }
 
 .team:hover {
@@ -408,7 +408,7 @@ form .a {
 }
 
 .WrapperContainer {
-  @apply w-[98%] md:w-[100%]  md:gap-[1rem] md:grid md:grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] lg:gap-2  flex flex-col lg:flex  lg:flex-row lg:w-[100%];
+  @apply w-[98%] md:w-[100%]  md:gap-[1rem] md:grid md:grid-cols-[repeat(auto-fit,minmax(15rem,1fr))] lg:gap-2  flex flex-col lg:flex  lg:flex-row lg:w-[96%];
 }
 .columDiv {
   box-shadow: 1px 2px 2px 1px lightgrey;
@@ -509,11 +509,11 @@ form .a {
   @apply text-[gray]  text-[1rem]  px-[1rem];
 }
 .productWrapper {
-  @apply flex  flex-col justify-center w-[96%] ml-[1%] lg:w-[96%] bg-[white] mt-[2%] lg:ml-[1rem] rounded-[5px]  shadow-lg;
+  @apply flex  flex-col justify-center w-[98%] ml-[1%] lg:w-[96%] bg-[white] mt-[2%] rounded-[5px]  shadow-lg;
 }
 .productWrapperDark {
   background-color: rgb(255, 255, 255, 0.1);
-  @apply flex  flex-col justify-center w-[96%] ml-[1%] lg:w-[96%] mt-[2%] lg:ml-[1rem] rounded-[5px]  shadow-lg;
+  @apply flex flex-col justify-center w-[98%] lg:w-[96%] mt-[2%] rounded-[5px]  shadow-lg;
 }
 .productWrapperDark p {
   @apply text-[lightgray];
@@ -568,7 +568,7 @@ form .a {
 .field {
   display: flex;
   flex-direction: column;
-  @apply w-[96%] lg:w-[75%];
+  @apply w-[100%] lg:w-[75%];
 }
 .graphField {
   @apply w-[100%] overflow-x-auto h-auto bg-[white] rounded-[5px] shadow-xl;
@@ -762,6 +762,9 @@ form .a {
 .info_text {
   background-color: rgb(0, 0, 0, 0.3);
   @apply w-[85%] lg:w-[50%] rounded-[10px]  flex flex-col cursor-pointer my-[1%] p-[1%] text-white;
+}
+.info_textAdmin {
+  @apply w-[15vw] lg:w-[5vw] rounded-[10px] text-center flex flex-col cursor-pointer my-[5%] px-[5%] text-white  text-[.8rem];
 }
 .postForm form,
 .postFormDark form {

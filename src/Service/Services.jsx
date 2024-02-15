@@ -76,7 +76,7 @@ const Services = ({ navigate }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center my-[15%]">
+    <div className="flex flex-col justify-center items-center md:my-[15%] lg:my-[15%]">
       <div data-aos="fade-up" className="w-[99%] lg:w-[55%]  bg-white">
         {" "}
         <Slider {...settings}>
@@ -84,7 +84,7 @@ const Services = ({ navigate }) => {
             <button
               key={i}
               onClick={(e) => navigate("")}
-              className=" w-[100%] h-[55vh] md:h-[65vh] lg:h-[55vh] shade flex flex-col justify-center items-center my-[5%] pt-[5%] px-[5%]"
+              className=" w-[100%] h-[55vh] md:h-[65vh] lg:h-[55vh] lg:shadow-xl flex flex-col justify-center items-center my-[5%] pt-[5%] px-[5%]"
             >
               <img
                 src={img}

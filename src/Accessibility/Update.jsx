@@ -9,7 +9,6 @@ const Update = ({ navigate }) => {
   const [displayName, setdDisplayName] = useState("");
   const [email, setEmail] = useState("");
   const [photoURL, setPhotoUrl] = useState("");
-  const [emailVerified, setEmailVerified] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
   const handleUpdate = (e) => {
