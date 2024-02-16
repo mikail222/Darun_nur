@@ -656,65 +656,82 @@ const Users = ({ users, visas, affilates, staff, mode }) => {
               <TableHead>
                 <TableRow className="bg-[lightgreen] text-[1.5rem]">
                   <TableCell>Image</TableCell>
+                  <TableCell align="left">Title</TableCell>
                   <TableCell align="left">Name</TableCell>
                   <TableCell align="left">Last name</TableCell>
                   <TableCell align="left">Email</TableCell>
-                  <TableCell align="left">Contact</TableCell>
-                  <TableCell align="left">Details</TableCell>
-                  <TableCell align="left">Status</TableCell>
+                  <TableCell align="left">Position</TableCell>
+                  <TableCell align="left">Details</TableCell>{" "}
+                  <TableCell align="left">Date</TableCell>
                   <TableCell align="left">Action</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {staff?.map(({ img, first, lastName, email, phone, id }, i) => (
-                  <TableRow
-                    key={i}
-                    sx={{
-                      "&:last-child td, &:last-child th": { border: 0 },
-                    }}
-                  >
-                    <TableCell component="th" scope="row">
-                      <img
-                        src={filterImg ? img : "no image"}
-                        alt=""
-                        className={
-                          email === currentUser
-                            ? "Authoronline"
-                            : "AuthoriOffline"
-                        }
-                      />
-                    </TableCell>
-                    <TableCell align="left">{first}</TableCell>
-                    <TableCell align="left"> {lastName}</TableCell>{" "}
-                    <TableCell align="left">{email}</TableCell>
-                    <TableCell align="center">{phone}</TableCell>{" "}
-                    <TableCell align="left">
-                      {viewStaff === false && (
+                {staff?.map(
+                  (
+                    {
+                      img,
+                      first,
+                      lastName,
+                      email,
+                      position,
+                      title,
+                      id,
+                      updated,
+                    },
+                    i
+                  ) => (
+                    <TableRow
+                      key={i}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        <img
+                          src={filterImg ? img : "no image"}
+                          alt=""
+                          className={
+                            email === currentUser
+                              ? "Authoronline"
+                              : "AuthoriOffline"
+                          }
+                        />
+                      </TableCell>
+                      <TableCell align="left">{title}</TableCell>
+                      <TableCell align="left">{first}</TableCell>
+                      <TableCell align="left"> {lastName}</TableCell>{" "}
+                      <TableCell align="left">{email}</TableCell>
+                      <TableCell align="center">{position}</TableCell>
+                      <TableCell align="left">
+                        {viewStaff === false && (
+                          <button
+                            onClick={() => handleViewStaff(id)}
+                            className="text-[lightgreen]  text-[1rem] font-bold"
+                          >
+                            View
+                          </button>
+                        )}
+                      </TableCell>
+                      <TableCell align="left">{updated}</TableCell>
+                      <TableCell align="left">
                         <button
-                          onClick={() => handleViewStaff(id)}
-                          className="text-[lightgreen]  text-[1rem] font-bold"
+                          onClick={() => fireEmployee(id)}
+                          className="delete"
                         >
-                          View
+                          Fire
                         </button>
-                      )}
-                    </TableCell>
-                    <TableCell align="left">
-                      <button
-                        onClick={() => fireEmployee(id)}
-                        className="delete"
-                      >
-                        Fire
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                ))}
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
               </TableBody>
             </Table>
           </TableContainer>
           {staff && viewStaff === true && (
             <div className="flex flex-col justify-center  items-center">
               <img
-                src={filterImg ? affiliateId.img : "no image"}
+                src={filterImg ? staffId.img : "no image"}
                 alt=""
                 className="lg:w-[650px] lg:h-[600px] lg:object-cover  object-contain"
               />
@@ -727,23 +744,28 @@ const Users = ({ users, visas, affilates, staff, mode }) => {
                   <h5>City:</h5>
                   <h5>State:</h5>
                   <h5>Country:</h5>
-                  <h5>Company:</h5>
-                  <h5>Contact:</h5>
+                  <h5>Institution:</h5>
+                  <h5>Position:</h5>
+                  <h5>Department:</h5>
+                  <h5>Hire on:</h5>
+                  <h5>About</h5>
                 </div>
                 <div>
                   {" "}
                   <h3>
-                    {staffId.first_name}
+                    {staffId.first}
                     {"  "}
-                    {staffId.last_name}
+                    {staffId.lastName}
                   </h3>
                   <h6>{staffId.email}</h6>
                   <h5>{staffId.address}</h5>
                   <h5>{staffId.city}</h5>
                   <h5>{staffId.state}</h5>
                   <h5>{staffId.country}</h5>
-                  <h5>{staffId.company_name}</h5>
-                  <h5> {staffId.phone}</h5>
+                  <h5> {staffId.education}</h5>
+                  <h5>{staffId.position}</h5>
+                  <h5> {staffId.department}</h5> <h5> {staffId.updated}</h5>{" "}
+                  <h5> {staffId.about}</h5>
                 </div>
               </div>
               {staffId.email !== currentUser && (
