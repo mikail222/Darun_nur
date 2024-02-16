@@ -10,11 +10,12 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-const Users = ({ users, visas, affilates }) => {
+const Users = ({ users, visas, affilates, staff, mode }) => {
   const [search_user, setSearch_user] = useState(" ");
   const [view, setView] = useState(false);
   const [viewVisa, setViewVisa] = useState(false);
   const [viewUser, setViewUser] = useState(false);
+  const [viewStaff, setViewStaff] = useState(false);
   const [delete_User, setDelete_User] = useState([]);
   const [visaId, setVisaId] = useState([]);
   const [affiliateId, setAffiliateId] = useState([]);
@@ -22,7 +23,8 @@ const Users = ({ users, visas, affilates }) => {
   const [user, setUser] = useState(false);
   const [affilate, setAffilate] = useState(false);
   const [visa, setVisa] = useState(false);
-
+  const [staffs, setStaffs] = useState(false);
+  const [staffId, setStaffId] = useState([]);
   const [err, setErr] = useState(" ");
   const client = auth.currentUser;
 
@@ -65,7 +67,28 @@ const Users = ({ users, visas, affilates }) => {
       ) {
         await deleteDoc(doc(db, "Afillate", id));
         deleteUser(client);
-        setAffiliateId(affiliate.filter(({ id }) => id !== id));
+        setAffiliateId(affilates.filter(({ id }) => id !== id));
+      }
+    } catch (err) {
+      setErr(err.message);
+      setTimeout(() => {
+        setErr(null);
+      }, 5000);
+    }
+  };
+  const fireEmployee = async (id) => {
+    const checkPersonsName = staff.find((person) => person.id === id);
+    try {
+      if (
+        window.confirm(
+          `are you sure you want  to  delete  ${
+            checkPersonsName.first_name + " " + checkPersonsName.last_name
+          } ?`
+        )
+      ) {
+        await deleteDoc(doc(db, "Employee", id));
+        deleteUser(client);
+        setStaffId(staffId.filter(({ id }) => id !== id));
       }
     } catch (err) {
       setErr(err.message);
@@ -103,6 +126,11 @@ const Users = ({ users, visas, affilates }) => {
     setAffiliateId(getAffiliate);
     setView(true);
   };
+  const handleViewStaff = (id) => {
+    const getStaff = staff.find((person) => person.id === id);
+    setStaffId(getStaff);
+    setViewStaff(true);
+  };
   const handleVisaView = (id) => {
     const getVisaId = visas.find((person) => person.id === id);
     setVisaId(getVisaId);
@@ -130,502 +158,621 @@ const Users = ({ users, visas, affilates }) => {
 
   return (
     <div className="user">
-      <div className=" w-[100%] adminBg h-[35vh] lg:h-[70vh] ">
-        <div className="flex flex-col md:flex-row lg:flex-row pt-[5%]">
-          <div className="userBTN flex gap-[5%] flex-row lg:justify-evenly items-center justify-center md:w-[50%] lg:w-[50%]">
-            {user ? (
-              <button
-                className="bg-[lightgreen]"
-                onClick={() => setUser(false)}
-              >
-                Hidde user
-              </button>
-            ) : (
-              <button className="bg-[lightgreen]" onClick={() => setUser(true)}>
-                User Docs
-              </button>
-            )}
-            {affilate ? (
-              <button className="bg-[teal]" onClick={() => setAffilate(false)}>
-                Hide Affilate
-              </button>
-            ) : (
-              <button className="bg-[teal]" onClick={() => setAffilate(true)}>
-                Affilate Docs
-              </button>
-            )}
-            {visa ? (
-              <button className="bg-[purple]" onClick={() => setVisa(false)}>
-                Hide Visa
-              </button>
-            ) : (
-              <button className="bg-[teal]" onClick={() => setVisa(true)}>
-                Visa Docs
-              </button>
-            )}
-          </div>
-          <div className="searchField">
-            <input
-              type="text"
-              onChange={(e) => setSearch_user(e.target.value)}
-              placeholder="please type here to display user..."
-              className="filter-user"
-              id="filter_user"
-            />
-          </div>
+      <div className=" w-[100%] flex flex-col md:flex-row lg:flex-row pt-[5%] justify-center lg:items-center">
+        <div className="userBTN flex gap-[3%] flex-row lg:justify-evenly items-center justify-center md:w-[50%] lg:w-[50%]">
+          {user ? (
+            <button className="bg-[lightgreen]" onClick={() => setUser(false)}>
+              Hide
+            </button>
+          ) : (
+            <button className="bg-[lightgreen]" onClick={() => setUser(true)}>
+              User
+            </button>
+          )}
+          {affilate ? (
+            <button className="bg-[teal]" onClick={() => setAffilate(false)}>
+              Hide
+            </button>
+          ) : (
+            <button className="bg-[teal]" onClick={() => setAffilate(true)}>
+              Affilate
+            </button>
+          )}
+          {visa ? (
+            <button className="bg-[purple]" onClick={() => setVisa(false)}>
+              Hide
+            </button>
+          ) : (
+            <button className="bg-[teal]" onClick={() => setVisa(true)}>
+              Visa
+            </button>
+          )}
+          {staffs ? (
+            <button className="bg-[purple]" onClick={() => setStaffs(false)}>
+              Hide
+            </button>
+          ) : (
+            <button className="bg-[teal]" onClick={() => setStaffs(true)}>
+              Employee
+            </button>
+          )}
         </div>
-        {user ? (
-          <div className="productWrapper">
-            {delete_User && <p className="">{delete_User}</p>}
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow className="bg-[lightgreen] text-[1.5rem]">
-                    <TableCell>Image</TableCell>
-                    <TableCell align="left">Name</TableCell>
-                    <TableCell align="left">Last name</TableCell>
-                    <TableCell align="left">Email</TableCell>
-                    <TableCell align="left">Contact</TableCell>
-                    <TableCell align="left">Details</TableCell>
-                    <TableCell align="left">Status</TableCell>
-                    <TableCell align="left">Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {Search_user?.map(
-                    ({ img, first, LastName, email, phone, id }, i) => (
-                      <TableRow
-                        key={i}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          <img
-                            src={filterImg ? img : "no image"}
-                            alt=""
-                            className={
-                              email === currentUser
-                                ? "Authoronline"
-                                : "AuthoriOffline"
-                            }
-                          />
-                        </TableCell>
-                        <TableCell align="left">{first}</TableCell>
-                        <TableCell align="left"> {LastName}</TableCell>{" "}
-                        <TableCell align="left">{email}</TableCell>
-                        <TableCell align="center">{phone}</TableCell>{" "}
-                        <TableCell align="left">
-                          {viewUser === false && (
-                            <button
-                              onClick={() => handleUserDetail(id)}
-                              className="text-[lightgreen]  text-[1rem] font-bold"
-                            >
-                              View
-                            </button>
-                          )}
-                        </TableCell>
-                        <TableCell align="left">
-                          {" "}
-                          {email !== currentUser && (
-                            <td className="offline">Offline</td>
-                          )}
-                          {email === currentUser && (
-                            <td className="online">online</td>
-                          )}
-                        </TableCell>
-                        <TableCell align="left">
-                          <button
-                            onClick={() => handleDeleteUser(id)}
-                            className="delete"
-                          >
-                            delete
-                          </button>
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            {user && viewUser === true && (
-              <div className="flex flex-col justify-center  items-center">
-                <img
-                  src={filterImg ? userId.img : "no image"}
-                  alt=""
-                  className="lg:w-[550px] lg:h-[550px] lg:object-cover rounded-[100%] object-cover pt-[5%]"
-                />
 
-                <div className="flex flex-row gap-[5%] leading-[50px] mt-[5%]">
-                  <div>
-                    {" "}
-                    <h3>Username:</h3>
-                    <h3>Name:</h3>
-                    {userId.email && <h6>Email:</h6>}
-                    {userId.address && <h5>Address:</h5>}
-                    {userId.city && <h5>City:</h5>}
-                    {userId.state && <h5>State:</h5>}
-                    {userId.job && <h5>Job:</h5>}
-                    {userId.position && <h5>Position:</h5>}
-                    {userId.institution && <h5>Institution:</h5>}
-                    {userId.phone && <h5>Contact:</h5>}
-                  </div>
-                  <div>
-                    <h6>{userId.user}</h6>
-
-                    <h3>
-                      {userId.first}
-                      {"  "}
-                      {userId.LastName}
-                    </h3>
-
-                    <h6>{userId.email}</h6>
-                    <h5>{userId.address}</h5>
-                    <h5>{userId.city}</h5>
-                    <h5>{userId.state}</h5>
-                    <h5>{userId.country}</h5>
-                    <h5>{userId.job}</h5>
-                    <h5>{userId.position}</h5>
-                    <h5>{userId.institution}</h5>
-                    <h5> {userId.phone}</h5>
-                  </div>
-                </div>
-                {userId.email !== currentUser && (
-                  <td className="offline text-[2rem] my-[5%]">Offline</td>
-                )}
-                {userId.email === currentUser && (
-                  <td className="online text-[2rem] my-[5%]">online</td>
-                )}
-                <div className="w-[50%] flex flex-row justify-between">
-                  {viewUser === true && (
-                    <button
-                      onClick={() => setViewUser(false)}
-                      className="close"
-                    >
-                      close
-                    </button>
-                  )}
-
-                  <button
-                    onClick={() => handleDeleteUser(id)}
-                    className="delete"
-                  >
-                    delete
-                  </button>
-                </div>
-              </div>
-            )}
-            {!users && (
-              <div className="loaderDiv">
-                <p> sorry trying to upload user,please wait a minute</p>
-                <p className="loader"></p>
-              </div>
-            )}{" "}
-          </div>
-        ) : (
-          ""
-        )}
-        {affilate && (
-          <div className="productWrapper">
-            {delete_User && <p className="">{delete_User}</p>}
-
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow className="bg-[teal] text-[1.5rem]">
-                    <TableCell>Image</TableCell>
-                    <TableCell align="left">Name</TableCell>
-                    <TableCell align="left">Last name</TableCell>
-                    <TableCell align="left">Email</TableCell>{" "}
-                    <TableCell align="left">Company</TableCell>
-                    <TableCell align="left">Contact</TableCell>
-                    <TableCell align="left">Status</TableCell>{" "}
-                    <TableCell align="left">Details</TableCell>{" "}
-                    <TableCell align="left">Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {affilates?.map(
-                    (
-                      {
-                        img,
-                        first_name,
-                        last_name,
-                        email,
-                        phone,
-                        company_name,
-                        id,
-                      },
-                      i
-                    ) => (
-                      <TableRow
-                        key={i}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          <img
-                            src={filterImg ? img : "no image"}
-                            alt=""
-                            className={
-                              email === currentUser
-                                ? "Authoronline"
-                                : "AuthoriOffline"
-                            }
-                          />
-                        </TableCell>
-                        <TableCell align="left">{first_name}</TableCell>
-                        <TableCell align="left"> {last_name}</TableCell>{" "}
-                        <TableCell align="left">{email}</TableCell>{" "}
-                        <TableCell align="left">{company_name}</TableCell>
-                        <TableCell align="center">{phone}</TableCell>{" "}
-                        <TableCell align="left">
-                          {" "}
-                          {email !== currentUser && (
-                            <td className="offline">Offline</td>
-                          )}
-                          {email === currentUser && (
-                            <td className="online">online</td>
-                          )}
-                        </TableCell>{" "}
-                        <TableCell align="left">
-                          {view === false && (
-                            <button
-                              onClick={() => handleView(id)}
-                              className="text-[lightgreen]  text-[1rem] font-bold"
-                            >
-                              View
-                            </button>
-                          )}
-                        </TableCell>
-                        <TableCell align="left">
-                          <button
-                            onClick={() => handleDeleteAffiliate(id)}
-                            className="delete"
-                          >
-                            delete
-                          </button>
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            {affilates && view === true && (
-              <div className="flex flex-col justify-center  items-center">
-                <img
-                  src={filterImg ? affiliateId.img : "no image"}
-                  alt=""
-                  className="lg:w-[650px] lg:h-[600px] lg:object-cover  object-contain"
-                />
-
-                <div className="flex flex-row gap-[5%] leading-[50px] mt-[5%]">
-                  <div>
-                    <h3>Name:</h3>
-                    <h6>Email:</h6>
-                    <h5>Address:</h5>
-                    <h5>City:</h5>
-                    <h5>State:</h5>
-                    <h5>Country:</h5>
-                    <h5>Company:</h5>
-                    <h5>Contact:</h5>
-                  </div>
-                  <div>
-                    {" "}
-                    <h3>
-                      {affiliateId.first_name}
-                      {"  "}
-                      {affiliateId.last_name}
-                    </h3>
-                    <h6>{affiliateId.email}</h6>
-                    <h5>{affiliateId.address}</h5>
-                    <h5>{affiliateId.city}</h5>
-                    <h5>{affiliateId.state}</h5>
-                    <h5>{affiliateId.country}</h5>
-                    <h5>{affiliateId.company_name}</h5>
-                    <h5> {affiliateId.phone}</h5>
-                  </div>
-                </div>
-                {affiliateId.email !== currentUser && (
-                  <td className="offline text-[2rem] my-[5%]">Offline</td>
-                )}
-                {affiliateId.email === currentUser && (
-                  <td className="online text-[2rem] my-[5%]">online</td>
-                )}
-                <div className="w-[50%] flex flex-row justify-between">
-                  {view === true && (
-                    <button onClick={() => setView(false)} className="close">
-                      close
-                    </button>
-                  )}
-
-                  <button
-                    onClick={() => handleDeleteAffiliate(id)}
-                    className="delete"
-                  >
-                    delete
-                  </button>
-                </div>
-              </div>
-            )}
-            {!users == null && (
-              <div className="loaderDiv">
-                <p> sorry trying to upload user,please wait a minute</p>
-                <p className="loader"></p>
-              </div>
-            )}
-          </div>
-        )}
-        {visa && (
-          <div className="productWrapper">
-            {delete_User && <p className="">{delete_User}</p>}
-
-            <TableContainer component={Paper}>
-              <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                <TableHead>
-                  <TableRow className="bg-[purple]">
-                    <TableCell>Image</TableCell>
-                    <TableCell align="left">Name</TableCell>
-                    <TableCell align="left">Last name</TableCell>
-                    <TableCell align="left">Email</TableCell>
-                    <TableCell align="left">Contact</TableCell>{" "}
-                    <TableCell align="left">Status</TableCell>{" "}
-                    <TableCell align="left">Details</TableCell>{" "}
-                    <TableCell align="left">Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {visas?.map(
-                    ({ img, firstname, lastname, email, phone, id }, i) => (
-                      <TableRow
-                        key={i}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          <img
-                            src={filterImg ? img : "no image"}
-                            alt=""
-                            className={
-                              email === currentUser
-                                ? "Authoronline"
-                                : "AuthoriOffline"
-                            }
-                          />
-                        </TableCell>
-                        <TableCell align="left">{firstname}</TableCell>
-                        <TableCell align="left">{lastname}</TableCell>{" "}
-                        <TableCell align="left">{email}</TableCell>
-                        <TableCell align="center">{phone}</TableCell>{" "}
-                        <TableCell align="left">
-                          {" "}
-                          {email !== currentUser && (
-                            <td className="offline">Pending</td>
-                          )}
-                          {email === currentUser && (
-                            <td className="online">Completed</td>
-                          )}
-                        </TableCell>{" "}
-                        <TableCell align="left">
-                          {view === false && (
-                            <button
-                              onClick={() => handleVisaView(id)}
-                              className="text-[lightgreen]  text-[1rem] font-bold"
-                            >
-                              View
-                            </button>
-                          )}
-                        </TableCell>
-                        <TableCell align="left">
-                          <button
-                            onClick={() => handleDeleteVisa(id)}
-                            className="delete"
-                          >
-                            delete
-                          </button>
-                        </TableCell>
-                      </TableRow>
-                    )
-                  )}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            {visas && viewVisa === true && (
-              <div className="flex flex-col justify-center w-[100%]">
-                <img
-                  src={filterImg ? visaId.img : "no image"}
-                  alt=""
-                  className="lg:w-[650px] lg:h-[600px] lg:object-cover  object-contain"
-                />
-
-                <div className="flex flex-row gap-[5%] leading-[50px] mt-[5%]">
-                  <div>
-                    <h3>Name:</h3>
-                    <h6>Email:</h6>
-                    <h5>Contact:</h5>
-                    <h5>Application date:</h5>
-                    <h5>Country:</h5>
-                    <h5>Passport country:</h5>
-                    <h5>Passport Number:</h5>
-                    <h5>Departure date:</h5>
-                    <h5>Return date:</h5>
-                    <h5>Message:</h5>
-                  </div>
-                  <div>
-                    {" "}
-                    <h3>
-                      {visaId.firstname}
-                      {"  "}
-                      {visaId.lastname}
-                    </h3>
-                    <h6>{visaId.email}</h6>
-                    <h5> {visaId.phone}</h5>
-                    <h5>{visaId.day}</h5>
-                    <h5>{visaId.destination_country}</h5>
-                    <h5>{visaId.passport_country}</h5>
-                    <h5>{visaId.passport_number}</h5>
-                    <h5>{visaId.depart_date}</h5>
-                    <h5>{visaId.return_date}</h5>
-                    <h5>{visaId.message}</h5>
-                  </div>
-                </div>
-                {visaId.email !== currentUser && (
-                  <td className="offline text-[2rem] my-[5%]">Offline</td>
-                )}
-                {visaId.email === currentUser && (
-                  <td className="online text-[2rem] my-[5%]">online</td>
-                )}
-                <div className="w-[50%] flex flex-row justify-between">
-                  {viewVisa === true && (
-                    <button
-                      onClick={() => setViewVisa(false)}
-                      className="close"
-                    >
-                      close
-                    </button>
-                  )}
-
-                  <button
-                    onClick={() => handleDeleteVisa(id)}
-                    className="delete"
-                  >
-                    delete
-                  </button>
-                </div>
-              </div>
-            )}
-            {!users == null && (
-              <div className="loaderDiv">
-                <p> sorry trying to upload user,please wait a minute</p>
-                <p className="loader"></p>
-              </div>
-            )}
-          </div>
-        )}
+        <div className="searchField">
+          <input
+            type="text"
+            onChange={(e) => setSearch_user(e.target.value)}
+            placeholder="please type here to display user..."
+            className="filter-user"
+            id="filter_user"
+          />
+        </div>
       </div>
+      {user ? (
+        <div className={mode ? "productWrapper" : "productWrapperDark"}>
+          {delete_User && <p className="">{delete_User}</p>}
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow className="bg-[lightgreen] text-[1.5rem]">
+                  <TableCell>Image</TableCell>
+                  <TableCell align="left">Name</TableCell>
+                  <TableCell align="left">Last name</TableCell>
+                  <TableCell align="left">Email</TableCell>
+                  <TableCell align="left">Contact</TableCell>
+                  <TableCell align="left">Details</TableCell>
+                  <TableCell align="left">Status</TableCell>
+                  <TableCell align="left">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {Search_user?.map(
+                  ({ img, first, LastName, email, phone, id }, i) => (
+                    <TableRow
+                      key={i}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        <img
+                          src={filterImg ? img : "no image"}
+                          alt=""
+                          className={
+                            email === currentUser
+                              ? "Authoronline"
+                              : "AuthoriOffline"
+                          }
+                        />
+                      </TableCell>
+                      <TableCell align="left">{first}</TableCell>
+                      <TableCell align="left"> {LastName}</TableCell>{" "}
+                      <TableCell align="left">{email}</TableCell>
+                      <TableCell align="center">{phone}</TableCell>{" "}
+                      <TableCell align="left">
+                        {viewUser === false && (
+                          <button
+                            onClick={() => handleUserDetail(id)}
+                            className="text-[lightgreen]  text-[1rem] font-bold"
+                          >
+                            View
+                          </button>
+                        )}
+                      </TableCell>
+                      <TableCell align="left">
+                        {" "}
+                        {email !== currentUser && (
+                          <td className="offline">Offline</td>
+                        )}
+                        {email === currentUser && (
+                          <td className="online">online</td>
+                        )}
+                      </TableCell>
+                      <TableCell align="left">
+                        <button
+                          onClick={() => handleDeleteUser(id)}
+                          className="delete"
+                        >
+                          delete
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {user && viewUser === true && (
+            <div className="flex flex-col justify-center  items-center">
+              <img
+                src={filterImg ? userId.img : "no image"}
+                alt=""
+                className="lg:w-[550px] lg:h-[550px] lg:object-cover rounded-[100%] object-cover pt-[5%]"
+              />
+
+              <div className="flex flex-row gap-[5%] leading-[50px] mt-[5%]">
+                <div>
+                  {" "}
+                  <h3>Username:</h3>
+                  <h3>Name:</h3>
+                  {userId.email && <h6>Email:</h6>}
+                  {userId.address && <h5>Address:</h5>}
+                  {userId.city && <h5>City:</h5>}
+                  {userId.state && <h5>State:</h5>}
+                  {userId.job && <h5>Job:</h5>}
+                  {userId.position && <h5>Position:</h5>}
+                  {userId.institution && <h5>Institution:</h5>}
+                  {userId.phone && <h5>Contact:</h5>}
+                </div>
+                <div>
+                  <h6>{userId.user}</h6>
+
+                  <h3>
+                    {userId.first}
+                    {"  "}
+                    {userId.LastName}
+                  </h3>
+
+                  <h6>{userId.email}</h6>
+                  <h5>{userId.address}</h5>
+                  <h5>{userId.city}</h5>
+                  <h5>{userId.state}</h5>
+                  <h5>{userId.country}</h5>
+                  <h5>{userId.job}</h5>
+                  <h5>{userId.position}</h5>
+                  <h5>{userId.institution}</h5>
+                  <h5> {userId.phone}</h5>
+                </div>
+              </div>
+              {userId.email !== currentUser && (
+                <td className="offline text-[2rem] my-[5%]">Offline</td>
+              )}
+              {userId.email === currentUser && (
+                <td className="online text-[2rem] my-[5%]">online</td>
+              )}
+              <div className="w-[50%] flex flex-row justify-between">
+                {viewUser === true && (
+                  <button onClick={() => setViewUser(false)} className="close">
+                    close
+                  </button>
+                )}
+
+                <button onClick={() => handleDeleteUser(id)} className="delete">
+                  delete
+                </button>
+              </div>
+            </div>
+          )}
+          {!users && (
+            <div className="loaderDiv">
+              <p> sorry trying to upload user,please wait a minute</p>
+              <p className="loader"></p>
+            </div>
+          )}{" "}
+        </div>
+      ) : (
+        ""
+      )}
+      {affilate && (
+        <div className="productWrapper">
+          {delete_User && <p className="">{delete_User}</p>}
+
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow className="bg-[teal] text-[1.5rem]">
+                  <TableCell>Image</TableCell>
+                  <TableCell align="left">Name</TableCell>
+                  <TableCell align="left">Last name</TableCell>
+                  <TableCell align="left">Email</TableCell>{" "}
+                  <TableCell align="left">Company</TableCell>
+                  <TableCell align="left">Contact</TableCell>
+                  <TableCell align="left">Status</TableCell>{" "}
+                  <TableCell align="left">Details</TableCell>{" "}
+                  <TableCell align="left">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {affilates?.map(
+                  (
+                    {
+                      img,
+                      first_name,
+                      last_name,
+                      email,
+                      phone,
+                      company_name,
+                      id,
+                    },
+                    i
+                  ) => (
+                    <TableRow
+                      key={i}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        <img
+                          src={filterImg ? img : "no image"}
+                          alt=""
+                          className={
+                            email === currentUser
+                              ? "Authoronline"
+                              : "AuthoriOffline"
+                          }
+                        />
+                      </TableCell>
+                      <TableCell align="left">{first_name}</TableCell>
+                      <TableCell align="left"> {last_name}</TableCell>{" "}
+                      <TableCell align="left">{email}</TableCell>{" "}
+                      <TableCell align="left">{company_name}</TableCell>
+                      <TableCell align="center">{phone}</TableCell>{" "}
+                      <TableCell align="left">
+                        {" "}
+                        {email !== currentUser && (
+                          <td className="offline">Offline</td>
+                        )}
+                        {email === currentUser && (
+                          <td className="online">online</td>
+                        )}
+                      </TableCell>{" "}
+                      <TableCell align="left">
+                        {view === false && (
+                          <button
+                            onClick={() => handleView(id)}
+                            className="text-[lightgreen]  text-[1rem] font-bold"
+                          >
+                            View
+                          </button>
+                        )}
+                      </TableCell>
+                      <TableCell align="left">
+                        <button
+                          onClick={() => handleDeleteAffiliate(id)}
+                          className="delete"
+                        >
+                          delete
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {affilates && view === true && (
+            <div className="flex flex-col justify-center  items-center">
+              <img
+                src={filterImg ? affiliateId.img : "no image"}
+                alt=""
+                className="lg:w-[650px] lg:h-[600px] lg:object-cover  object-contain"
+              />
+
+              <div className="flex flex-row gap-[5%] leading-[50px] mt-[5%]">
+                <div>
+                  <h3>Name:</h3>
+                  <h6>Email:</h6>
+                  <h5>Address:</h5>
+                  <h5>City:</h5>
+                  <h5>State:</h5>
+                  <h5>Country:</h5>
+                  <h5>Company:</h5>
+                  <h5>Contact:</h5>
+                </div>
+                <div>
+                  {" "}
+                  <h3>
+                    {affiliateId.first_name}
+                    {"  "}
+                    {affiliateId.last_name}
+                  </h3>
+                  <h6>{affiliateId.email}</h6>
+                  <h5>{affiliateId.address}</h5>
+                  <h5>{affiliateId.city}</h5>
+                  <h5>{affiliateId.state}</h5>
+                  <h5>{affiliateId.country}</h5>
+                  <h5>{affiliateId.company_name}</h5>
+                  <h5> {affiliateId.phone}</h5>
+                </div>
+              </div>
+              {affiliateId.email !== currentUser && (
+                <td className="offline text-[2rem] my-[5%]">Offline</td>
+              )}
+              {affiliateId.email === currentUser && (
+                <td className="online text-[2rem] my-[5%]">online</td>
+              )}
+              <div className="w-[50%] flex flex-row justify-between">
+                {view === true && (
+                  <button onClick={() => setView(false)} className="close">
+                    close
+                  </button>
+                )}
+
+                <button
+                  onClick={() => handleDeleteAffiliate(id)}
+                  className="delete"
+                >
+                  delete
+                </button>
+              </div>
+            </div>
+          )}
+          {!users == null && (
+            <div className="loaderDiv">
+              <p> sorry trying to upload user,please wait a minute</p>
+              <p className="loader"></p>
+            </div>
+          )}
+        </div>
+      )}
+      {visa && (
+        <div className="productWrapper">
+          {delete_User && <p className="">{delete_User}</p>}
+
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow className="bg-[purple]">
+                  <TableCell>Image</TableCell>
+                  <TableCell align="left">Name</TableCell>
+                  <TableCell align="left">Last name</TableCell>
+                  <TableCell align="left">Email</TableCell>
+                  <TableCell align="left">Contact</TableCell>{" "}
+                  <TableCell align="left">Status</TableCell>{" "}
+                  <TableCell align="left">Details</TableCell>{" "}
+                  <TableCell align="left">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {visas?.map(
+                  ({ img, firstname, lastname, email, phone, id }, i) => (
+                    <TableRow
+                      key={i}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        <img
+                          src={filterImg ? img : "no image"}
+                          alt=""
+                          className={
+                            email === currentUser
+                              ? "Authoronline"
+                              : "AuthoriOffline"
+                          }
+                        />
+                      </TableCell>
+                      <TableCell align="left">{firstname}</TableCell>
+                      <TableCell align="left">{lastname}</TableCell>{" "}
+                      <TableCell align="left">{email}</TableCell>
+                      <TableCell align="center">{phone}</TableCell>{" "}
+                      <TableCell align="left">
+                        {" "}
+                        {email !== currentUser && (
+                          <td className="offline">Pending</td>
+                        )}
+                        {email === currentUser && (
+                          <td className="online">Completed</td>
+                        )}
+                      </TableCell>{" "}
+                      <TableCell align="left">
+                        {view === false && (
+                          <button
+                            onClick={() => handleVisaView(id)}
+                            className="text-[lightgreen]  text-[1rem] font-bold"
+                          >
+                            View
+                          </button>
+                        )}
+                      </TableCell>
+                      <TableCell align="left">
+                        <button
+                          onClick={() => handleDeleteVisa(id)}
+                          className="delete"
+                        >
+                          delete
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {visas && viewVisa === true && (
+            <div className="flex flex-col justify-center w-[100%]">
+              <img
+                src={filterImg ? visaId.img : "no image"}
+                alt=""
+                className="lg:w-[650px] lg:h-[600px] lg:object-cover  object-contain"
+              />
+
+              <div className="flex flex-row gap-[5%] leading-[50px] mt-[5%]">
+                <div>
+                  <h3>Name:</h3>
+                  <h6>Email:</h6>
+                  <h5>Contact:</h5>
+                  <h5>Application date:</h5>
+                  <h5>Country:</h5>
+                  <h5>Passport country:</h5>
+                  <h5>Passport Number:</h5>
+                  <h5>Departure date:</h5>
+                  <h5>Return date:</h5>
+                  <h5>Message:</h5>
+                </div>
+                <div>
+                  {" "}
+                  <h3>
+                    {visaId.firstname}
+                    {"  "}
+                    {visaId.lastname}
+                  </h3>
+                  <h6>{visaId.email}</h6>
+                  <h5> {visaId.phone}</h5>
+                  <h5>{visaId.day}</h5>
+                  <h5>{visaId.destination_country}</h5>
+                  <h5>{visaId.passport_country}</h5>
+                  <h5>{visaId.passport_number}</h5>
+                  <h5>{visaId.depart_date}</h5>
+                  <h5>{visaId.return_date}</h5>
+                  <h5>{visaId.message}</h5>
+                </div>
+              </div>
+              {visaId.email !== currentUser && (
+                <td className="offline text-[2rem] my-[5%]">Offline</td>
+              )}
+              {visaId.email === currentUser && (
+                <td className="online text-[2rem] my-[5%]">online</td>
+              )}
+              <div className="w-[50%] flex flex-row justify-between">
+                {viewVisa === true && (
+                  <button onClick={() => setViewVisa(false)} className="close">
+                    close
+                  </button>
+                )}
+
+                <button onClick={() => handleDeleteVisa(id)} className="delete">
+                  delete
+                </button>
+              </div>
+            </div>
+          )}
+          {!users == null && (
+            <div className="loaderDiv">
+              <p> sorry trying to upload user,please wait a minute</p>
+              <p className="loader"></p>
+            </div>
+          )}
+        </div>
+      )}
+      {staffs && (
+        <div className="productWrapper">
+          {delete_User && <p className="">{delete_User}</p>}
+
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow className="bg-[lightgreen] text-[1.5rem]">
+                  <TableCell>Image</TableCell>
+                  <TableCell align="left">Name</TableCell>
+                  <TableCell align="left">Last name</TableCell>
+                  <TableCell align="left">Email</TableCell>
+                  <TableCell align="left">Contact</TableCell>
+                  <TableCell align="left">Details</TableCell>
+                  <TableCell align="left">Status</TableCell>
+                  <TableCell align="left">Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {staff?.map(({ img, first, lastName, email, phone, id }, i) => (
+                  <TableRow
+                    key={i}
+                    sx={{
+                      "&:last-child td, &:last-child th": { border: 0 },
+                    }}
+                  >
+                    <TableCell component="th" scope="row">
+                      <img
+                        src={filterImg ? img : "no image"}
+                        alt=""
+                        className={
+                          email === currentUser
+                            ? "Authoronline"
+                            : "AuthoriOffline"
+                        }
+                      />
+                    </TableCell>
+                    <TableCell align="left">{first}</TableCell>
+                    <TableCell align="left"> {lastName}</TableCell>{" "}
+                    <TableCell align="left">{email}</TableCell>
+                    <TableCell align="center">{phone}</TableCell>{" "}
+                    <TableCell align="left">
+                      {viewStaff === false && (
+                        <button
+                          onClick={() => handleViewStaff(id)}
+                          className="text-[lightgreen]  text-[1rem] font-bold"
+                        >
+                          View
+                        </button>
+                      )}
+                    </TableCell>
+                    <TableCell align="left">
+                      <button
+                        onClick={() => fireEmployee(id)}
+                        className="delete"
+                      >
+                        Fire
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          {staff && viewStaff === true && (
+            <div className="flex flex-col justify-center  items-center">
+              <img
+                src={filterImg ? affiliateId.img : "no image"}
+                alt=""
+                className="lg:w-[650px] lg:h-[600px] lg:object-cover  object-contain"
+              />
+
+              <div className="flex flex-row gap-[5%] leading-[50px] mt-[5%]">
+                <div>
+                  <h3>Name:</h3>
+                  <h6>Email:</h6>
+                  <h5>Address:</h5>
+                  <h5>City:</h5>
+                  <h5>State:</h5>
+                  <h5>Country:</h5>
+                  <h5>Company:</h5>
+                  <h5>Contact:</h5>
+                </div>
+                <div>
+                  {" "}
+                  <h3>
+                    {staffId.first_name}
+                    {"  "}
+                    {staffId.last_name}
+                  </h3>
+                  <h6>{staffId.email}</h6>
+                  <h5>{staffId.address}</h5>
+                  <h5>{staffId.city}</h5>
+                  <h5>{staffId.state}</h5>
+                  <h5>{staffId.country}</h5>
+                  <h5>{staffId.company_name}</h5>
+                  <h5> {staffId.phone}</h5>
+                </div>
+              </div>
+              {staffId.email !== currentUser && (
+                <td className="offline text-[2rem] my-[5%]">Offline</td>
+              )}
+              {staffId.email === currentUser && (
+                <td className="online text-[2rem] my-[5%]">online</td>
+              )}
+              <div className="w-[50%] flex flex-row justify-between">
+                {viewStaff === true && (
+                  <button onClick={() => setViewStaff(false)} className="close">
+                    close
+                  </button>
+                )}
+
+                <button onClick={() => fireEmployee(id)} className="delete">
+                  delete
+                </button>
+              </div>
+            </div>
+          )}
+          {!staff && (
+            <div className="loaderDiv">
+              <p> sorry trying to upload user,please wait a minute</p>
+              <p className="loader"></p>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

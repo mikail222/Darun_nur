@@ -205,12 +205,12 @@
   background-position: center;
   background-repeat: no-repeat;
 }
-/* .adminBg {
+.HireBg {
   background-image: url("assets/fading-blue-background.jpg");
   background-size: cover;
   background-position: top;
   background-repeat: no-repeat;
-} */
+}
 .contactbg {
   background-image: url("assets/painte.jpg");
   background-size: cover;
@@ -262,6 +262,8 @@
 
 .footOverlay {
   background-color: rgba(21, 15, 95, 0.8);
+  position: relative;
+  width: calc(129% + 1.3px);
 }
 
 .team:hover {
@@ -482,7 +484,7 @@ form .a {
   @apply text-[0.90rem] lg:w-[100%] lg:leading-[2rem] rounded-[10px];
 }
 .searchField {
-  @apply flex  flex-row lg:justify-end  items-center md:w-[60%] lg:w-[60%];
+  @apply flex  flex-row lg:justify-end  items-center md:w-[60%] lg:w-[46%];
 }
 .userBTN button {
   @apply lg:w-[10vw] h-[6vh] lg:text-[1.5rem] rounded-[50px] text-[white] font-semibold border-[2px] text-center  px-[3%] lg:px-[0px];
@@ -513,7 +515,7 @@ form .a {
 }
 .productWrapperDark {
   background-color: rgb(255, 255, 255, 0.1);
-  @apply flex flex-col justify-center w-[98%] lg:w-[96%] mt-[2%] rounded-[5px]  shadow-lg;
+  @apply flex flex-col justify-center items-center  w-[98%] lg:w-[96%] mt-[2%] rounded-[5px] ml-[1%] shadow-lg;
 }
 .productWrapperDark p {
   @apply text-[lightgray];
@@ -581,9 +583,7 @@ form .a {
 .graphFielddark::-webkit-scrollbar {
   display: none;
 }
-/* .gridLine {
-  @apply stroke-black;
-} */
+
 .revenue {
   width: 22vw;
   height: auto;
@@ -622,10 +622,19 @@ form .a {
 .profile {
   @apply flex flex-col-reverse  justify-center items-center lg:flex-row lg:justify-start lg:items-start w-[93vw] lg:w-[97%]  h-auto lg:gap-[0.5rem] mt-[8%] relative top-[-35px] lg:top-[-55px]  lg:mt-[0%];
 }
+.employee {
+  @apply flex flex-col-reverse  justify-center items-center w-[93vw] lg:w-[97%] h-auto lg:gap-[0.5rem] mt-[5%] relative top-[-35px] lg:top-[-55px];
+}
 .profileForm {
   @apply flex flex-col lg:flex-row justify-center items-center lg:w-[75%] h-auto  lg:ml-[2%] bg-[white] rounded-[5px];
 }
-
+.employeeForm {
+  @apply flex flex-col lg:flex-row justify-center items-center lg:w-[97%] h-[100%] bg-[white] rounded-[5px] lg:pb-[5%];
+}
+.employeeFormDark {
+  background-color: rgb(0, 0, 0, 0.2);
+  @apply flex flex-col lg:flex-row justify-center items-center lg:w-[97%] h-[100%] rounded-[5px]  lg:pb-[5%];
+}
 .profileForm form {
   @apply lg:w-[90%] mx-[2%] my-[5%] bg-[white];
 }
@@ -633,10 +642,13 @@ form .a {
   @apply px-[5%];
 }
 .profileForm form label,
+.employeeForm form label,
+.employeeFormDark form label,
 .cform label,
 .mslabel {
   @apply text-[red] font-thin text-[.8rem];
 }
+
 .profileForm form input::placeholder {
   @apply text-[1rem] font-semibold;
 }
@@ -644,6 +656,7 @@ form .a {
   @apply my-[1rem];
 }
 .formDiv label,
+.employeeformDiv label,
 .contactInfo label,
 .contactContainer label {
   @apply text-[0.85rem] text-[gray];
@@ -651,15 +664,23 @@ form .a {
 .formDiv input {
   @apply w-[100%] lg:w-[17.8rem] py-[0.35rem] my-[0.56rem] outline-0 border-[1px] rounded-[10px];
 }
-.contactContainer {
-  @apply flex  flex-col gap-[0.5rem];
+.employeeformDiv input {
+  @apply w-[100%] py-[0.35rem] my-[0.56rem] outline-0 border-[1px] rounded-[10px];
 }
-.formDiv {
+
+.formDiv,
+.employeeformDiv {
   @apply w-[100%] flex  flex-row gap-[1rem];
 }
 .formDiv div,
 .contactInfo div {
-  @apply flex flex-col;
+  @apply flex flex-col w-[100%];
+}
+.employee form input {
+  @apply px-[10px];
+}
+.employeeFormDark form input {
+  @apply px-[10px] bg-[transparent];
 }
 .contactContainer input {
   @apply w-[100%] outline-0 border-[1px] rounded-[10px] py-[0.45rem] my-[0.5rem];
@@ -668,9 +689,6 @@ form .a {
   @apply text-[0.85rem] text-[gray];
 }
 
-.contactInfo div {
-  @apply flex flex-col;
-}
 .contactContainer {
   @apply flex  flex-col gap-[0.5rem];
 }
@@ -690,10 +708,23 @@ form .a {
   border-radius: 15px 15px 0px 0px;
   @apply flex  flex-col  justify-center items-center w-[100%] h-[30vh];
 }
+.employeePics {
+  background-image: url("https://kwarastate.gov.ng/wp-content/uploads/Screen-Shot-2021-12-17-at-11.52.18-PM.jpeg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px 15px 0px 0px;
+  @apply flex  flex-col  justify-center items-center w-[100%] h-[30vh]  relative top-[-5rem];
+}
 .myPics img {
   @apply lg:mt-[12rem]  w-[150px]  h-[150px]  lg:w-[90px] lg:h-[90px] rounded-[100%] border-[white] object-cover border-[3px] mt-[6rem]  lg:hover:scale-150;
 }
 .myPics img {
+  transition-duration: 2s;
+}
+.employeePics img {
+  @apply lg:mt-[12rem]  w-[150px]  h-[150px]  lg:w-[90px] lg:h-[90px] rounded-[100%] border-[white] object-cover border-[3px] mt-[6rem]  lg:hover:scale-150;
+}
+.employeePics img {
   transition-duration: 2s;
 }
 .location {

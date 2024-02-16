@@ -71,8 +71,8 @@ const Mobile_nav = ({ user, setMobile, mode }) => {
               <button onClick={(e) => navigate("profile")}>
                 <RiProfileFill className="icon" /> My Profile
               </button>
-              <button onClick={(e) => changeColorClick(e)}>
-                <FaLuggageCart className="icon" /> My Trip
+              <button onClick={(e) => navigate("Hire")}>
+                <FaLuggageCart className="icon" /> Hire
               </button>
               <button>
                 <FcDocument className="icon" /> Travel Document

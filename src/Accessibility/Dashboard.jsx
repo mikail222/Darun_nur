@@ -11,10 +11,13 @@ import ChangePassword from "./ChangePassword";
 import { MdCancel, MdDarkMode, MdLightMode } from "react-icons/md";
 import InformationPage from "./InformationPage";
 import { collection, onSnapshot } from "firebase/firestore";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import EmployeeRegistration from "./EmployeeRegistration";
 
 const Dashboard = () => {
   const [mobile, setMobile] = useState(false);
   const [visa, setVisa] = useState([]);
+  const [staff, setStaff] = useState([]);
   const [user, setUser] = useState([]);
   const [affilates, setAffilates] = useState([]);
   const [mode, setMode] = useState(false);
@@ -30,6 +33,24 @@ const Dashboard = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setUser(list);
+      },
+      (error) => {
+        alert(error);
+      }
+    );
+    return () => {
+      unsub();
+    };
+  }, []);
+  useEffect(() => {
+    const unsub = onSnapshot(
+      collection(db, "Employee"),
+      (snapShot) => {
+        const list = [];
+        snapShot.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setStaff(list);
       },
       (error) => {
         alert(error);
@@ -132,7 +153,13 @@ const Dashboard = () => {
             <Route
               path="/users"
               element={
-                <Users users={user} visas={visa} affilates={affilates} />
+                <Users
+                  users={user}
+                  visas={visa}
+                  affilates={affilates}
+                  staff={staff}
+                  mode={mode}
+                />
               }
             />
             <Route
@@ -142,6 +169,10 @@ const Dashboard = () => {
             <Route
               path="/chart"
               element={<InformationPage user={user} mode={mode} />}
+            />
+            <Route
+              path="/Hire"
+              element={<EmployeeRegistration user={user} mode={mode} />}
             />
           </Routes>{" "}
         </aside>

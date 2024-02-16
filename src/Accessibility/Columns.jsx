@@ -8,13 +8,17 @@ import usericon from "../assets/team_12202122.png";
 import visaicon from "../assets/visa_5968334.png";
 import { MdMessage } from "react-icons/md";
 
-const Columns = ({ msg, inbox, mode }) => {
-  const [monthlyUser, setMonthlyUser] = useState(null);
-  const [monthlyDiff, setMonthlyDiff] = useState([]);
-  const [monthlyAff, setMonthlyAff] = useState(null);
-  const [monthlyVisa, setMonthlyVisa] = useState(null);
-  const [monthlyDiffAff, setMonthlyDiffAff] = useState([]);
-  const [monthlyDiffVisa, setMonthlyDiffVisa] = useState([]);
+const Columns = ({
+  msg,
+  inbox,
+  mode,
+  monthlyAff,
+  monthlyDiff,
+  monthlyDiffAff,
+  monthlyDiffVisa,
+  monthlyUser,
+  monthlyVisa,
+}) => {
   const columnData = [
     {
       title: "MESSAGE",
@@ -53,69 +57,6 @@ const Columns = ({ msg, inbox, mode }) => {
       imgs: usericon,
     },
   ];
-
-  useEffect(() => {
-    let data = columnData.query;
-    const getMonths = async () => {
-      const today = new Date();
-      const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
-      const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));
-
-      const lastMonthQuery = query(
-        collection(db, "users"),
-        where("timeStamp", "<=", today),
-        where("timeStamp", ">", lastMonth)
-      );
-      const prevMonthQuery = query(
-        collection(db, "users"),
-        where("timeStamp", "<=", lastMonth),
-        where("timeStamp", ">", prevMonth)
-      );
-      const lastMonthAff = query(
-        collection(db, "Afillate"),
-        where("timeStamp", "<=", today),
-        where("timeStamp", ">", lastMonth)
-      );
-      const prevMonthAff = query(
-        collection(db, "Afillate"),
-        where("timeStamp", "<=", lastMonth),
-        where("timeStamp", ">", prevMonth)
-      );
-      const lastMonthVisa = query(
-        collection(db, "Visa_assistance"),
-        where("timeStamp", "<=", today),
-        where("timeStamp", ">", lastMonth)
-      );
-      const prevMonthVisa = query(
-        collection(db, "Visa_assistance"),
-        where("timeStamp", "<=", lastMonth),
-        where("timeStamp", ">", prevMonth)
-      );
-      const lastMonthData = await getDocs(lastMonthQuery);
-      const prevMonthData = await getDocs(prevMonthQuery);
-      const lastMonth_Aff = await getDocs(lastMonthAff);
-      const prevMonth_Aff = await getDocs(prevMonthAff);
-      const lastMonth_visa = await getDocs(lastMonthVisa);
-      const prevMonth_visa = await getDocs(prevMonthVisa);
-
-      setMonthlyUser(lastMonthData.docs.length);
-      setMonthlyAff(lastMonth_Aff.docs.length);
-      setMonthlyVisa(lastMonth_visa.docs.length);
-      setMonthlyDiff(
-        lastMonthData.docs.length -
-          (prevMonthData.docs.length / prevMonthData.docs.length) * 100
-      );
-      setMonthlyDiffAff(
-        lastMonth_Aff.docs.length -
-          (prevMonth_Aff.docs.length / prevMonth_Aff.docs.length) * 100
-      );
-      setMonthlyDiffVisa(
-        lastMonth_visa.docs.length -
-          (prevMonth_visa.docs.length / prevMonth_visa.docs.length) * 100
-      );
-    };
-    getMonths();
-  }, []);
 
   const currentUser = auth.currentUser;
   return (

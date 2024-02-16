@@ -38,6 +38,7 @@ const Home = ({ shownav, setShownav, navigate, darunnur }) => {
       <Collaboration_Company />
       <FAQs />
       <Our_Team />
+
       <Mail />
       <Footer navigate={navigate} />
     </div>

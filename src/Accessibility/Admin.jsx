@@ -3,7 +3,15 @@ import Columns from "./Columns";
 import { BiDotsVerticalRounded, BiUser } from "react-icons/bi";
 import { TbAffiliate } from "react-icons/tb";
 import { SiVisa } from "react-icons/si";
-import { collection, deleteDoc, doc, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { auth, db } from "../firebaseConfig";
@@ -28,16 +36,85 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
-
+import ProgressBar from "react-bootstrap/ProgressBar";
+import "bootstrap/dist/css/bootstrap.min.css";
 const Admin = ({ user, visa, affilates, mode, setMode }) => {
   const [message, setMessage] = useState([]);
   const [msg, setMsg] = useState([]);
   const [view, setView] = useState(false);
+  const [monthlyUser, setMonthlyUser] = useState(null);
+  const [monthlyDiff, setMonthlyDiff] = useState([]);
+  const [monthlyAff, setMonthlyAff] = useState(null);
+  const [monthlyVisa, setMonthlyVisa] = useState(null);
+  const [monthlyDiffAff, setMonthlyDiffAff] = useState([]);
+  const [monthlyDiffVisa, setMonthlyDiffVisa] = useState([]);
 
   const darkModeClasses = {
     backgroundColor: "#121212",
     color: "white",
   };
+  useEffect(() => {
+    // let data = columnData.query;
+    const getMonths = async () => {
+      const today = new Date();
+      const lastMonth = new Date(new Date().setMonth(today.getMonth() - 1));
+      const prevMonth = new Date(new Date().setMonth(today.getMonth() - 2));
+
+      const lastMonthQuery = query(
+        collection(db, "users"),
+        where("timeStamp", "<=", today),
+        where("timeStamp", ">", lastMonth)
+      );
+      const prevMonthQuery = query(
+        collection(db, "users"),
+        where("timeStamp", "<=", lastMonth),
+        where("timeStamp", ">", prevMonth)
+      );
+      const lastMonthAff = query(
+        collection(db, "Afillate"),
+        where("timeStamp", "<=", today),
+        where("timeStamp", ">", lastMonth)
+      );
+      const prevMonthAff = query(
+        collection(db, "Afillate"),
+        where("timeStamp", "<=", lastMonth),
+        where("timeStamp", ">", prevMonth)
+      );
+      const lastMonthVisa = query(
+        collection(db, "Visa_assistance"),
+        where("timeStamp", "<=", today),
+        where("timeStamp", ">", lastMonth)
+      );
+      const prevMonthVisa = query(
+        collection(db, "Visa_assistance"),
+        where("timeStamp", "<=", lastMonth),
+        where("timeStamp", ">", prevMonth)
+      );
+      const lastMonthData = await getDocs(lastMonthQuery);
+      const prevMonthData = await getDocs(prevMonthQuery);
+      const lastMonth_Aff = await getDocs(lastMonthAff);
+      const prevMonth_Aff = await getDocs(prevMonthAff);
+      const lastMonth_visa = await getDocs(lastMonthVisa);
+      const prevMonth_visa = await getDocs(prevMonthVisa);
+
+      setMonthlyUser(lastMonthData.docs.length);
+      setMonthlyAff(lastMonth_Aff.docs.length);
+      setMonthlyVisa(lastMonth_visa.docs.length);
+      setMonthlyDiff(
+        lastMonthData.docs.length -
+          (prevMonthData.docs.length / prevMonthData.docs.length) * 100
+      );
+      setMonthlyDiffAff(
+        lastMonth_Aff.docs.length -
+          (prevMonth_Aff.docs.length / prevMonth_Aff.docs.length) * 100
+      );
+      setMonthlyDiffVisa(
+        lastMonth_visa.docs.length -
+          (prevMonth_visa.docs.length / prevMonth_visa.docs.length) * 100
+      );
+    };
+    getMonths();
+  }, []);
 
   useEffect(() => {
     const unsubsDoc = onSnapshot(
@@ -147,6 +224,12 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
           affilates={affilates}
           msg={message}
           mode={mode}
+          monthlyAff={monthlyAff}
+          monthlyDiff={monthlyDiff}
+          monthlyDiffVisa={monthlyDiffVisa}
+          monthlyDiffAff={monthlyDiffAff}
+          monthlyUser={monthlyUser}
+          monthlyVisa={monthlyVisa}
         />
         <div className="w-[100%] flex flex-row  lg:gap-[1rem] px-[1%] lg:px-[2%]">
           <div className="field">
@@ -193,11 +276,13 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
             </div>
             <div className="progressbar">
               <CircularProgressbar
-                value={user?.length}
-                text={`${user?.length}%`}
+                value={monthlyDiff}
+                text={`${monthlyDiff}%`}
                 strokeWidth={10}
               />
             </div>
+            <p> The Total Registration for the month is </p>
+            <p className="text-[2rem]">{user.length}</p>
           </aside>
         </div>
         <div className="flex flex-col justify-center items-center">
@@ -220,7 +305,10 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                     <TableCell align="left">
                       <p>Total</p>
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="left">
+                      <p>Progress</p>
+                    </TableCell>
+                    <TableCell align="center">
                       <p>profile pictures</p>
                     </TableCell>
                   </TableRow>
@@ -243,6 +331,12 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                       <p>{user?.length}</p>
                     </TableCell>
                     <TableCell align="left">
+                      <div className="">
+                        {monthlyDiff}%
+                        <ProgressBar animated now={monthlyDiff} />
+                      </div>
+                    </TableCell>
+                    <TableCell align="left">
                       <div className=" flex flex-row  justify-end items-end">
                         {user?.slice(0, 5).map(({ img }, i) => (
                           <img src={img} alt="" className="proImg" />
@@ -261,6 +355,12 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                     </TableCell>
                     <TableCell align="left">
                       <p> {visa?.length}</p>
+                    </TableCell>{" "}
+                    <TableCell align="left">
+                      <div className="">
+                        {monthlyDiffVisa}%
+                        <ProgressBar animated now={monthlyDiffVisa} />
+                      </div>
                     </TableCell>
                     <TableCell align="left">
                       <div className=" flex flex-row  justify-end items-end">
@@ -281,6 +381,12 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
                     </TableCell>
                     <TableCell align="left">
                       <p>{affilates?.length}</p>{" "}
+                    </TableCell>{" "}
+                    <TableCell align="left">
+                      <div className="">
+                        {monthlyDiffAff}%
+                        <ProgressBar animated now={monthlyDiffAff} />
+                      </div>
                     </TableCell>
                     <TableCell align="left">
                       <div className=" flex flex-row  justify-end items-end">

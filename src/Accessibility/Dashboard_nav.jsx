@@ -65,8 +65,8 @@ const Dashboard_nav = ({ user, mode }) => {
               <button onClick={(e) => navigate("Profile")}>
                 <RiProfileFill className="icon" /> My Profile
               </button>
-              <button onClick={(e) => changeColorClick(e)}>
-                <FaLuggageCart className="icon" /> My Trip
+              <button onClick={() => navigate("Hire")}>
+                <FaLuggageCart className="icon" /> Hire
               </button>{" "}
               <button onClick={(e) => navigate("/")}>
                 <FaHome className="icon" /> Home
