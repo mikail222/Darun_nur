@@ -46,7 +46,6 @@ const Users = ({ users, visas, affilates, staff, mode }) => {
         await deleteDoc(doc(db, "users", id));
         deleteUser(client);
         setDelete_User(Search_user.filter(({ id }) => id !== id));
-        console.log(delete_User);
       }
     } catch (err) {
       setErr(err.message);

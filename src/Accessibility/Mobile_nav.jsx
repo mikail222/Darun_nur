@@ -1,24 +1,12 @@
-import React, { useEffect, useState } from "react";
-import Footer from "../Footer/Footer";
-import Nav_bar from "../Navigation/Nav_bar";
-import Mail from "../Service/Mail";
-import { BsPersonFill } from "react-icons/bs";
-import { FaHamburger, FaHireAHelper, FaLuggageCart } from "react-icons/fa";
+import { FaHireAHelper } from "react-icons/fa";
 import { MdDashboard, MdRoomPreferences } from "react-icons/md";
-import { MdOutlinePayment } from "react-icons/md";
-import {
-  GrDocumentOutlook,
-  GrDocumentStore,
-  GrUserSettings,
-} from "react-icons/gr";
+
 import {
   RiInformationFill,
-  RiInformationLine,
   RiProfileFill,
   RiSettings5Line,
 } from "react-icons/ri";
 import { auth } from "../firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
 import { BiLogOut, BiUserCheck } from "react-icons/bi";
 import { FcDocument } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";

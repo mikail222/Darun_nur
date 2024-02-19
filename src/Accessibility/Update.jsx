@@ -25,8 +25,6 @@ const Update = ({ navigate }) => {
       .catch((error) => {
         alert(error.message);
       });
-
-    console.log(user);
   };
   const handleDeleteUser = () => {
     deleteUser(user)

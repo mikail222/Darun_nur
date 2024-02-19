@@ -137,7 +137,6 @@ const Sign_in = ({ navigate, darunnur, user }) => {
     }
   }, [formError || handleSubmit]);
   const existingUser = user?.find((p) => p.email === data.email);
-  console.log(existingUser);
   const validate = (values) => {
     const error = {};
     const regex = /^[^\$@]+@[^\$@]+\.[^\$@]{2,}$/i;

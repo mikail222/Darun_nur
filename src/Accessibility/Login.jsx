@@ -39,7 +39,6 @@ const Login = ({ navigate, darunnur, user }) => {
 
   useEffect(() => {
     if (loggedInUser) {
-      console.log({ loggedInUser });
       const currentUserDetails = user.find(
         (m) => m.email === loggedInUser?.email
       );

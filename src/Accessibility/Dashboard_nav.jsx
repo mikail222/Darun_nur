@@ -32,8 +32,7 @@ const Dashboard_nav = ({ user, mode }) => {
       });
   };
   const Admin = user?.filter((r) => r.role === "Admin");
-  console.log(Admin);
-  console.log(user);
+
   return (
     <div>
       <div className="w-[100%] h-[auto] hidden lg:flex flex-row justify-between">
