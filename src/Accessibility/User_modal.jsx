@@ -22,60 +22,6 @@ const User_modal = ({ user }) => {
   };
 
   const currentUserDetails = user.find((m) => m.email === currentUser?.email);
-  console.log(currentUserDetails?.first);
-  console.log(currentUserDetails?.LastName);
-  console.log({ currentUser });
-
-  // onAuthStateChanged(auth, (user) => {
-  //   console.log({ user });
-  //   if (user) {
-  //     updateProfile(currentUser, {
-  //       displayName:
-  //         currentUserDetails.first + " " + currentUserDetails.LastName,
-  //       photoURL:
-  //         currentUserDetails.img &&
-  //         user.providerData.forEach(
-  //           (profile) =>
-  //             (profile.displayName =
-  //               currentUserDetails.first + " " + currentUserDetails.LastName),
-  //           (profile.photoURL = currentUserDetails.img)
-  //         ),
-  //     }).then(() => {
-  //       alert("profile updated");
-  //     });
-  //   }
-  // });
-
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, (user) => {
-  //     if (user !== null) {
-  //       updateProfile(auth.currentUser, {
-  //         displayName:
-  //           currentUserDetails?.first + " " + currentUserDetails?.LastName,
-  //         photoURL:
-  //           currentUserDetails?.img &&
-  //           user.providerData.forEach(
-  //             (profile) =>
-  //               (profile.displayName =
-  //                 currentUserDetails?.first +
-  //                 " " +
-  //                 currentUserDetails?.LastName),
-  //             (profile.photoURL = currentUserDetails?.img)
-  //           ),
-  //       })
-  //         .then(() => {
-  //           alert("profile updated");
-  //           console.log(currentUser);
-  //         })
-  //         .catch((error) => {
-  //           // alert(error.message);
-  //         });
-  //     } else {
-  //       //     // User is signed out
-  //       //     // ...
-  //     }
-  //   });
-  // }, [currentUser]);
 
   return (
     <div className="modal">

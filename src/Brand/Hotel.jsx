@@ -15,7 +15,7 @@ const Hotel = () => {
 
   return (
     <div>
-      <div className="w-[100%] mt-[3%] ml-[3.5%] gap-[1.5rem] lg:ml-0 lg:h-[30vh] flex  flex-col lg:flex-row lg:gap-[0.25rem]  lg:justify-center lg:mt-[1rem]">
+      <div className="w-[100%] mt-[3%] gap-[1.5rem] lg:ml-0 lg:h-[30vh] flex flex-col lg:flex-row lg:gap-[0.25rem] justify-center items-center lg:mt-[1rem] frontPage">
         <div className="detail lg:details flex flex-row gap-[1rem] lg:justify-start  items-center">
           <BiHotel className="fill-[lightgray] w-[25px] h-[25px] ml-[1rem]" />
           <form className="flex flex-col justify-center items-center">

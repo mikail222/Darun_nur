@@ -206,9 +206,9 @@
   background-repeat: no-repeat;
 }
 .HireBg {
-  background-image: url("assets/fading-blue-background.jpg");
+  background-image: url("assets/congrat.jpg");
   background-size: cover;
-  background-position: top;
+  background-position: center;
   background-repeat: no-repeat;
 }
 .contactbg {
@@ -320,7 +320,9 @@ relative;
     right: 100%;
   }
 }
-
+.frontPage input {
+  @apply bg-[transparent];
+}
 .placeholder::placeholder {
   @apply text-[black] text-[0.95rem] font-bold;
 }

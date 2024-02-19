@@ -26,8 +26,8 @@ const Flight = () => {
   return (
     <div>
       {" "}
-      <div className="ml-[3.5%] mt-[1rem] lg:m-0 w-[100%]  flex-col justify-center items-center gap-x-[1rem] lg:h-[30%] lg:flex lg:flex-row lg:gap-[0.25rem]">
-        <div className="trip  detail lg:hidden bg-[#01004d] flex flex-row justify-around items-center text-white text-[0.85rem] font-bold">
+      <div className="mt-[1rem] lg:m-0 w-[100%] flex flex-col justify-center items-center gap-y-[1rem] lg:h-[30%] lg:flex lg:flex-row lg:gap-[0.25rem] frontPage">
+        <div className="trip lg:hidden w-[100%] bg-[#01004d] flex flex-row justify-around items-center text-white text-[0.85rem] font-bold">
           <button className="active:bg-blue-400" type="button">
             ROUND TRIP
           </button>
@@ -53,7 +53,7 @@ const Flight = () => {
             />
           </form>
         </div>
-        <RiArrowLeftRightFill className="ml-[40%] lg:ml-[1px] lg:mt-[0.35rem] fill-white w-[35px] h-[20px] rounded-[4px] z-[1]" />
+        <RiArrowLeftRightFill className="lg:mt-[0.35rem] fill-white w-[35px] h-[20px] rounded-[4px] z-[1]" />
         <div className="detail flex flex-row gap-[0.65rem] lg:justify-center items-center">
           <FaMapMarkerAlt className="fill-[lightgray] " />
           <form

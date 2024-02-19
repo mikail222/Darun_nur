@@ -44,48 +44,14 @@ const Brand = ({
   // ]);
   const [isActive, setIsactive] = useState();
 
-  // const menu = display.map((title) => title.title);
-  // console.log(menu)
-
-  // const handleClick = (e) => {
-  //   switch (display) {
-  //     case economy:
-  //       console.log("Economy");
-  //       e.target.className = "text-[blue]";
-  //       break;
-  //     case firstClass:
-  //       console.log("First Class");
-  //       e.target.className = "text-[blue]";
-  //       break;
-  //     case business:
-  //       console.log("Business Class");
-  //       e.target.className = "text-[blue]";
-  //       break;
-  //     case premium:
-  //       console.log("Premium Economy");
-  //       e.target.className = "text-[blue]";
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
-
   const filteredCountry = allCountries.filter(({ capital, flags }) => {
     capital, flags;
   });
   const day = new Date();
 
-  const changeImg = () => {
-    for (var i = 0; i < img.length; i++) {
-      i = 0;
-    }
-    brandImg.src += picture[i];
-    setTimeout("changeImg()", 1000);
-  };
-
   return (
-    <div className="  border-[.5rem] border-[white] w-[100%] h-auto lg:w-[100%] lg:h-[100vh] z-[-1] lg:mt-[0%]  lg:mb-[10rem]">
-      <div className=" flex flex-col lg:h-[50vh] md:h-[50vh]  lg:w-[100%] lg:flex">
+    <div className="  border-[.5rem] border-[white] w-[100%] h-auto lg:w-[100%] lg:h-[100vh] z-[-1] lg:mt-[0%]  lg:mb-[26rem] ">
+      <div className=" flex flex-col lg:h-[50vh] md:h-[50vh]  lg:w-[100%] lg:flex ">
         <video
           src={videoBg}
           autoPlay
@@ -124,7 +90,7 @@ const Brand = ({
                     </p>
                   </button>
                 </div>
-                <div className="hidden md:hidden w-[22%] lg:flex flex-row lg:w-[21%] items-center gap-[.5rem]">
+                <div className="hidden md:hidden w-[22%] lg:flex flex-row lg:w-[26%]  items-center gap-[.5rem]">
                   <HiBadgeCheck className="fill-[orange] w-[25px] h-[25px] " />
                   <p className="  text-[#0f0326] text-[0.90rem] font-semibold">
                     We offer the best deals in the industry!

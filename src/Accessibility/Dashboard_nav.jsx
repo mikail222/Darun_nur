@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BsPersonFill } from "react-icons/bs";
-import { FaHome, FaLuggageCart } from "react-icons/fa";
+import { FaHireAHelper, FaHome, FaLuggageCart } from "react-icons/fa";
 import { MdDashboard, MdRoomPreferences } from "react-icons/md";
-import { RiProfileFill, RiSettings5Line } from "react-icons/ri";
+import {
+  RiInformationFill,
+  RiProfileFill,
+  RiSettings5Line,
+} from "react-icons/ri";
 import { auth } from "../firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { BiLogOut, BiUserCheck } from "react-icons/bi";
@@ -66,7 +70,7 @@ const Dashboard_nav = ({ user, mode }) => {
                 <RiProfileFill className="icon" /> My Profile
               </button>
               <button onClick={() => navigate("Hire")}>
-                <FaLuggageCart className="icon" /> Hire
+                <FaHireAHelper className="icon" /> Hire
               </button>{" "}
               <button onClick={(e) => navigate("/")}>
                 <FaHome className="icon" /> Home
@@ -75,7 +79,7 @@ const Dashboard_nav = ({ user, mode }) => {
                 <FcDocument className="icon" /> Travel Document
               </button>
               <button onClick={(e) => navigate("chart")}>
-                <MdRoomPreferences className="icon" /> Update
+                <RiInformationFill className="icon" /> Update
               </button>
               <button onClick={(e) => navigate("pass_word")}>
                 <RiSettings5Line className="icon" />

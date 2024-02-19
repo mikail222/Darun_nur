@@ -76,8 +76,11 @@ const Services = ({ navigate }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center md:my-[15%] lg:my-[15%]">
-      <div data-aos="fade-up" className="w-[99%] lg:w-[55%]  bg-white">
+    <div className="flex flex-col justify-center items-center md:my-[15%] lg:my-[5%]">
+      <div
+        data-aos="fade-up"
+        className="w-[99%] lg:w-[55%] lg:my-[5%] bg-white"
+      >
         {" "}
         <Slider {...settings}>
           {data.map(({ img, discription, head }, i) => (

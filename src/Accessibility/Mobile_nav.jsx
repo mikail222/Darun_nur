@@ -3,7 +3,7 @@ import Footer from "../Footer/Footer";
 import Nav_bar from "../Navigation/Nav_bar";
 import Mail from "../Service/Mail";
 import { BsPersonFill } from "react-icons/bs";
-import { FaHamburger, FaLuggageCart } from "react-icons/fa";
+import { FaHamburger, FaHireAHelper, FaLuggageCart } from "react-icons/fa";
 import { MdDashboard, MdRoomPreferences } from "react-icons/md";
 import { MdOutlinePayment } from "react-icons/md";
 import {
@@ -11,7 +11,12 @@ import {
   GrDocumentStore,
   GrUserSettings,
 } from "react-icons/gr";
-import { RiProfileFill, RiSettings5Line } from "react-icons/ri";
+import {
+  RiInformationFill,
+  RiInformationLine,
+  RiProfileFill,
+  RiSettings5Line,
+} from "react-icons/ri";
 import { auth } from "../firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { BiLogOut, BiUserCheck } from "react-icons/bi";
@@ -72,13 +77,13 @@ const Mobile_nav = ({ user, setMobile, mode }) => {
                 <RiProfileFill className="icon" /> My Profile
               </button>
               <button onClick={(e) => navigate("Hire")}>
-                <FaLuggageCart className="icon" /> Hire
+                <FaHireAHelper className="icon" /> Hire
               </button>
               <button>
                 <FcDocument className="icon" /> Travel Document
               </button>
               <button onClick={(e) => navigate("chart")}>
-                <MdRoomPreferences className="icon" /> Update
+                <RiInformationFill className="icon" /> Update
               </button>
               <button onClick={(e) => navigate("pass_word")}>
                 <RiSettings5Line className="icon" />
