@@ -81,7 +81,7 @@ const Login = ({ navigate, darunnur, user }) => {
           onSubmit={handleSubmit}
           className="accessibility bg-white w-[95%] lg:w-[33vw] h-[70vh] rounded-[15px]"
         >
-          <div className="bg-[#fafafa] w-[90%] lg:w-[80%] h-[30vh] flex flex-col justify-center mt-[1rem] ">
+          <div className="bg-[#fafafa] w-[90%] lg:w-[80%] h-[30vh] flex flex-col justify-center mt-[1rem]">
             <label htmlFor="" className="label">
               Email{" "}
             </label>
@@ -94,7 +94,7 @@ const Login = ({ navigate, darunnur, user }) => {
             <label htmlFor="password" className="label">
               Password
             </label>{" "}
-            <div className="flex flex-row  justify-around items-center w-[80%] ml-7">
+            <div className="flex flex-row  justify-around items-center w-[80%] ml-7 border-b-[1px]">
               {" "}
               <input
                 type={passwordType}
