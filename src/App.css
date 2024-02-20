@@ -572,7 +572,7 @@ form .a {
 .field {
   display: flex;
   flex-direction: column;
-  @apply w-[100%] lg:w-[75%];
+  @apply w-[100%] md:w-[75%] lg:w-[75%];
 }
 .graphField {
   @apply w-[100%] overflow-x-auto h-auto bg-[white] rounded-[5px] shadow-xl;
@@ -587,17 +587,13 @@ form .a {
 }
 
 .revenue {
-  width: 22vw;
   height: auto;
-  margin-top: 0.5rem;
-  @apply hidden shadow-lg lg:flex flex-col items-center rounded-[5px] bg-white;
+  @apply lg:w-[22vw] md:w-[25vw] hidden shadow-lg md:flex lg:flex flex-col items-center rounded-[5px] bg-white  px-[1%];
 }
 .revenueDark {
-  width: 22vw;
   height: auto;
-  margin-top: 0.5rem;
   background-color: rgb(255, 255, 255, 0.1);
-  @apply hidden shadow-lg lg:flex flex-col items-center rounded-[5px] text-white;
+  @apply hidden md:w-[25vw] lg:w-[22vw] shadow-lg md:flex lg:flex flex-col items-center rounded-[5px] text-white px-[1%];
 }
 .proImg {
   @apply w-[50px] h-[50px] rounded-[100px] border-[3px] border-white ml-[-20px] object-cover bg-[orange];

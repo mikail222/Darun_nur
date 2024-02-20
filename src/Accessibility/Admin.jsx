@@ -208,15 +208,8 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
   }, [fireTostify]);
   return (
     <div className="w-[100%] h-[100%]">
-      <div className="w-[100%]  lg:mt-[0px] md:mt-[50%]  adminBg flex flex-col justify-center ">
+      <div className="w-[100%]  lg:mt-[0px] adminBg flex flex-col justify-center ">
         <ToastContainer />
-        <div className="w-[95%] flex flex-col justify-end items-end lg:ml-[15px] mt-[5%]">
-          {mode ? (
-            <MdLightMode onClick={() => setMode(false)} className="modeIcon" />
-          ) : (
-            <MdDarkMode onClick={() => setMode(true)} className="modeIcon" />
-          )}
-        </div>
         <Columns
           inbox={inbox}
           user={user}
@@ -231,7 +224,7 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
           monthlyUser={monthlyUser}
           monthlyVisa={monthlyVisa}
         />
-        <div className="w-[100%] flex flex-row  lg:gap-[1rem] px-[1%] lg:px-[2%]">
+        <div className="w-[100%] flex flex-row gap-[1rem] px-[1%] lg:px-[2%]">
           <div className="field">
             <aside className={mode ? "graphField" : "graphFielddark"}>
               {" "}
@@ -270,7 +263,7 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
             </aside>
           </div>
           <aside className={mode ? "revenue" : "revenueDark"}>
-            <div className="flex flex-row justify-between items-center w-[100%] p-[3%]">
+            <div className="flex flex-row justify-between items-center w-[100%] py-[5%]">
               <p>Total Registration</p>
               <BiDotsVerticalRounded />
             </div>
