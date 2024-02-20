@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { BsPersonFill } from "react-icons/bs";
+import logo from "../assets/darun-nur-low-resolution-logo-color-on-transparent-background.png";
+import logowhite from "../assets/darun-nur-low-resolution-logo-white-on-transparent-background.png";
+
 import { FaHireAHelper, FaHome, FaLuggageCart } from "react-icons/fa";
 import { MdDashboard, MdRoomPreferences } from "react-icons/md";
 import {
@@ -39,23 +41,13 @@ const Dashboard_nav = ({ user, mode }) => {
         <div
           className={
             mode
-              ? "w-[20%] h-[100vh] fixed flex  flex-col-reverse items-center z-[1] bg-[#f1f2f6] pt-[2%] navBorder"
-              : "w-[20%] h-[100vh] fixed flex  flex-col-reverse items-center z-[1] bg-[#031525] pt-[2%] navBorder"
+              ? "w-[20%] h-[100vh] fixed flex  flex-col items-center z-[1] bg-[#f1f2f6] pt-[2%] navBorder"
+              : "w-[20%] h-[100vh] fixed flex  flex-col items-center z-[1] bg-[#031525] pt-[2%] navBorder"
           }
         >
           <div className={mode ? "statuName" : "statuNameDark"}>
-            <p className="text-[white] text-[1.2rem] my-[3%]  mx-[2%]">
-              {currentUser?.displayName}
-            </p>
-            {currentUser ? (
-              <img src={currentUser?.photoURL} alt="" className="avartaIcons" />
-            ) : (
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhVCVV2vEZkPS1sMCHgmPsfLpWfr8wb-OubQ&usqp=CAU"
-                alt=""
-                className=" avartaIcons "
-              />
-            )}
+            {mode ? <img src={logo} alt="" /> : <img src={logowhite} alt="" />}
+            <p> 𝓣𝓻𝓪𝓿𝓮𝓵 & 𝓣𝓸𝓾𝓻𝓼 𝓛𝓽𝓭</p>
           </div>
           <aside className="w-[20vw]  h-[80vh] ">
             <div className="menu_list">

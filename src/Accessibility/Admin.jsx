@@ -394,7 +394,7 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
             </TableContainer>
           </div>
 
-          <div className={mode ? "productWrapper" : "productWrapperDark"}>
+          <div a className={mode ? "productWrapper" : "productWrapperDark"}>
             <p className="text-[gray] text-[2rem] m-[2%]">Message Details</p>
             {message && view === false ? (
               <TableContainer component={Paper}>

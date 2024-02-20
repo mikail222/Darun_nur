@@ -1,6 +1,7 @@
 import { FaHireAHelper } from "react-icons/fa";
 import { MdDashboard, MdRoomPreferences } from "react-icons/md";
-
+import logo from "../assets/darun-nur-low-resolution-logo-color-on-transparent-background.png";
+import logowhite from "../assets/darun-nur-low-resolution-logo-white-on-transparent-background.png";
 import {
   RiInformationFill,
   RiProfileFill,
@@ -32,7 +33,7 @@ const Mobile_nav = ({ user, setMobile, mode }) => {
     <div>
       <div className="w-[100%] h-[auto] flex flex-row justify-between relative z-[2]">
         <div
-          className="w-[75vw] h-[100vh] fixed flex  flex-col-reverse items-center pt-[2%]  lg:hidden"
+          className="w-[75vw] h-[100vh] fixed flex  flex-col items-center pt-[2%]  lg:hidden"
           style={
             mode
               ? { background: "black", color: "white" }
@@ -40,18 +41,8 @@ const Mobile_nav = ({ user, setMobile, mode }) => {
           }
         >
           <div className={mode ? "statuName" : "statuNameDark"}>
-            <p className="text-[white] text-[1.2rem] ">
-              {currentUser?.displayName}
-            </p>
-            {currentUser ? (
-              <img src={currentUser?.photoURL} alt="" className="avartaIcons" />
-            ) : (
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhVCVV2vEZkPS1sMCHgmPsfLpWfr8wb-OubQ&usqp=CAU"
-                alt=""
-                className=" avartaIcons "
-              />
-            )}
+            {mode ? <img src={logo} alt="" /> : <img src={logowhite} alt="" />}
+            <p> 𝓣𝓻𝓪𝓿𝓮𝓵 & 𝓣𝓸𝓾𝓻𝓼 𝓛𝓽𝓭</p>
           </div>
           <aside className="w-[75vw] lg:h-[80vh]  h-[80%]">
             <div className="menu_list">
