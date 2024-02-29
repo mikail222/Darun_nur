@@ -90,8 +90,8 @@ const Our_Team = () => {
       <h2 className="text-[#133063] mb-[5%]">OUR TEAM </h2>
       <div className="w-[96%] lg:w-[55%] bg-white">
         <Slider {...settings}>
-          {Team.map(({ images, lastName, role, experence, name }) => (
-            <div className="flex flex-col py-[5%]">
+          {Team.map(({ images, lastName, role, experence, name }, i) => (
+            <div key={i} className="flex flex-col py-[5%]">
               <div className="bg-[white] shade flex flex-col justify-center items-center w-[100%] h-[35vh]">
                 <img
                   src={images}

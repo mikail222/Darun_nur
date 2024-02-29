@@ -64,7 +64,6 @@ const Form = () => {
         {" "}
         <p className="text-[1rem] text-[#d60052]  mb-[2%]">Drop message</p>
         <form
-          onChange={(e) => handleChange(e)}
           onClick={(e) => contact(e)}
           className="cform flex flex-col  gap-[15px] w-[100%]"
         >
@@ -76,6 +75,7 @@ const Form = () => {
                 placeholder="Your Name"
                 name="first"
                 value={data.first}
+                onChange={(e) => handleChange(e)}
               />
             </div>{" "}
             <div>
@@ -85,6 +85,7 @@ const Form = () => {
                 placeholder="Your Email"
                 name="email"
                 value={data.email}
+                onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
@@ -96,6 +97,7 @@ const Form = () => {
                 placeholder="Your Subject"
                 name="subject"
                 value={data.subject}
+                onChange={(e) => handleChange(e)}
               />
             </div>{" "}
             <div>
@@ -105,6 +107,7 @@ const Form = () => {
                 placeholder="Your Mobile"
                 name="phone"
                 value={data.phone}
+                onChange={(e) => handleChange(e)}
               />
             </div>
           </div>
@@ -117,6 +120,7 @@ const Form = () => {
             rows="10"
             placeholder="Your Message"
             className="border-[1px] font-semibold outline-none px-[5px]"
+            onChange={(e) => handleChange(e)}
           ></textarea>
           <button type="submit" className="buttonbg bg-[orange]">
             Send Message

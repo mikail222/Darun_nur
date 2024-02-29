@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import Nav_bar from "../Navigation/Nav_bar";
 import publication from "../assets/publication.jpg";
 import cbn from "../assets/Central-Bank-of-Nigeria-CBN.svg";
@@ -174,8 +174,8 @@ const Scholarship = () => {
           <div className="w-[100%] my-[10%] flex flex-col justify-center items-center">
             <div className="w-[96%] lg:w-[85%]  bg-white">
               <Slider {...settings}>
-                {advert.map(({ imge, content, name }) => (
-                  <div className="flex flex-col">
+                {advert.map(({ imge, content, name }, i) => (
+                  <div key={i} className="flex flex-col">
                     <img
                       src={imge}
                       alt=""
@@ -212,8 +212,8 @@ const Scholarship = () => {
               </div>
             </div>
             <div className="projectDemo w-[100%]">
-              {advert.map(({ imge }) => (
-                <div>
+              {advert.map(({ imge }, i) => (
+                <div key={i}>
                   <img
                     src={imge}
                     alt=""
@@ -235,8 +235,11 @@ const Scholarship = () => {
             <div className="w-[100%] my-[10%] flex flex-col justify-center items-center">
               <div className="w-[99%] lg:w-[85%] bg-white">
                 <Slider {...settings}>
-                  {client.map(({ imge, content, name, bus_type }) => (
-                    <div className=" w-[100%] lg:h-[58vh] shade flex flex-col justify-center items-center my-[5%] pt-[5%] px-[5%]">
+                  {client.map(({ imge, content, name, bus_type }, i) => (
+                    <div
+                      key={i}
+                      className=" w-[100%] lg:h-[58vh] shade flex flex-col justify-center items-center my-[5%] pt-[5%] px-[5%]"
+                    >
                       <img
                         src={imge}
                         alt=""
@@ -288,4 +291,4 @@ const Scholarship = () => {
   );
 };
 
-export default Scholarship;
+export default memo(Scholarship);

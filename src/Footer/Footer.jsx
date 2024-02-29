@@ -5,8 +5,7 @@ import { BsInstagram } from "react-icons/bs";
 import { FiTwitter } from "react-icons/fi";
 import { BiCopyright } from "react-icons/bi";
 import { useNavigate } from "react-router-dom";
-import Mail from "../Service/Mail";
-import { MdEmail, MdMarkEmailUnread, MdOutlineEmail } from "react-icons/md";
+import { MdOutlineEmail } from "react-icons/md";
 import { AiOutlineMail } from "react-icons/ai";
 
 const Footer = () => {

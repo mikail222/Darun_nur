@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, memo } from "react";
 import Nav_bar from "../Navigation/Nav_bar";
 import videoBg from "../assets/video-1.mp4";
 import vacateImg from "../assets/pexels-pixabay-53537.jpg";
@@ -290,4 +290,4 @@ const Vacation = () => {
   );
 };
 
-export default Vacation;
+export default memo(Vacation);

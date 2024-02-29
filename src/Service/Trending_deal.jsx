@@ -44,8 +44,11 @@ const Trending_deal = () => {
       <div className=" flex flex-col w-[100vw] justify-center items-center h-auto lg:w-[80%] lg:h-[50vh] lg:flex lg:flex-row gap-[1.5rem] lg:gap-[1rem] ">
         {deal
           .slice(0, 3)
-          .map(({ state1, state2, depature, amount, returnDate }) => (
-            <div className="border-[1px] border-[orange] w-[80%] lg:w-[95%] rounded-[5px] flex flex-col  justify-center items-center">
+          .map(({ state1, state2, depature, amount, returnDate }, i) => (
+            <div
+              key={i}
+              className="border-[1px] border-[orange] w-[80%] lg:w-[95%] rounded-[5px] flex flex-col  justify-center items-center"
+            >
               <div className="deal">
                 <div className="text-[0.75rem] w-[8rem] bg-[white] m-[0.5rem] rounded-[3px] lg:text-[0.87rem] text-[blue] text-center">
                   <p>Top flight deal</p>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 import Footer from "../Footer/Footer";
 import Brand from "../Brand/Brand";
 import Flight_Deal from "../Service/Flight_Deal";
@@ -45,4 +45,4 @@ const Home = ({ shownav, setShownav, navigate, darunnur }) => {
   );
 };
 
-export default Home;
+export default memo(Home);

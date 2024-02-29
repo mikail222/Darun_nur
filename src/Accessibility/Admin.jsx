@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import Columns from "./Columns";
 import { BiDotsVerticalRounded, BiUser } from "react-icons/bi";
 import { TbAffiliate } from "react-icons/tb";
@@ -522,4 +522,4 @@ const Admin = ({ user, visa, affilates, mode, setMode }) => {
   );
 };
 
-export default Admin;
+export default memo(Admin);
